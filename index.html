@@ -1,50 +1,127 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guitar Mystery Cache</title>
 
-    <link rel="stylesheet" href="css/style.css">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Guitar Mystery Cache</title>
+
+<link rel="stylesheet" href="styles.css">
+
 </head>
+
 <body>
 
 <div class="container">
 
-    <h1>🎸 Guitar Mystery Cache</h1>
+    <img
+        src="guitar-mystery-logo.png"
+        alt="Guitar Mystery Cache"
+        class="logo"
+    >
 
-    <p class="subtitle">
-        Una Mystery Cache musical basada en la guitarra.
-    </p>
+    <h1>Guitar Mystery Cache</h1>
 
-    <div class="challenge">
-        Encuentra todas las posiciones de la escala pentatónica menor de La
+    <div id="language-selector">
+
+        <button onclick="setLanguage('ca')">
+            CAT
+        </button>
+
+        <button onclick="setLanguage('es')">
+            ESP
+        </button>
+
+        <button onclick="setLanguage('en')">
+            ENG
+        </button>
+
     </div>
 
-    <div id="counter">
-        Encontradas:
-        <span id="found">0</span> /
-        <span id="total">0</span>
-    </div>
-
-    <div id="fretboard"></div>
-
-    <button id="resetBtn">
-        Reiniciar reto
-    </button>
-
-    <div id="coordinates" class="hidden">
-
-        <h2>📍 Coordenadas desbloqueadas</h2>
-
-        <p>N 41° 42.357</p>
-        <p>E 002° 47.812</p>
-
+    <div id="list">
+        Cargando...
     </div>
 
 </div>
 
-<script src="js/app.js"></script>
+<script>
+
+let language =
+    localStorage.getItem("language");
+
+if(!language){
+
+    const browserLang =
+        navigator.language.toLowerCase();
+
+    if(browserLang.startsWith("ca")){
+
+        language = "ca";
+
+    }else if(browserLang.startsWith("en")){
+
+        language = "en";
+
+    }else{
+
+        language = "es";
+    }
+}
+
+function setLanguage(lang){
+
+    localStorage.setItem(
+        "language",
+        lang
+    );
+
+    location.reload();
+}
+
+const challenges = [
+
+    {
+        id:"pentatonic-a",
+        title:{
+            ca:"Pentatònica menor de La",
+            es:"Pentatónica menor de La",
+            en:"A Minor Pentatonic"
+        }
+    }
+
+];
+
+function loadList(){
+
+    const container =
+        document.getElementById("list");
+
+    container.innerHTML = "";
+
+    challenges.forEach(challenge => {
+
+        const link =
+            document.createElement("a");
+
+        link.className =
+            "challenge";
+
+        link.href =
+            `play.html?id=${challenge.id}`;
+
+        link.textContent =
+            challenge.title[language];
+
+        container.appendChild(link);
+
+    });
+}
+
+loadList();
+
+</script>
 
 </body>
 </html>
