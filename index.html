@@ -1,1 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guitar Mystery Cache</title>
 
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🎸 Guitar Mystery Cache</h1>
+
+    <p class="subtitle">
+        Una Mystery Cache musical basada en la guitarra.
+    </p>
+
+    <div class="challenge">
+        Encuentra todas las posiciones de la escala pentatónica menor de La
+    </div>
+
+    <div id="counter">
+        Encontradas:
+        <span id="found">0</span> /
+        <span id="total">0</span>
+    </div>
+
+    <div id="fretboard"></div>
+
+    <button id="resetBtn">
+        Reiniciar reto
+    </button>
+
+    <div id="coordinates" class="hidden">
+
+        <h2>📍 Coordenadas desbloqueadas</h2>
+
+        <p>N 41° 42.357</p>
+        <p>E 002° 47.812</p>
+
+    </div>
+
+</div>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>
