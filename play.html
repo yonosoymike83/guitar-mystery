@@ -53,10 +53,28 @@
 
 #coordinates{
     display:none;
-    margin-top:20px;
-    background:#222;
-    border-radius:10px;
-    padding:20px;
+    margin-top:40px;
+    text-align:center;
+}
+
+.result-title{
+    font-size:2rem;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.coords{
+    font-size:2rem;
+    margin-bottom:20px;
+}
+
+#copyButton{
+    padding:10px 20px;
+    font-size:1rem;
+    font-weight:bold;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
 }
 
 @media(max-width:700px){
@@ -119,12 +137,23 @@
 
 <div id="coordinates">
 
-    <h2>
-        📍 Coordenades desbloquejades
-    </h2>
+    <div class="result-title">
+        ✅ <span id="resultText">
+            Repte resolt
+        </span>
+    </div>
 
-    <p>N 41° 42.357</p>
-    <p>E 002° 47.812</p>
+    <div class="coords">
+        N 41° 42.357 E 002° 47.812
+    </div>
+
+    <button
+        id="copyButton"
+        onclick="copyCoords()">
+
+        📋 Copiar coordenades
+
+    </button>
 
 </div>
 
@@ -177,6 +206,9 @@ document.getElementById("instructions").textContent =
 document.getElementById("progressLabel").textContent =
     texts[language].progress;
 
+document.getElementById("resultText").textContent =
+    resultTexts[language];
+
 const tuning =
 [
     "E",
@@ -210,7 +242,17 @@ const fretboard =
     document.getElementById(
         "fretboard"
     );
+    
+const resultTexts = {
 
+    ca:"Repte resolt",
+
+    es:"Reto resuelto",
+
+    en:"Challenge solved"
+
+};
+    
 function getNote(openString,fret){
 
     const index =
@@ -321,6 +363,33 @@ document.getElementById(
     "total"
 ).textContent =
     total;
+    
+function copyCoords(){
+
+    navigator.clipboard.writeText(
+        "N 41° 42.357 E 002° 47.812"
+    );
+
+    const btn =
+        document.getElementById(
+            "copyButton"
+        );
+
+    btn.textContent =
+        "✅ Copiat";
+
+    setTimeout(()=>{
+
+        btn.textContent =
+            language === "es"
+            ? "📋 Copiar coordenadas"
+            : language === "en"
+            ? "📋 Copy coordinates"
+            : "📋 Copiar coordenades";
+
+    },2000);
+
+}
 
 </script>
 
