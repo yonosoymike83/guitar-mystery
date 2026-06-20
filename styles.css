@@ -12,11 +12,15 @@ margin:auto;
 padding:20px;
 }
 
+.logo{
+width:250px;
+max-width:90%;
+margin-bottom:10px;
+}
+
 h1{
-margin-top:40px;
+margin-top:0;
 margin-bottom:20px;
-font-size:3rem;
-font-weight:bold;
 }
 
 #language-selector{
@@ -59,88 +63,6 @@ transition:0.2s;
 
 .challenge:hover
 
-.instructions{
-margin-bottom:20px;
-font-size:1.2rem;
-}
-
-#progress{
-margin-bottom:20px;
-font-size:1.2rem;
-}
-
-#fretboard{
-width:600px;
-margin:0 auto;
-background:#6b4320;
-border-radius:10px;
-padding:15px;
-display:grid;
-grid-template-columns:repeat(13,1fr);
-gap:4px;
-}
-
-.note{
-width:40px;
-height:40px;
-border-radius:50%;
-border:1px solid rgba(255,255,255,.15);
-cursor:pointer;
-transition:.2s;
-}
-
-.note:hover{
-transform:scale(1.05);
-}
-
-.correct{
-background:#28a745;
-}
-
-.wrong{
-background:#c0392b;
-}
-
-#coordinates{
-display:none;
-margin-top:20px;
-background:#222;
-border-radius:10px;
-padding:20px;
-}
-
-.back{
-display:inline-block;
-margin-top:20px;
-background:#222;
-color:white;
-text-decoration:none;
-padding:12px 20px;
-border-radius:10px;
-}
-
-.back:hover
-
 .hidden{
 display:none;
-}
-
-@media(max-width:700px){
-
-```
-h1{
-    font-size:2.2rem;
-}
-
-#fretboard{
-    width:95%;
-    gap:2px;
-}
-
-.note{
-    width:28px;
-    height:28px;
-}
-```
-
 }
