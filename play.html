@@ -57,19 +57,19 @@
 }
 
 .result-title{
-    font-size:2rem;
+    font-size:0.9rem;
     font-weight:bold;
-    margin-bottom:20px;
+    margin-bottom:10px;
 }
 
 .coords{
-    font-size:2rem;
-    margin-bottom:20px;
+    font-size:0.85rem;
+    margin-bottom:15px;
 }
 
 #copyButton{
-    padding:10px 20px;
-    font-size:1rem;
+    padding:8px 14px;
+    font-size:0.9rem;
     font-weight:bold;
     border:none;
     border-radius:8px;
@@ -125,11 +125,15 @@
 </div>
 
 <div id="progress">
+
     <span id="progressLabel">
         Trobades
     </span>:
+
     <span id="found">0</span> /
+
     <span id="total">0</span>
+
 </div>
 
 <div id="fretboard"></div>
@@ -137,13 +141,17 @@
 <div id="coordinates">
 
     <div class="result-title">
-        ✅ <span id="resultText">
+        ☑ <span id="resultText">
             Repte resolt
         </span>
     </div>
 
-    <div class="coords" id="coordsText">
+    <div
+        class="coords"
+        id="coordsText">
+
         N 41° 42.357 E 002° 47.812
+
     </div>
 
     <button
@@ -163,9 +171,7 @@
 let language =
     localStorage.getItem("language")
     || "ca";
-    
-console.log("language =", language);
-    
+
 function setLanguage(lang){
 
     localStorage.setItem(
@@ -173,7 +179,7 @@ function setLanguage(lang){
         lang
     );
 
-    window.location.reload(true);
+    location.reload();
 }
 
 const texts = {
@@ -230,7 +236,9 @@ document.getElementById("progressLabel").textContent =
 document.getElementById("resultText").textContent =
     resultTexts[language];
 
-const tuning =
+document.getElementById("copyButton").textContent =
+    copyTexts[language];
+    const tuning =
 [
     "E",
     "A",
@@ -385,9 +393,7 @@ function copyCoords(){
 
     const btn =
         document.getElementById(
-    "copyButton"
-).textContent =
-    copyTexts[language];
+            "copyButton"
         );
 
     btn.textContent =
@@ -396,11 +402,7 @@ function copyCoords(){
     setTimeout(()=>{
 
         btn.textContent =
-            language === "es"
-            ? "📋 Copiar coordenadas"
-            : language === "en"
-            ? "📋 Copy coordinates"
-            : "📋 Copiar coordenades";
+            copyTexts[language];
 
     },2000);
 
