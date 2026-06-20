@@ -16,12 +16,6 @@
 
 <div class="container">
 
-    <img
-        src="guitar-mystery-logo.png"
-        alt="Guitar Mystery Cache"
-        class="logo"
-    >
-
     <h1>Guitar Mystery Cache</h1>
 
     <div id="language-selector">
@@ -80,23 +74,19 @@ function setLanguage(lang){
     location.reload();
 }
 
-const challenges = [
+async function loadList(){
 
-    {
-        id:"pentatonic-a",
-        title:{
-            ca:"Pentatònica menor de La",
-            es:"Pentatónica menor de La",
-            en:"A Minor Pentatonic"
-        }
-    }
-
-];
-
-function loadList(){
+    const challenges =
+        await (
+            await fetch(
+                "challenges/index.json"
+            )
+        ).json();
 
     const container =
-        document.getElementById("list");
+        document.getElementById(
+            "list"
+        );
 
     container.innerHTML = "";
 
@@ -114,9 +104,12 @@ function loadList(){
         link.textContent =
             challenge.title[language];
 
-        container.appendChild(link);
+        container.appendChild(
+            link
+        );
 
     });
+
 }
 
 loadList();
