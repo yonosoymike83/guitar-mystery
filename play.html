@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="ca">
 
 <head>
@@ -143,7 +142,7 @@
         </span>
     </div>
 
-    <div class="coords">
+    <div class="coords" id="coordsText">
         N 41° 42.357 E 002° 47.812
     </div>
 
@@ -197,6 +196,16 @@ const texts = {
 
 };
 
+const resultTexts = {
+
+    ca:"Repte resolt",
+
+    es:"Reto resuelto",
+
+    en:"Challenge solved"
+
+};
+
 document.getElementById("challengeTitle").textContent =
     texts[language].title;
 
@@ -242,17 +251,7 @@ const fretboard =
     document.getElementById(
         "fretboard"
     );
-    
-const resultTexts = {
 
-    ca:"Repte resolt",
-
-    es:"Reto resuelto",
-
-    en:"Challenge solved"
-
-};
-    
 function getNote(openString,fret){
 
     const index =
@@ -363,11 +362,13 @@ document.getElementById(
     "total"
 ).textContent =
     total;
-    
+
 function copyCoords(){
 
     navigator.clipboard.writeText(
-        "N 41° 42.357 E 002° 47.812"
+        document.getElementById(
+            "coordsText"
+        ).textContent.trim()
     );
 
     const btn =
