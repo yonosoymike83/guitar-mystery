@@ -1,0 +1,28 @@
+{
+  "id": "challenge01",
+
+  "title": {
+    "ca": "Pentatònica menor de La",
+    "es": "Pentatónica menor de La",
+    "en": "A Minor Pentatonic"
+  },
+
+  "instructions": {
+    "ca": "Troba les 5 notes de la posició bàsica de la pentatònica menor de La.",
+    "es": "Encuentra las 5 notas de la posición básica de la pentatónica menor de La.",
+    "en": "Find the 5 notes of the basic A minor pentatonic position."
+  },
+
+  "solution": [
+    "6-5",
+    "5-3",
+    "4-5",
+    "3-2",
+    "2-5"
+  ],
+
+  "coordinates": {
+    "north": "N 41° 42.357",
+    "east": "E 002° 47.812"
+  }
+}
