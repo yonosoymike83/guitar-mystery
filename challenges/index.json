@@ -6,13 +6,13 @@
       "es": "Pentatónica menor de La",
       "en": "A Minor Pentatonic"
     }
+  },
+  {
+    "id": "challenge02",
+    "title": {
+      "ca": "Escala Blues de La",
+      "es": "Escala Blues de La",
+      "en": "A Blues Scale"
+    }
   }
- {
-  "id": "challenge02",
-  "title": {
-    "ca": "Escala Blues de La",
-    "es": "Escala Blues de La",
-    "en": "A Blues Scale"
-  }
-}
 ]
