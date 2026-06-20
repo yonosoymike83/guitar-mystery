@@ -1,57 +1,43 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Guitar Mystery Cache</title><link rel="stylesheet" href="styles.css"><style>
+<!DOCTYPE html>
 
-.controls{
-    margin-bottom:20px;
-}
+<html lang="ca">
 
-.controls button{
-    margin:0 4px;
-    padding:8px 16px;
-    font-weight:bold;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-}
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Guitar Mystery Cache</title>
+
+<link rel="stylesheet" href="styles.css">
+
+<style>
 
 .instructions{
     margin-bottom:20px;
-    font-size:1.1rem;
 }
 
 #progress{
     margin-bottom:20px;
-    font-size:1.2rem;
 }
 
 #fretboard{
-    width:320px;
+    width:600px;
     margin:0 auto;
     background:#6b4320;
-    border-radius:12px;
-    padding:20px;
-
+    border-radius:10px;
+    padding:15px;
     display:grid;
-    grid-template-columns:repeat(6,1fr);
-    grid-template-rows:repeat(13,55px);
-
+    grid-template-columns:repeat(13,1fr);
     gap:4px;
 }
 
 .note{
-    width:36px;
-    height:36px;
-    margin:auto;
-
+    width:40px;
+    height:40px;
     border-radius:50%;
     border:1px solid rgba(255,255,255,.15);
-
     cursor:pointer;
-    transition:.2s;
-}
-
-.note:hover{
-    transform:scale(1.1);
 }
 
 .correct{
@@ -64,29 +50,36 @@
 
 #coordinates{
     display:none;
-
     margin-top:20px;
-
     background:#222;
-
     border-radius:10px;
-
     padding:20px;
 }
 
 @media(max-width:700px){
 
     #fretboard{
-
-        width:90vw;
-
-        max-width:320px;
+        width:95%;
+        gap:2px;
     }
 
+    .note{
+        width:28px;
+        height:28px;
+    }
 }
 
-</style></head><body><div class="container"><h1 id="challengeTitle">
-    Pentatónica menor de La
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+```
+<h1 id="challengeTitle">
+    Pentatònica menor de La
 </h1>
 
 <div class="controls">
@@ -110,11 +103,13 @@
 </div>
 
 <div id="instructions" class="instructions">
-    Encuentra todas las posiciones de la escala pentatónica menor de La en los primeros 12 trastes.
+    Troba totes les posicions de la pentatònica menor de La en els primers 12 trasts.
 </div>
 
 <div id="progress">
-    Encontradas:
+    <span id="progressLabel">
+        Trobades
+    </span>:
     <span id="found">0</span> /
     <span id="total">0</span>
 </div>
@@ -123,20 +118,21 @@
 
 <div id="coordinates">
 
-    <h2>
-        📍 Coordenadas desbloqueadas
-    </h2>
+    <h2>📍 Coordenades desbloquejades</h2>
 
     <p>N 41° 42.357</p>
     <p>E 002° 47.812</p>
 
 </div>
+```
 
-</div><script>
+</div>
+
+<script>
 
 let language =
     localStorage.getItem("language")
-    || "es";
+    || "ca";
 
 function setLanguage(lang){
 
@@ -152,83 +148,59 @@ const texts = {
 
     ca:{
         title:"Pentatònica menor de La",
-        instructions:"Troba totes les posicions de la pentatònica menor de La en els primers 12 trasts."
+        instructions:"Troba totes les posicions de la pentatònica menor de La en els primers 12 trasts.",
+        progress:"Trobades"
     },
 
     es:{
         title:"Pentatónica menor de La",
-        instructions:"Encuentra todas las posiciones de la escala pentatónica menor de La en los primeros 12 trastes."
+        instructions:"Encuentra todas las posiciones de la escala pentatónica menor de La en los primeros 12 trastes.",
+        progress:"Encontradas"
     },
 
     en:{
         title:"A Minor Pentatonic",
-        instructions:"Find all positions of the A minor pentatonic scale within the first 12 frets."
+        instructions:"Find all positions of the A minor pentatonic scale within the first 12 frets.",
+        progress:"Found"
     }
 
 };
 
-document.getElementById(
-    "challengeTitle"
-).textContent =
+document.getElementById("challengeTitle").textContent =
     texts[language].title;
 
-document.getElementById(
-    "instructions"
-).textContent =
+document.getElementById("instructions").textContent =
     texts[language].instructions;
 
-const tuning =
-[
-    "E",
-    "A",
-    "D",
-    "G",
-    "B",
-    "E"
+document.getElementById("progressLabel").textContent =
+    texts[language].progress;
+
+const tuning = ["E","A","D","G","B","E"];
+
+const notes = [
+"C","C#","D","D#","E","F",
+"F#","G","G#","A","A#","B"
 ];
 
-const notes =
-[
-    "C","C#","D","D#",
-    "E","F","F#","G",
-    "G#","A","A#","B"
-];
-
-const pentatonic =
-[
-    "A",
-    "C",
-    "D",
-    "E",
-    "G"
-];
+const pentatonic = ["A","C","D","E","G"];
 
 let found = 0;
 let total = 0;
 
 const fretboard =
-    document.getElementById(
-        "fretboard"
-    );
+    document.getElementById("fretboard");
 
-function getNote(
-    openString,
-    fret
-){
+function getNote(openString,fret){
 
     const index =
-        notes.indexOf(
-            openString
-        );
+        notes.indexOf(openString);
 
-    return notes[
-        (index + fret) % 12
-    ];
+    return notes[(index+fret)%12];
 }
 
-for(let fret=0; fret<=12; fret++){
+for(let string=0;string<6;string++){
 
-    for(let string=0; string<6; string++){
+    for(let fret=0;fret<=12;fret++){
 
         const note =
             getNote(
@@ -237,97 +209,71 @@ for(let fret=0; fret<=12; fret++){
             );
 
         const div =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
-        div.className =
-            "note";
+        div.className = "note";
 
         if(
-            pentatonic.includes(
-                note
-            )
+            pentatonic.includes(note)
         ){
             total++;
         }
 
-        div.addEventListener(
-            "click",
-            ()=>{
+        div.addEventListener("click",()=>{
+
+            if(
+                pentatonic.includes(note)
+            ){
 
                 if(
-                    pentatonic.includes(
-                        note
+                    !div.classList.contains(
+                        "correct"
                     )
                 ){
 
-                    if(
-                        !div.classList.contains(
-                            "correct"
-                        )
-                    ){
-
-                        div.classList.add(
-                            "correct"
-                        );
-
-                        found++;
-
-                        document
-                        .getElementById(
-                            "found"
-                        )
-                        .textContent =
-                            found;
-
-                        if(
-                            found === total
-                        ){
-
-                            document
-                            .getElementById(
-                                "coordinates"
-                            )
-                            .style.display =
-                                "block";
-                        }
-
-                    }
-
-                }else{
-
                     div.classList.add(
+                        "correct"
+                    );
+
+                    found++;
+
+                    document.getElementById(
+                        "found"
+                    ).textContent = found;
+
+                    if(found===total){
+
+                        document.getElementById(
+                            "coordinates"
+                        ).style.display =
+                            "block";
+                    }
+                }
+
+            }else{
+
+                div.classList.add("wrong");
+
+                setTimeout(()=>{
+
+                    div.classList.remove(
                         "wrong"
                     );
 
-                    setTimeout(()=>{
-
-                        div.classList.remove(
-                            "wrong"
-                        );
-
-                    },500);
-
-                }
-
+                },500);
             }
-        );
 
-        fretboard.appendChild(
-            div
-        );
+        });
 
+        fretboard.appendChild(div);
     }
-
 }
 
-document
-.getElementById(
+document.getElementById(
     "total"
-)
-.textContent =
-    total;
+).textContent = total;
 
-</script></body>
+</script>
+
+</body>
 </html>
