@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ca">
+<html lang="es">
 
 <head>
 
@@ -10,167 +10,59 @@
 
 <link rel="stylesheet" href="styles.css">
 
-<style>
-
-.instructions{
-    margin-bottom:20px;
-}
-
-#progress{
-    margin-bottom:20px;
-}
-
-#fretboard{
-    width:320px;
-    margin:0 auto;
-    display:grid;
-    grid-template-columns:repeat(6,1fr);
-    gap:3px;
-}
-
-.note{
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    background:#6b4320;
-    border:1px solid rgba(255,255,255,.15);
-    cursor:pointer;
-    transition:.2s;
-}
-
-.note:hover{
-    transform:scale(1.05);
-}
-
-.correct{
-    background:#28a745;
-}
-
-.wrong{
-    background:#c0392b;
-}
-
-#coordinates{
-    display:none;
-    margin-top:40px;
-    text-align:center;
-}
-
-.result-title{
-    font-size:1.4rem;
-    font-weight:bold;
-    margin-bottom:15px;
-}
-
-.coords{
-    font-size:1.2rem;
-    margin-bottom:15px;
-}
-
-#copyButton{
-    padding:10px 20px;
-    font-size:1rem;
-    font-weight:bold;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-}
-
-@media(max-width:700px){
-
-    #fretboard{
-        width:270px;
-    }
-
-    .note{
-        width:34px;
-        height:34px;
-    }
-}
-
-</style>
-
 </head>
 
 <body>
 
 <div class="container">
 
-<h1 id="challengeTitle">
-    Carregant...
-</h1>
+    <h1>Guitar Mystery Cache</h1>
 
-<div class="controls">
+    <div id="language-selector">
 
-    <button onclick="window.location='index.html'">
-        ←
-    </button>
+        <button onclick="setLanguage('ca')">
+            CAT
+        </button>
 
-    <button onclick="setLanguage('ca')">
-        CAT
-    </button>
+        <button onclick="setLanguage('es')">
+            ESP
+        </button>
 
-    <button onclick="setLanguage('es')">
-        ESP
-    </button>
-
-    <button onclick="setLanguage('en')">
-        ENG
-    </button>
-
-</div>
-
-<div id="instructions" class="instructions">
-    Carregant...
-</div>
-
-<div id="progress">
-
-    <span id="progressLabel">
-        Trobades
-    </span>:
-
-    <span id="found">0</span> /
-
-    <span id="total">0</span>
-
-</div>
-
-<div id="fretboard"></div>
-
-<div id="coordinates">
-
-    <div class="result-title">
-        ✅ <span id="resultText">
-            Repte resolt
-        </span>
-    </div>
-
-    <div
-        class="coords"
-        id="coordsText">
-
-        --
+        <button onclick="setLanguage('en')">
+            ENG
+        </button>
 
     </div>
 
-    <button
-        id="copyButton"
-        onclick="copyCoords()">
-
-        📋 Copiar coordenades
-
-    </button>
-
-</div>
+    <div id="list">
+        Cargando...
+    </div>
 
 </div>
 
 <script>
 
 let language =
-    localStorage.getItem("language")
-    || "ca";
+    localStorage.getItem("language");
+
+if(!language){
+
+    const browserLang =
+        navigator.language.toLowerCase();
+
+    if(browserLang.startsWith("ca")){
+
+        language = "ca";
+
+    }else if(browserLang.startsWith("en")){
+
+        language = "en";
+
+    }else{
+
+        language = "es";
+    }
+}
 
 function setLanguage(lang){
 
@@ -182,245 +74,45 @@ function setLanguage(lang){
     location.reload();
 }
 
-const resultTexts = {
+async function loadList(){
 
-    ca:"Repte resolt",
+    const challenges =
+        await (
+            await fetch(
+                "challenges/index.json"
+            )
+        ).json();
 
-    es:"Reto resuelto",
-
-    en:"Challenge solved"
-
-};
-
-document.getElementById(
-    "resultText"
-).textContent =
-    resultTexts[language];
-
-const urlParams =
-    new URLSearchParams(
-        window.location.search
-    );
-
-const challengeId =
-    urlParams.get("id");
-
-let challengeData = null;
-
-let found = 0;
-let total = 0;
-
-const fretboard =
-    document.getElementById(
-        "fretboard"
-    );
-
-const tuning =
-[
-    "E",
-    "A",
-    "D",
-    "G",
-    "B",
-    "E"
-];
-
-const notes =
-[
-    "C","C#","D","D#",
-    "E","F","F#","G",
-    "G#","A","A#","B"
-];
-
-function getNote(
-    openString,
-    fret
-){
-
-    const index =
-        notes.indexOf(
-            openString
-        );
-
-    return notes[
-        (index + fret) % 12
-    ];
-}
-
-async function loadChallenge(){
-
-    const response =
-        await fetch(
-            `challenges/${challengeId}.json`
-        );
-
-    challengeData =
-        await response.json();
-
-    document.getElementById(
-        "challengeTitle"
-    ).textContent =
-        challengeData.title[
-            language
-        ];
-
-    document.getElementById(
-        "instructions"
-    ).textContent =
-        challengeData.instructions[
-            language
-        ];
-
-    document.getElementById(
-        "coordsText"
-    ).textContent =
-        challengeData.coordinates.north +
-        " " +
-        challengeData.coordinates.east;
-
-    total =
-        challengeData.solution.length;
-
-    document.getElementById(
-        "total"
-    ).textContent =
-        total;
-    fretboard.innerHTML = "";
-
-    const solved =
-        new Set();
-
-    for(let fret=0; fret<=12; fret++){
-
-        for(let string=6; string>=1; string--){
-
-            const div =
-                document.createElement(
-                    "div"
-                );
-
-            div.className =
-                "note";
-
-            const position =
-                `${string}-${fret}`;
-
-            div.addEventListener(
-                "click",
-                ()=>{
-
-                    if(
-                        challengeData.solution.includes(
-                            position
-                        )
-                    ){
-
-                        if(
-                            !solved.has(
-                                position
-                            )
-                        ){
-
-                            solved.add(
-                                position
-                            );
-
-                            div.classList.add(
-                                "correct"
-                            );
-
-                            found++;
-
-                            document
-                            .getElementById(
-                                "found"
-                            )
-                            .textContent =
-                                found;
-
-                            if(
-                                found === total
-                            ){
-
-                                document
-                                .getElementById(
-                                    "coordinates"
-                                )
-                                .style.display =
-                                    "block";
-                            }
-
-                        }
-
-                    }else{
-
-                        div.classList.add(
-                            "wrong"
-                        );
-
-                        setTimeout(
-                            ()=>{
-
-                                div.classList.remove(
-                                    "wrong"
-                                );
-
-                            },
-                            500
-                        );
-
-                    }
-
-                }
-            );
-
-            fretboard.appendChild(
-                div
-            );
-
-        }
-
-    }
-
-}
-
-function copyCoords(){
-
-    navigator.clipboard.writeText(
-        document
-        .getElementById(
-            "coordsText"
-        )
-        .textContent
-        .trim()
-    );
-
-    const btn =
+    const container =
         document.getElementById(
-            "copyButton"
+            "list"
         );
 
-    btn.textContent =
-        language === "es"
-        ? "📋 Copiado"
-        : language === "en"
-        ? "📋 Copied"
-        : "📋 Copiat";
+    container.innerHTML = "";
 
-    setTimeout(()=>{
+    challenges.forEach(challenge => {
 
-        btn.textContent =
-            language === "es"
-            ? "📋 Copiar coordenadas"
-            : language === "en"
-            ? "📋 Copy coordinates"
-            : "📋 Copiar coordenades";
+        const link =
+            document.createElement("a");
 
-    },2000);
+        link.className =
+            "challenge";
+
+        link.href =
+            `play.html?id=${challenge.id}`;
+
+        link.textContent =
+            challenge.title[language];
+
+        container.appendChild(
+            link
+        );
+
+    });
 
 }
 
-loadChallenge();
+loadList();
 
 </script>
 
