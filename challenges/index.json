@@ -1,1 +1,10 @@
-
+[
+  {
+    "id": "challenge01",
+    "title": {
+      "ca": "Pentatònica menor de La",
+      "es": "Pentatónica menor de La",
+      "en": "A Minor Pentatonic"
+    }
+  }
+]
