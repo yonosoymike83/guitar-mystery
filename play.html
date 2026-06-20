@@ -22,22 +22,25 @@
 }
 
 #fretboard{
-    width:600px;
+    width:320px;
     margin:0 auto;
-    background:#6b4320;
-    border-radius:10px;
-    padding:15px;
     display:grid;
-    grid-template-columns:repeat(13,1fr);
-    gap:4px;
+    grid-template-columns:repeat(6,1fr);
+    gap:3px;
 }
 
 .note{
-    width:40px;
-    height:40px;
+    width:42px;
+    height:42px;
     border-radius:50%;
+    background:#6b4320;
     border:1px solid rgba(255,255,255,.15);
     cursor:pointer;
+    transition:.2s;
+}
+
+.note:hover{
+    transform:scale(1.05);
 }
 
 .correct{
@@ -59,13 +62,12 @@
 @media(max-width:700px){
 
     #fretboard{
-        width:95%;
-        gap:2px;
+        width:270px;
     }
 
     .note{
-        width:28px;
-        height:28px;
+        width:34px;
+        height:34px;
     }
 }
 
@@ -118,9 +120,12 @@
 
 <div id="coordinates">
 
-    <h2>📍 Coordenades desbloquejades</h2>
+    <h2>
+        📍 Coordenades desbloquejades
+    </h2>
 
     <p>N 41° 42.357</p>
+
     <p>E 002° 47.812</p>
 
 </div>
@@ -175,32 +180,53 @@ document.getElementById("instructions").textContent =
 document.getElementById("progressLabel").textContent =
     texts[language].progress;
 
-const tuning = ["E","A","D","G","B","E"];
-
-const notes = [
-"C","C#","D","D#","E","F",
-"F#","G","G#","A","A#","B"
+const tuning =
+[
+    "E",
+    "A",
+    "D",
+    "G",
+    "B",
+    "E"
 ];
 
-const pentatonic = ["A","C","D","E","G"];
+const notes =
+[
+    "C","C#","D","D#",
+    "E","F","F#","G",
+    "G#","A","A#","B"
+];
+
+const pentatonic =
+[
+    "A",
+    "C",
+    "D",
+    "E",
+    "G"
+];
 
 let found = 0;
 let total = 0;
 
 const fretboard =
-    document.getElementById("fretboard");
+    document.getElementById(
+        "fretboard"
+    );
 
 function getNote(openString,fret){
 
     const index =
         notes.indexOf(openString);
 
-    return notes[(index+fret)%12];
+    return notes[
+        (index + fret) % 12
+    ];
 }
 
-for(let string=0;string<6;string++){
+for(let fret=0; fret<=12; fret++){
 
-    for(let fret=0;fret<=12;fret++){
+    for(let string=0; string<6; string++){
 
         const note =
             getNote(
@@ -209,69 +235,95 @@ for(let string=0;string<6;string++){
             );
 
         const div =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
-        div.className = "note";
+        div.className =
+            "note";
 
         if(
-            pentatonic.includes(note)
+            pentatonic.includes(
+                note
+            )
         ){
             total++;
         }
 
-        div.addEventListener("click",()=>{
-
-            if(
-                pentatonic.includes(note)
-            ){
+        div.addEventListener(
+            "click",
+            ()=>{
 
                 if(
-                    !div.classList.contains(
-                        "correct"
+                    pentatonic.includes(
+                        note
                     )
                 ){
 
-                    div.classList.add(
-                        "correct"
-                    );
+                    if(
+                        !div.classList.contains(
+                            "correct"
+                        )
+                    ){
 
-                    found++;
+                        div.classList.add(
+                            "correct"
+                        );
 
-                    document.getElementById(
-                        "found"
-                    ).textContent = found;
+                        found++;
 
-                    if(found===total){
+                        document
+                        .getElementById(
+                            "found"
+                        )
+                        .textContent =
+                            found;
 
-                        document.getElementById(
-                            "coordinates"
-                        ).style.display =
-                            "block";
+                        if(
+                            found === total
+                        ){
+
+                            document
+                            .getElementById(
+                                "coordinates"
+                            )
+                            .style.display =
+                                "block";
+                        }
+
                     }
-                }
 
-            }else{
+                }else{
 
-                div.classList.add("wrong");
-
-                setTimeout(()=>{
-
-                    div.classList.remove(
+                    div.classList.add(
                         "wrong"
                     );
 
-                },500);
+                    setTimeout(()=>{
+
+                        div.classList.remove(
+                            "wrong"
+                        );
+
+                    },500);
+
+                }
+
             }
+        );
 
-        });
+        fretboard.appendChild(
+            div
+        );
 
-        fretboard.appendChild(div);
     }
+
 }
 
 document.getElementById(
     "total"
-).textContent = total;
+).textContent =
+    total;
 
 </script>
 
