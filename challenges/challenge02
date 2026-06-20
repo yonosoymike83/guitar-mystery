@@ -1,0 +1,28 @@
+{
+  "id": "challenge02",
+
+  "title": {
+    "ca": "Escala Blues de La",
+    "es": "Escala Blues de La",
+    "en": "A Blues Scale"
+  },
+
+  "instructions": {
+    "ca": "Troba les 5 notes de l'escala blues de La.",
+    "es": "Encuentra las 5 notas de la escala blues de La.",
+    "en": "Find the 5 notes of the A blues scale."
+  },
+
+  "solution": [
+    "6-5",
+    "5-6",
+    "4-5",
+    "3-5",
+    "2-5"
+  ],
+
+  "coordinates": {
+    "north": "N 41° 42.357",
+    "east": "E 002° 47.812"
+  }
+}
