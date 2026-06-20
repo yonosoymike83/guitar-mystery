@@ -13,18 +13,22 @@
 
 <style>
 
-.challenge-title{
-    background:#222;
-    padding:15px;
-    border-radius:10px;
+.controls{
     margin-bottom:20px;
 }
 
+.controls button{
+    margin:0 4px;
+    padding:8px 16px;
+    font-weight:bold;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
 .instructions{
-    background:#222;
-    padding:15px;
-    border-radius:10px;
     margin-bottom:20px;
+    font-size:1.2rem;
 }
 
 #progress{
@@ -33,19 +37,21 @@
 }
 
 #fretboard{
+    width:600px;
+    margin:0 auto;
     background:#6b4320;
-    border-radius:12px;
-    padding:20px;
+    border-radius:10px;
+    padding:15px;
     display:grid;
     grid-template-columns:repeat(13,1fr);
-    gap:6px;
+    gap:4px;
 }
 
 .note{
-    width:48px;
-    height:48px;
+    width:40px;
+    height:40px;
     border-radius:50%;
-    border:1px solid rgba(255,255,255,.2);
+    border:1px solid rgba(255,255,255,.15);
     cursor:pointer;
 }
 
@@ -59,20 +65,23 @@
 
 #coordinates{
     display:none;
-    background:#222;
     margin-top:20px;
-    padding:20px;
+    background:#222;
     border-radius:10px;
+    padding:20px;
 }
 
-.back{
-    display:inline-block;
-    margin-top:20px;
-    padding:12px 20px;
-    background:#222;
-    color:white;
-    text-decoration:none;
-    border-radius:10px;
+@media(max-width:700px){
+
+    #fretboard{
+        width:95%;
+        gap:2px;
+    }
+
+    .note{
+        width:28px;
+        height:28px;
+    }
 }
 
 </style>
@@ -84,19 +93,31 @@
 <div class="container">
 
 ```
-<img
-    src="guitar-mystery-logo.png"
-    alt="Guitar Mystery Cache"
-    class="logo"
->
-
-<h1>Guitar Mystery Cache</h1>
-
-<div class="challenge-title">
+<h1 id="challengeTitle">
     Pentatónica menor de La
+</h1>
+
+<div class="controls">
+
+    <button onclick="window.location='index.html'">
+        ←
+    </button>
+
+    <button onclick="setLanguage('ca')">
+        CAT
+    </button>
+
+    <button onclick="setLanguage('es')">
+        ESP
+    </button>
+
+    <button onclick="setLanguage('en')">
+        ENG
+    </button>
+
 </div>
 
-<div class="instructions">
+<div id="instructions" class="instructions">
     Encuentra todas las posiciones de la escala pentatónica menor de La en los primeros 12 trastes.
 </div>
 
@@ -114,23 +135,63 @@
         📍 Coordenadas desbloqueadas
     </h2>
 
-    <p>N 41° 42.357</p>
-    <p>E 002° 47.812</p>
+    <p>
+        N 41° 42.357
+    </p>
+
+    <p>
+        E 002° 47.812
+    </p>
 
 </div>
-
-<a
-    href="index.html"
-    class="back">
-
-    ← Volver
-
-</a>
 ```
 
 </div>
 
 <script>
+
+let language =
+    localStorage.getItem("language")
+    || "es";
+
+function setLanguage(lang){
+
+    localStorage.setItem(
+        "language",
+        lang
+    );
+
+    location.reload();
+}
+
+const texts = {
+
+    ca:{
+        title:"Pentatònica menor de La",
+        instructions:"Troba totes les posicions de la pentatònica menor de La en els primers 12 trasts."
+    },
+
+    es:{
+        title:"Pentatónica menor de La",
+        instructions:"Encuentra todas las posiciones de la escala pentatónica menor de La en los primeros 12 trastes."
+    },
+
+    en:{
+        title:"A Minor Pentatonic",
+        instructions:"Find all positions of the A minor pentatonic scale within the first 12 frets."
+    }
+
+};
+
+document.getElementById(
+    "challengeTitle"
+).textContent =
+    texts[language].title;
+
+document.getElementById(
+    "instructions"
+).textContent =
+    texts[language].instructions;
 
 const tuning =
 [
@@ -166,15 +227,10 @@ const fretboard =
         "fretboard"
     );
 
-function getNote(
-    openString,
-    fret
-){
+function getNote(openString,fret){
 
     const index =
-        notes.indexOf(
-            openString
-        );
+        notes.indexOf(openString);
 
     return notes[
         (index + fret) % 12
@@ -200,9 +256,7 @@ for(let string=0; string<6; string++){
             "note";
 
         if(
-            pentatonic.includes(
-                note
-            )
+            pentatonic.includes(note)
         ){
             total++;
         }
@@ -212,9 +266,7 @@ for(let string=0; string<6; string++){
             ()=>{
 
                 if(
-                    pentatonic.includes(
-                        note
-                    )
+                    pentatonic.includes(note)
                 ){
 
                     if(
@@ -247,7 +299,6 @@ for(let string=0; string<6; string++){
                             .style.display =
                                 "block";
                         }
-
                     }
 
                 }else{
@@ -263,16 +314,15 @@ for(let string=0; string<6; string++){
                         );
 
                     },500);
-
                 }
 
             }
         );
 
-        fretboard.appendChild(
-            div
-        );
+        fretboard.appendChild(div);
+
     }
+
 }
 
 document
