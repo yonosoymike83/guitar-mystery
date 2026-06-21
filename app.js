@@ -1,282 +1,358 @@
 let language =
-    localStorage.getItem("language")
-    || "ca";
+localStorage.getItem("language")
+|| "ca";
 
 let challengeData = null;
 let found = 0;
 let total = 0;
 
 const solved =
-    new Set();
+new Set();
+
+let soundType =
+localStorage.getItem(
+"soundType"
+) || "triangle";
 
 const audioContext =
-    new (
-        window.AudioContext ||
-        window.webkitAudioContext
-    )();
+new (
+window.AudioContext ||
+window.webkitAudioContext
+)();
 
 const stringBaseFrequencies =
 [
-    329.63, // 1ª cuerda E4
-    246.94, // 2ª cuerda B3
-    196.00, // 3ª cuerda G3
-    146.83, // 4ª cuerda D3
-    110.00, // 5ª cuerda A2
-    82.41   // 6ª cuerda E2
+329.63,
+246.94,
+196.00,
+146.83,
+110.00,
+82.41
 ];
 
 const resultTexts = {
 
-    ca:"Repte resolt",
+ca:"Repte resolt",
 
-    es:"Reto resuelto",
+es:"Reto resuelto",
 
-    en:"Challenge solved"
+en:"Challenge solved"
 
 };
 
 const copyTexts = {
 
-    ca:"📋 Copiar coordenades",
+ca:"📋 Copiar coordenades",
 
-    es:"📋 Copiar coordenadas",
+es:"📋 Copiar coordenadas",
 
-    en:"📋 Copy coordinates"
+en:"📋 Copy coordinates"
 
 };
 
 function setLanguage(lang){
 
-    localStorage.setItem(
-        "language",
-        lang
-    );
+localStorage.setItem(
+    "language",
+    lang
+);
 
-    location.reload();
+location.reload();
+
 }
 
-document.getElementById(
-    "resultText"
-).textContent =
-    resultTexts[language];
+function setSound(type){
 
-document.getElementById(
-    "copyButton"
-).textContent =
-    copyTexts[language];
+soundType = type;
 
-const params =
-    new URLSearchParams(
-        window.location.search
-    );
+localStorage.setItem(
+    "soundType",
+    type
+);
 
-const challengeId =
-    params.get("id");
+document
+    .querySelectorAll(
+        "#soundControls button"
+    )
+    .forEach(button=>{
 
-async function loadChallenge(){
-
-    if(!challengeId){
-
-        alert(
-            "Challenge not found"
-        );
-
-        return;
-    }
-
-    const response =
-        await fetch(
-            `challenges/${challengeId}.json`
-        );
-
-    challengeData =
-        await response.json();
-
-    document.getElementById(
-        "challengeTitle"
-    ).textContent =
-        challengeData.title[
-            language
-        ];
-
-    document.getElementById(
-        "instructions"
-    ).textContent =
-        challengeData.instructions[
-            language
-        ];
-
-    document.getElementById(
-        "coordsText"
-    ).textContent =
-        challengeData.coordinates.north +
-        " " +
-        challengeData.coordinates.east;
-
-    total =
-        challengeData.solution.length;
-
-    document.getElementById(
-        "total"
-    ).textContent =
-        total;
-
-    buildFretboard();
-}
-
-function buildFretboard(){
-
-    const fretboard =
-        document.getElementById(
-            "fretboard"
-        );
-
-    fretboard.innerHTML = "";
-
-    fretboard.appendChild(
-        document.createElement("div")
-    );
-
-    const strings =
-    [
-        "E",
-        "A",
-        "D",
-        "G",
-        "B",
-        "E"
-    ];
-
-    strings.forEach(string=>{
-
-        const header =
-            document.createElement(
-                "div"
-            );
-
-        header.className =
-            "string-header";
-
-        header.textContent =
-            string;
-
-        fretboard.appendChild(
-            header
+        button.classList.remove(
+            "active"
         );
 
     });
 
-    for(let fret=0; fret<=12; fret++){
+if(type==="triangle"){
 
-        const fretLabel =
+    document
+        .querySelector(
+            "#soundControls button:nth-child(1)"
+        )
+        .classList.add(
+            "active"
+        );
+
+}
+
+if(type==="sawtooth"){
+
+    document
+        .querySelector(
+            "#soundControls button:nth-child(2)"
+        )
+        .classList.add(
+            "active"
+        );
+
+}
+
+if(type==="square"){
+
+    document
+        .querySelector(
+            "#soundControls button:nth-child(3)"
+        )
+        .classList.add(
+            "active"
+        );
+
+}
+
+}
+
+document.getElementById(
+"resultText"
+).textContent =
+resultTexts[language];
+
+document.getElementById(
+"copyButton"
+).textContent =
+copyTexts[language];
+
+const params =
+new URLSearchParams(
+window.location.search
+);
+
+const challengeId =
+params.get("id");
+
+async function loadChallenge(){
+
+if(!challengeId){
+
+    alert(
+        "Challenge not found"
+    );
+
+    return;
+}
+
+const response =
+    await fetch(
+        `challenges/${challengeId}.json`
+    );
+
+challengeData =
+    await response.json();
+
+document.getElementById(
+    "challengeTitle"
+).textContent =
+    challengeData.title[
+        language
+    ];
+
+document.getElementById(
+    "instructions"
+).textContent =
+    challengeData.instructions[
+        language
+    ];
+
+document.getElementById(
+    "coordsText"
+).textContent =
+    challengeData.coordinates.north +
+    " " +
+    challengeData.coordinates.east;
+
+total =
+    challengeData.solution.length;
+
+document.getElementById(
+    "total"
+).textContent =
+    total;
+
+buildFretboard();
+
+setSound(
+    soundType
+);
+
+}
+
+function buildFretboard(){
+
+const fretboard =
+    document.getElementById(
+        "fretboard"
+    );
+
+fretboard.innerHTML = "";
+
+fretboard.appendChild(
+    document.createElement("div")
+);
+
+const strings =
+[
+    "E",
+    "A",
+    "D",
+    "G",
+    "B",
+    "E"
+];
+
+strings.forEach(string=>{
+
+    const header =
+        document.createElement(
+            "div"
+        );
+
+    header.className =
+        "string-header";
+
+    header.textContent =
+        string;
+
+    fretboard.appendChild(
+        header
+    );
+
+});
+
+for(let fret=0; fret<=12; fret++){
+
+    const fretLabel =
+        document.createElement(
+            "div"
+        );
+
+    fretLabel.className =
+        "fret-number";
+
+    fretLabel.textContent =
+        fret;
+
+    fretboard.appendChild(
+        fretLabel
+    );
+
+    for(let string=1; string<=6; string++){
+
+        const note =
             document.createElement(
                 "div"
             );
 
-        fretLabel.className =
-            "fret-number";
+        note.className =
+            "note";
 
-        fretLabel.textContent =
-            fret;
+        const position =
+            `${string}-${fret}`;
 
-        fretboard.appendChild(
-            fretLabel
-        );
+        note.addEventListener(
+            "click",
+            ()=>{
 
-        for(let string=1; string<=6; string++){
-
-            const note =
-                document.createElement(
-                    "div"
+                playNote(
+                    string,
+                    fret
                 );
 
-            note.className =
-                "note";
-
-            const position =
-                `${string}-${fret}`;
-
-            note.addEventListener(
-                "click",
-                ()=>{
-
-                    playNote(
-                        string,
-                        fret
-                    );
-
-                    if(
-                        challengeData.solution.includes(
+                if(
+                    challengeData.solution.includes(
+                        position
+                    )
+                ){
+                                   if(
+                        !solved.has(
                             position
                         )
                     ){
-                                                if(
-                            !solved.has(
-                                position
-                            )
-                        ){
 
-                            solved.add(
-                                position
-                            );
+                        solved.add(
+                            position
+                        );
 
-                            note.classList.add(
-                                "correct"
-                            );
+                        note.classList.add(
+                            "correct"
+                        );
 
-                            found++;
+                        found++;
 
-                            document
+                        document
                             .getElementById(
                                 "found"
                             )
                             .textContent =
                                 found;
 
-                            if(
-                                found === total
-                            ){
+                        if(
+                            found === total
+                        ){
 
-                                document
+                            document
                                 .getElementById(
                                     "coordinates"
                                 )
                                 .style.display =
                                     "block";
-                            }
-
                         }
-
-                    }else{
-
-                        note.classList.add(
-                            "wrong"
-                        );
-
-                        setTimeout(()=>{
-
-                            note.classList.remove(
-                                "wrong"
-                            );
-
-                        },500);
 
                     }
 
+                }else{
+
+                    note.classList.add(
+                        "wrong"
+                    );
+
+                    setTimeout(()=>{
+
+                        note.classList.remove(
+                            "wrong"
+                        );
+
+                    },500);
+
                 }
-            );
 
-            fretboard.appendChild(
-                note
-            );
+            }
+        );
 
-        }
+        fretboard.appendChild(
+            note
+        );
 
     }
 
 }
 
+}
+
 function playNote(string,fret){
+
+    if(audioContext.state === "suspended"){
+
+        audioContext.resume();
+
+    }
 
     const frequency =
         stringBaseFrequencies[
@@ -287,25 +363,27 @@ function playNote(string,fret){
             fret / 12
         );
 
-    const oscillator =
-        audioContext.createOscillator();
+const oscillator =
+    audioContext.createOscillator();
 
-    const gain =
-        audioContext.createGain();
+const gain =
+    audioContext.createGain();
 
-    oscillator.type =
-        "triangle";
+oscillator.type =
+    soundType;
 
-    oscillator.frequency.value =
-        frequency;
+oscillator.frequency.value =
+    frequency;
 
-    oscillator.connect(gain);
+oscillator.connect(
+    gain
+);
 
-    gain.connect(
-        audioContext.destination
-    );
+gain.connect(
+    audioContext.destination
+);
 
-    gain.gain.setValueAtTime(
+gain.gain.setValueAtTime(
     0,
     audioContext.currentTime
 );
@@ -320,42 +398,42 @@ gain.gain.exponentialRampToValueAtTime(
     audioContext.currentTime + 0.8
 );
 
-    oscillator.start();
+oscillator.start();
 
-    oscillator.stop(
-        audioContext.currentTime + 1
-    );
+oscillator.stop(
+    audioContext.currentTime + 1
+);
 
 }
 
 function copyCoords(){
 
-    navigator.clipboard.writeText(
+navigator.clipboard.writeText(
 
-        document
+    document
         .getElementById(
             "coordsText"
         )
         .textContent
         .trim()
 
+);
+
+const btn =
+    document.getElementById(
+        "copyButton"
     );
 
-    const btn =
-        document.getElementById(
-            "copyButton"
-        );
+btn.textContent =
+    "📋 ✓";
+
+setTimeout(()=>{
 
     btn.textContent =
-        "📋 ✓";
+        copyTexts[language];
 
-    setTimeout(()=>{
-
-        btn.textContent =
-            copyTexts[language];
-
-    },2000);
+},2000);
 
 }
 
-loadChallenge();
+loadChallenge();     
