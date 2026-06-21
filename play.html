@@ -21,11 +21,11 @@
 }
 
 #fretboard{
-    width:100%;
-    max-width:700px;
+    width:320px;
     margin:0 auto;
     display:grid;
-    grid-template-columns:50px repeat(13,1fr);
+    grid-template-columns:repeat(6,1fr);
+    gap:3px;
     background:#6b4320;
     border:3px solid #3e2410;
     border-radius:12px;
@@ -347,7 +347,7 @@ function buildFretboard(){
 
     fretboard.innerHTML = "";
 
-    for(let string=1; string<=6; string++){
+    for(let fret=0; fret<=12; fret++){
 
         const label =
             document.createElement(
@@ -364,7 +364,7 @@ function buildFretboard(){
             label
         );
 
-        for(let fret=0; fret<=12; fret++){
+        for(let string=1; string<=6; string++){
 
             const cell =
                 document.createElement(
