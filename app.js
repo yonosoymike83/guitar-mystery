@@ -22,12 +22,12 @@ window.webkitAudioContext
 
 const stringBaseFrequencies =
 [
-329.63,
-246.94,
-196.00,
-146.83,
-110.00,
-82.41
+    82.41,   // E grave (6ª cuerda)
+    110.00,  // A
+    146.83,  // D
+    196.00,  // G
+    246.94,  // B
+    329.63   // E aguda (1ª cuerda)
 ];
 
 const resultTexts = {
