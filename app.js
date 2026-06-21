@@ -15,39 +15,15 @@ const audioContext =
         window.webkitAudioContext
     )();
 
-const chromaticNotes =
+const stringBaseFrequencies =
 [
-    "C","C#","D","D#",
-    "E","F","F#","G",
-    "G#","A","A#","B"
+    329.63, // 1ª cuerda E4
+    246.94, // 2ª cuerda B3
+    196.00, // 3ª cuerda G3
+    146.83, // 4ª cuerda D3
+    110.00, // 5ª cuerda A2
+    82.41   // 6ª cuerda E2
 ];
-
-const tuningNotes =
-[
-    "E",
-    "A",
-    "D",
-    "G",
-    "B",
-    "E"
-];
-
-const noteFrequencies = {
-
-    "C":261.63,
-    "C#":277.18,
-    "D":293.66,
-    "D#":311.13,
-    "E":329.63,
-    "F":349.23,
-    "F#":369.99,
-    "G":392.00,
-    "G#":415.30,
-    "A":440.00,
-    "A#":466.16,
-    "B":493.88
-
-};
 
 const resultTexts = {
 
@@ -300,36 +276,16 @@ function buildFretboard(){
 
 }
 
-function getNote(string,fret){
-
-    const openNote =
-        tuningNotes[
-            string - 1
-        ];
-
-    const index =
-        chromaticNotes.indexOf(
-            openNote
-        );
-
-    return chromaticNotes[
-        (index + fret) % 12
-    ];
-
-}
-
 function playNote(string,fret){
 
-    const noteName =
-        getNote(
-            string,
-            fret
-        );
-
     const frequency =
-        noteFrequencies[
-            noteName
-        ];
+        stringBaseFrequencies[
+            string - 1
+        ] *
+        Math.pow(
+            2,
+            fret / 12
+        );
 
     const oscillator =
         audioContext.createOscillator();
@@ -338,28 +294,31 @@ function playNote(string,fret){
         audioContext.createGain();
 
     oscillator.type =
-        "triangle";
+        "sawtooth";
 
     oscillator.frequency.value =
         frequency;
 
-    oscillator.connect(
-        gain
-    );
+    oscillator.connect(gain);
 
     gain.connect(
         audioContext.destination
     );
 
     gain.gain.setValueAtTime(
-        0.15,
-        audioContext.currentTime
-    );
+    0,
+    audioContext.currentTime
+);
 
-    gain.gain.exponentialRampToValueAtTime(
-        0.001,
-        audioContext.currentTime + 0.4
-    );
+gain.gain.linearRampToValueAtTime(
+    0.20,
+    audioContext.currentTime + 0.01
+);
+
+gain.gain.exponentialRampToValueAtTime(
+    0.001,
+    audioContext.currentTime + 0.8
+);
 
     oscillator.start();
 
