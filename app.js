@@ -294,7 +294,7 @@ function playNote(string,fret){
         audioContext.createGain();
 
     oscillator.type =
-        "sawtooth";
+        "triangle";
 
     oscillator.frequency.value =
         frequency;
