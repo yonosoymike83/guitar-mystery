@@ -9,6 +9,12 @@ let total = 0;
 const solved =
     new Set();
 
+const audioContext =
+    new (
+        window.AudioContext ||
+        window.webkitAudioContext
+    )();
+
 const chromaticNotes =
 [
     "C","C#","D","D#",
@@ -324,12 +330,6 @@ function playNote(string,fret){
         noteFrequencies[
             noteName
         ];
-
-    const audioContext =
-        new (
-            window.AudioContext ||
-            window.webkitAudioContext
-        )();
 
     const oscillator =
         audioContext.createOscillator();
