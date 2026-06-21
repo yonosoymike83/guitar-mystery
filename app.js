@@ -40,6 +40,16 @@ en:"Challenge solved"
 
 };
 
+const progressTexts = {
+
+    ca:"Trobades",
+
+    es:"Encontradas",
+
+    en:"Found"
+
+};
+
 const copyTexts = {
 
 ca:"📋 Copiar coordenades",
@@ -129,6 +139,11 @@ document.getElementById(
 "copyButton"
 ).textContent =
 copyTexts[language];
+
+document.getElementById(
+    "progressLabel"
+).textContent =
+    progressTexts[language];
 
 const params =
 new URLSearchParams(
