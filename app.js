@@ -22,12 +22,12 @@ window.webkitAudioContext
 
 const stringBaseFrequencies =
 [
-    82.41,   // E grave (6ª cuerda)
-    110.00,  // A
-    146.83,  // D
-    196.00,  // G
-    246.94,  // B
-    329.63   // E aguda (1ª cuerda)
+    329.63, // 1ª E aguda
+    246.94, // 2ª B
+    196.00, // 3ª G
+    146.83, // 4ª D
+    110.00, // 5ª A
+    82.41   // 6ª E grave
 ];
 
 const resultTexts = {
@@ -354,14 +354,17 @@ function playNote(string,fret){
 
     }
 
-    const frequency =
-        stringBaseFrequencies[
-            string - 1
-        ] *
-        Math.pow(
-            2,
-            fret / 12
-        );
+    const realString =
+    7 - string;
+
+const frequency =
+    stringBaseFrequencies[
+        realString - 1
+    ] *
+    Math.pow(
+        2,
+        fret / 12
+    );
     
 console.log(
     "Cuerda:",
