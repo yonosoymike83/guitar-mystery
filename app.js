@@ -362,7 +362,16 @@ function playNote(string,fret){
             2,
             fret / 12
         );
-
+    
+console.log(
+    "Cuerda:",
+    string,
+    "Traste:",
+    fret,
+    "Hz:",
+    frequency
+);
+    
 const oscillator =
     audioContext.createOscillator();
 
