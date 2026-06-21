@@ -14,5 +14,13 @@
       "es": "Escala Blues de La",
       "en": "A Blues Scale"
     }
+  },
+  {
+    "id": "challenge03",
+    "title": {
+      "ca": "Smoke on the Water",
+      "es": "Smoke on the Water",
+      "en": "Smoke on the Water"
+    }
   }
 ]
