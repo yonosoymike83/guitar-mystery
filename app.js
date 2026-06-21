@@ -323,7 +323,7 @@ gain.gain.exponentialRampToValueAtTime(
     oscillator.start();
 
     oscillator.stop(
-        audioContext.currentTime + 0.4
+        audioContext.currentTime + 1
     );
 
 }
