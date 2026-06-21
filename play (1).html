@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Guitar Mystery Cache</title>
+
+<link rel="stylesheet" href="styles.css">
+
+<style>
+
+.instructions{
+    margin-bottom:20px;
+}
+
+#progress{
+    margin-bottom:20px;
+}
+
+#fretboard{
+    width:420px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:40px repeat(6,1fr);
+    gap:3px;
+}
+
+.fret-number{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-weight:bold;
+    font-size:1rem;
+}
+
+.string-header{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-weight:bold;
+    font-size:1rem;
+}
+
+.note{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#6b4320;
+    border:1px solid rgba(255,255,255,.15);
+    cursor:pointer;
+    transition:.2s;
+    margin:auto;
+}
+
+.note:hover{
+    transform:scale(1.05);
+}
+
+.correct{
+    background:#28a745;
+}
+
+.wrong{
+    background:#c0392b;
+}
+
+#coordinates{
+    display:none;
+    text-align:center;
+    margin-top:30px;
+}
+
+.result-title{
+    font-size:1.4rem;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.coords{
+    font-size:1rem;
+    margin-bottom:15px;
+}
+
+#copyButton{
+    padding:8px 14px;
+    font-size:.9rem;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+@media(max-width:700px){
+
+    #fretboard{
+        grid-template-columns:35px repeat(13,1fr);
+    }
+
+    .fret{
+        height:42px;
+    }
+
+    .note{
+        width:16px;
+        height:16px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 id="challengeTitle">
+    Carregant...
+</h1>
+
+<div class="controls">
+
+<button onclick="window.location='index.html'">
+←
+</button>
+
+<button onclick="setLanguage('ca')">
+CAT
+</button>
+
+<button onclick="setLanguage('es')">
+ESP
+</button>
+
+<button onclick="setLanguage('en')">
+ENG
+</button>
+
+</div>
+
+<div
+    id="instructions"
+    class="instructions">
+
+    Carregant...
+
+</div>
+
+<div id="progress">
+
+<span id="progressLabel">
+Trobades
+</span>
+
+:
+
+<span id="found">
+0
+</span>
+
+/
+
+<span id="total">
+0
+</span>
+
+</div>
+
+<div id="fretboard"></div>
+
+<div id="coordinates">
+
+<div class="result-title">
+
+✅
+
+<span id="resultText">
+Repte resolt
+</span>
+
+</div>
+
+<div
+    class="coords"
+    id="coordsText">
+
+--
+
+</div>
+
+<button
+    id="copyButton"
+    onclick="copyCoords()">
+
+📋 Copiar coordenades
+
+</button>
+
+</div>
+
+</div>
+<script>
+
+let language =
+    localStorage.getItem("language")
+    || "ca";
+
+let challengeData = null;
+let found = 0;
+let total = 0;
+
+const solved =
+    new Set();
+
+const tuning =
+[
+    "E",
+    "B",
+    "G",
+    "D",
+    "A",
+    "E"
+];
+
+const resultTexts = {
+
+    ca:"Repte resolt",
+
+    es:"Reto resuelto",
+
+    en:"Challenge solved"
+
+};
+
+const copyTexts = {
+
+    ca:"📋 Copiar coordenades",
+
+    es:"📋 Copiar coordenadas",
+
+    en:"📋 Copy coordinates"
+
+};
+
+function setLanguage(lang){
+
+    localStorage.setItem(
+        "language",
+        lang
+    );
+
+    location.reload();
+}
+
+document.getElementById(
+    "resultText"
+).textContent =
+    resultTexts[language];
+
+document.getElementById(
+    "copyButton"
+).textContent =
+    copyTexts[language];
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const challengeId =
+    params.get("id");
+
+async function loadChallenge(){
+
+    if(!challengeId){
+
+        alert(
+            "Challenge not found"
+        );
+
+        return;
+    }
+
+    const response =
+        await fetch(
+            `challenges/${challengeId}.json`
+        );
+
+    challengeData =
+        await response.json();
+
+    document.getElementById(
+        "challengeTitle"
+    ).textContent =
+        challengeData.title[
+            language
+        ];
+
+    document.getElementById(
+        "instructions"
+    ).textContent =
+        challengeData.instructions[
+            language
+        ];
+
+    document.getElementById(
+        "coordsText"
+    ).textContent =
+        challengeData.coordinates.north +
+        " " +
+        challengeData.coordinates.east;
+
+    total =
+        challengeData.solution.length;
+
+    document.getElementById(
+        "total"
+    ).textContent =
+        total;
+
+    buildFretboard();
+}
+
+function buildFretboard(){
+
+    const fretboard =
+        document.getElementById(
+            "fretboard"
+        );
+
+    fretboard.innerHTML = "";
+
+    fretboard.appendChild(
+        document.createElement("div")
+    );
+
+    const strings =
+    [
+        "E",
+        "A",
+        "D",
+        "G",
+        "B",
+        "E"
+    ];
+
+    strings.forEach(string=>{
+
+        const header =
+            document.createElement(
+                "div"
+            );
+
+        header.className =
+            "string-header";
+
+        header.textContent =
+            string;
+
+        fretboard.appendChild(
+            header
+        );
+
+    });
+
+    for(let fret=0; fret<=12; fret++){
+
+        const fretLabel =
+            document.createElement(
+                "div"
+            );
+
+        fretLabel.className =
+            "fret-number";
+
+        fretLabel.textContent =
+            fret;
+
+        fretboard.appendChild(
+            fretLabel
+        );
+
+        for(let string=1; string<=6; string++){
+
+            const note =
+                document.createElement(
+                    "div"
+                );
+
+            note.className =
+                "note";
+
+            const position =
+                `${string}-${fret}`;
+
+            note.addEventListener(
+                "click",
+                ()=>{
+
+                    if(
+                        challengeData.solution.includes(
+                            position
+                        )
+                    ){
+
+                        if(
+                            !solved.has(
+                                position
+                            )
+                        ){
+
+                            solved.add(
+                                position
+                            );
+
+                            note.classList.add(
+                                "correct"
+                            );
+
+                            found++;
+
+                            document
+                            .getElementById(
+                                "found"
+                            )
+                            .textContent =
+                                found;
+
+                            if(
+                                found === total
+                            ){
+
+                                document
+                                .getElementById(
+                                    "coordinates"
+                                )
+                                .style.display =
+                                    "block";
+                            }
+
+                        }
+
+                    }else{
+
+                        note.classList.add(
+                            "wrong"
+                        );
+
+                        setTimeout(()=>{
+
+                            note.classList.remove(
+                                "wrong"
+                            );
+
+                        },500);
+
+                    }
+
+                }
+            );
+
+            fretboard.appendChild(
+                note
+            );
+
+        }
+
+    }
+
+}
+
+function copyCoords(){
+
+    navigator.clipboard.writeText(
+
+        document
+        .getElementById(
+            "coordsText"
+        )
+        .textContent
+        .trim()
+
+    );
+
+    const btn =
+        document.getElementById(
+            "copyButton"
+        );
+
+    btn.textContent =
+        "📋 ✓";
+
+    setTimeout(()=>{
+
+        btn.textContent =
+            copyTexts[language];
+
+    },2000);
+
+}
+
+loadChallenge();
+
+</script>
+
+</body>
+</html>
