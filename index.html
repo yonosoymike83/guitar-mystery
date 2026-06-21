@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Guitar Mystery Cache</title>
+
+<link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <img
+        src="guitar-mystery-logo.png"
+        alt="Guitar Mystery Cache"
+        class="logo"
+    >
+
+    <h1>Guitar Mystery Cache</h1>
+
+    <div id="language-selector">
+
+        <button onclick="setLanguage('ca')">
+            CAT
+        </button>
+
+        <button onclick="setLanguage('es')">
+            ESP
+        </button>
+
+        <button onclick="setLanguage('en')">
+            ENG
+        </button>
+
+    </div>
+
+    <div id="list">
+        Cargando...
+    </div>
+
+</div>
+
+<script>
+
+let language =
+    localStorage.getItem("language");
+
+if(!language){
+
+    const browserLang =
+        navigator.language.toLowerCase();
+
+    if(browserLang.startsWith("ca")){
+
+        language = "ca";
+
+    }else if(browserLang.startsWith("en")){
+
+        language = "en";
+
+    }else{
+
+        language = "es";
+    }
+}
+
+function setLanguage(lang){
+
+    localStorage.setItem(
+        "language",
+        lang
+    );
+
+    location.reload();
+}
+
+async function loadList(){
+
+    const challenges =
+        await (
+            await fetch(
+                "challenges/index.json"
+            )
+        ).json();
+
+    const container =
+        document.getElementById(
+            "list"
+        );
+
+    container.innerHTML = "";
+
+    challenges.forEach(challenge => {
+
+        const link =
+            document.createElement("a");
+
+        link.className =
+            "challenge";
+
+        link.href =
+            `play.html?id=${challenge.id}`;
+
+        link.textContent =
+            challenge.title[language];
+
+        container.appendChild(
+            link
+        );
+
+    });
+
+}
+
+loadList();
+
+</script>
+
+</body>
+</html>
