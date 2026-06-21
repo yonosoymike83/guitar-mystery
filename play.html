@@ -94,6 +94,32 @@
     cursor:pointer;
 }
 
+#soundControls{
+
+    display:flex;
+    justify-content:center;
+    gap:6px;
+    margin-bottom:15px;
+    flex-wrap:wrap;
+
+}
+
+#soundControls button{
+
+    padding:6px 10px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:.8rem;
+
+}
+
+#soundControls button.active{
+
+    background:#28a745;
+    color:white;
+
+}
 @media(max-width:700px){
 
     #fretboard{
@@ -139,7 +165,21 @@ ENG
 </button>
 
 </div>
+<div id="soundControls">
 
+    <button onclick="setSound('triangle')">
+        🎵 Soft
+    </button>
+
+    <button onclick="setSound('sawtooth')">
+        🎸 Guitar
+    </button>
+
+    <button onclick="setSound('square')">
+        ⚡ Retro
+    </button>
+
+</div>
 <div
     id="instructions"
     class="instructions">
