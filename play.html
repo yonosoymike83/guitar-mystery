@@ -9,11 +9,34 @@
 .instructions { margin-bottom: 20px; }
 #progress { margin-bottom: 20px; }
 
-#fretboard {
-  width: 420px;
+#fretboard-wrap {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
   margin: 0 auto;
+}
+
+#fret-labels {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 8px 6px 0;
+  min-width: 36px;
+}
+
+.fret-label {
+  color: #c8a46e;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#fretboard {
   display: grid;
-  grid-template-columns: 40px repeat(6, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 0;
   row-gap: 0;
   background: linear-gradient(
@@ -23,23 +46,12 @@
     #6b3a12 65%, #3d1a06 80%,
     #5a2e0e 92%, #2c1505 100%
   );
-  border-radius: 6px 6px 4px 4px;
+  border-radius: 6px;
   padding: 6px 4px;
   box-shadow:
     0 0 0 4px #8b5e2a,
     0 0 0 7px #4a2e0d,
     0 10px 30px rgba(0,0,0,0.8);
-}
-
-.fret-number {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #c8a46e;
-  font-weight: bold;
-  font-size: 0.7rem;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.9);
-  padding: 5px 0;
 }
 
 .string-header {
@@ -102,7 +114,7 @@
 }
 
 /* Talla la corda a l'esquerra de la primera nota de cada fila */
-.fret-number + .note::before {
+.note.first-in-row::before {
   left: 0;
 }
 
@@ -182,7 +194,7 @@
 }
 
 @media (max-width: 700px) {
-  #fretboard { width: 100%; max-width: 360px; }
+  #fretboard { width: 100%; max-width: 320px; }
   .note { width: 24px; height: 24px; }
   .note::after { top: -4px; bottom: -4px; }
 }
@@ -208,7 +220,10 @@
   <span id="found">0</span> /
   <span id="total">0</span>
 </div>
-<div id="fretboard"></div>
+<div id="fretboard-wrap">
+  <div id="fret-labels"></div>
+  <div id="fretboard"></div>
+</div>
 <div id="coordinates">
   <div class="result-title">✅ <span id="resultText">Repte resolt</span></div>
   <div class="coords" id="coordsText">--</div>
