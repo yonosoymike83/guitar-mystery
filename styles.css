@@ -58,3 +58,23 @@ h1 {
 .hidden {
   display: none;
 }
+#soundControls button {
+  padding: 6px 12px;
+  border: 1px solid #6b4320 !important;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  background: #3d2208 !important;
+  color: #e8c97a !important;
+  font-weight: normal !important;
+  transition: background 0.2s, transform 0.1s;
+}
+#soundControls button:hover {
+  background: #5a3510 !important;
+  transform: translateY(-1px);
+}
+#soundControls button.active {
+  background: #28a745 !important;
+  color: white !important;
+  border-color: #1e7e34 !important;
+}
