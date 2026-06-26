@@ -206,28 +206,17 @@ div#soundControls button.sound-btn.active {
 }
 
 @media (max-width:700px){
-    .container{
-        padding:15px 8px;
-    }
-
-    h1{
-        font-size:2rem;
-    }
 
     #fretboard-wrap{
         display:flex;
         justify-content:center;
         align-items:flex-start;
-
-        transform:scale(0.82);
-        transform-origin:top center;
-
         width:100%;
     }
 
     #fret-labels{
         min-width:18px;
-        padding-right:4px;
+        padding-right:2px;
     }
 
     .fret-label{
@@ -240,7 +229,7 @@ div#soundControls button.sound-btn.active {
     }
 
     #fretboard{
-        grid-template-columns:repeat(6,38px);
+        grid-template-columns:repeat(6,36px);
         padding:5px 3px;
     }
 
@@ -249,8 +238,8 @@ div#soundControls button.sound-btn.active {
     }
 
     .note{
-        width:26px;
-        height:26px;
+        width:24px;
+        height:24px;
         margin:3px auto;
     }
 
@@ -262,15 +251,6 @@ div#soundControls button.sound-btn.active {
     .note::after{
         top:-5px;
         bottom:-5px;
-    }
-
-    #soundControls{
-        gap:4px;
-    }
-
-    button.sound-btn{
-        font-size:.75rem !important;
-        padding:6px 10px !important;
     }
 }
 </style>
