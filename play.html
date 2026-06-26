@@ -1,245 +1,219 @@
 <!DOCTYPE html>
 <html lang="ca">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Guitar Mystery Cache</title>
-
 <link rel="stylesheet" href="styles.css">
-
 <style>
+.instructions { margin-bottom: 20px; }
+#progress { margin-bottom: 20px; }
 
-.instructions{
-    margin-bottom:20px;
+#fretboard {
+  width: 420px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 40px repeat(6, 1fr);
+  gap: 0;
+  row-gap: 0;
+  background: linear-gradient(
+    to right,
+    #2c1505 0%, #5a2e0e 8%, #3d1a06 20%,
+    #6b3a12 35%, #3a1804 50%,
+    #6b3a12 65%, #3d1a06 80%,
+    #5a2e0e 92%, #2c1505 100%
+  );
+  border-radius: 6px 6px 4px 4px;
+  padding: 6px 4px;
+  box-shadow:
+    0 0 0 4px #8b5e2a,
+    0 0 0 7px #4a2e0d,
+    0 10px 30px rgba(0,0,0,0.8);
 }
 
-#progress{
-    margin-bottom:20px;
+.fret-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c8a46e;
+  font-weight: bold;
+  font-size: 0.7rem;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.9);
+  padding: 5px 0;
 }
 
-#fretboard{
-    width:420px;
-    margin:0 auto;
-    display:grid;
-    grid-template-columns:40px repeat(6,1fr);
-    gap:3px;
+.string-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e8c97a;
+  font-weight: bold;
+  font-size: 0.85rem;
+  text-shadow: 0 0 8px rgba(232,201,122,0.4);
+  padding-bottom: 5px;
+  border-bottom: 2px solid rgba(200,160,80,0.2);
 }
 
-.fret-number{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:white;
-    font-weight:bold;
-    font-size:1rem;
+.note {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.15s, background 0.15s, box-shadow 0.15s;
+  margin: 4px auto;
+  position: relative;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.string-header{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:white;
-    font-weight:bold;
-    font-size:1rem;
+.note::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -55%;
+  right: -55%;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent, #909090 15%, #d8d8d8 50%, #909090 85%, transparent
+  );
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 0;
 }
 
-.note{
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    background:#6b4320;
-    border:1px solid rgba(255,255,255,.15);
-    cursor:pointer;
-    transition:.2s;
-    margin:auto;
+.note::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -6px;
+  bottom: -6px;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent, #b0a060 20%, #ddd090 50%, #b0a060 80%, transparent
+  );
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 0;
 }
 
-.note:hover{
-    transform:scale(1.05);
+/* Talla la corda a l'esquerra de la primera nota de cada fila */
+.fret-number + .note::before {
+  left: 0;
 }
 
-.correct{
-    background:#28a745;
+.note:hover {
+  transform: scale(1.18);
+  background: radial-gradient(circle at 35% 30%, #c8a46e, #7a4a20);
+  box-shadow:
+    inset 0 1px 3px rgba(255,255,255,0.3),
+    0 0 12px rgba(255,200,80,0.4),
+    0 2px 6px rgba(0,0,0,0.6);
+  z-index: 2;
 }
 
-.wrong{
-    background:#c0392b;
+.correct {
+  background: radial-gradient(circle at 35% 30%, #5de87a, #1a7a35) !important;
+  box-shadow:
+    inset 0 1px 3px rgba(255,255,255,0.3),
+    0 0 14px rgba(40,167,69,0.7),
+    0 2px 6px rgba(0,0,0,0.5) !important;
+  z-index: 2;
 }
 
-#coordinates{
-    display:none;
-    text-align:center;
-    margin-top:30px;
+.wrong {
+  background: radial-gradient(circle at 35% 30%, #e06060, #8b1a1a) !important;
+  box-shadow:
+    inset 0 1px 3px rgba(255,255,255,0.2),
+    0 0 14px rgba(192,57,43,0.7),
+    0 2px 6px rgba(0,0,0,0.5) !important;
+  z-index: 2;
 }
 
-.result-title{
-    font-size:1.4rem;
-    font-weight:bold;
-    margin-bottom:12px;
+#coordinates {
+  display: none;
+  text-align: center;
+  margin-top: 30px;
+}
+.result-title { font-size: 1.4rem; font-weight: bold; margin-bottom: 12px; }
+.coords { font-size: 1rem; margin-bottom: 15px; }
+
+#copyButton {
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  border: 1px solid #8b5e2a;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #5a3510;
+  color: #e8c97a;
+  transition: background 0.2s;
+}
+#copyButton:hover { background: #7a4a1a; }
+
+#soundControls {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+#soundControls button {
+  padding: 6px 12px;
+  border: 1px solid #6b4320;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  background: #3d2208;
+  color: #e8c97a;
+  transition: background 0.2s, transform 0.1s;
+}
+#soundControls button:hover {
+  background: #5a3510;
+  transform: translateY(-1px);
+}
+#soundControls button.active {
+  background: #28a745;
+  color: white;
+  border-color: #1e7e34;
 }
 
-.coords{
-    font-size:1rem;
-    margin-bottom:15px;
+@media (max-width: 700px) {
+  #fretboard { width: 100%; max-width: 360px; }
+  .note { width: 24px; height: 24px; }
+  .note::after { top: -4px; bottom: -4px; }
 }
-
-#copyButton{
-    padding:8px 14px;
-    font-size:.9rem;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-}
-
-#soundControls{
-
-    display:flex;
-    justify-content:center;
-    gap:6px;
-    margin-bottom:15px;
-    flex-wrap:wrap;
-
-}
-
-#soundControls button{
-
-    padding:6px 10px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:.8rem;
-
-}
-
-#soundControls button.active{
-
-    background:#28a745;
-    color:white;
-
-}
-@media(max-width:700px){
-
-    #fretboard{
-        width:100%;
-        max-width:360px;
-    }
-
-    .note{
-        width:24px;
-        height:24px;
-    }
-
-}
-
 </style>
-
 </head>
-
 <body>
-
 <div class="container">
-
-<h1 id="challengeTitle">
-    Carregant...
-</h1>
-
+<h1 id="challengeTitle">Carregant...</h1>
 <div class="controls">
-
-<button onclick="window.location='index.html'">
-←
-</button>
-
-<button onclick="setLanguage('ca')">
-CAT
-</button>
-
-<button onclick="setLanguage('es')">
-ESP
-</button>
-
-<button onclick="setLanguage('en')">
-ENG
-</button>
-
+  <button onclick="window.location='index.html'">←</button>
+  <button onclick="setLanguage('ca')">CAT</button>
+  <button onclick="setLanguage('es')">ESP</button>
+  <button onclick="setLanguage('en')">ENG</button>
 </div>
 <div id="soundControls">
-
-    <button onclick="setSound('triangle')">
-        🎵 Soft
-    </button>
-
-    <button onclick="setSound('sawtooth')">
-        🎸 Guitar
-    </button>
-
-    <button onclick="setSound('square')">
-        ⚡ Retro
-    </button>
-
+  <button onclick="setSound('triangle')">🎵 Soft</button>
+  <button onclick="setSound('sawtooth')">🎸 Guitar</button>
+  <button onclick="setSound('square')">⚡ Retro</button>
 </div>
-<div
-    id="instructions"
-    class="instructions">
-
-    Carregant...
-
-</div>
-
+<div id="instructions" class="instructions">Carregant...</div>
 <div id="progress">
-
-<span id="progressLabel">
-Trobades
-</span>
-
-:
-
-<span id="found">
-0
-</span>
-
-/
-
-<span id="total">
-0
-</span>
-
+  <span id="progressLabel">Trobades</span> :
+  <span id="found">0</span> /
+  <span id="total">0</span>
 </div>
-
 <div id="fretboard"></div>
-
 <div id="coordinates">
-
-<div class="result-title">
-
-✅
-
-<span id="resultText">
-Repte resolt
-</span>
-
+  <div class="result-title">✅ <span id="resultText">Repte resolt</span></div>
+  <div class="coords" id="coordsText">--</div>
+  <button id="copyButton" onclick="copyCoords()">📋 Copiar coordenades</button>
 </div>
-
-<div
-    class="coords"
-    id="coordsText">
-
---
-
-</div>
-
-<button
-    id="copyButton"
-    onclick="copyCoords()">
-
-📋 Copiar coordenades
-
-</button>
-
-</div>
-
 </div>
 <script src="app.js"></script>
 </body>
