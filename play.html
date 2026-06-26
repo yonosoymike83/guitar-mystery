@@ -177,22 +177,27 @@
   margin-bottom: 15px;
   flex-wrap: wrap;
 }
-#soundControls button {
+
+button.sound-btn,
+div#soundControls button.sound-btn {
   padding: 6px 12px !important;
   border: 1px solid #6b4320 !important;
   border-radius: 8px !important;
-  cursor: pointer !important;
   font-size: 0.8rem !important;
   font-weight: normal !important;
   background: #3d2208 !important;
   color: #e8c97a !important;
-  transition: background 0.2s, transform 0.1s;
+  cursor: pointer !important;
+  transition: background 0.2s, transform 0.1s !important;
+  margin: 0 !important;
 }
-#soundControls button:hover {
+button.sound-btn:hover,
+div#soundControls button.sound-btn:hover {
   background: #5a3510 !important;
-  transform: translateY(-1px);
+  transform: translateY(-1px) !important;
 }
-#soundControls button.active {
+button.sound-btn.active,
+div#soundControls button.sound-btn.active {
   background: #28a745 !important;
   color: white !important;
   border-color: #1e7e34 !important;
@@ -215,9 +220,9 @@
   <button onclick="setLanguage('en')">ENG</button>
 </div>
 <div id="soundControls">
-  <button onclick="setSound('triangle')">🎵 Soft</button>
-  <button onclick="setSound('sawtooth')">🎸 Guitar</button>
-  <button onclick="setSound('square')">⚡ Retro</button>
+  <button class="sound-btn" onclick="setSound('triangle')">🎵 Soft</button>
+  <button class="sound-btn" onclick="setSound('sawtooth')">🎸 Guitar</button>
+  <button class="sound-btn" onclick="setSound('square')">⚡ Retro</button>
 </div>
 <div id="instructions" class="instructions">Carregant...</div>
 <div id="progress">
