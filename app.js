@@ -94,7 +94,7 @@ function buildFretboard() {
     fretboard.innerHTML = "";
     fretLabels.innerHTML = "";
 
-    const strings = ["E", "A", "D", "G", "B", "e"];
+    const strings = ["E", "A", "D", "G", "B", "E"];
 
     const emptyLabel = document.createElement("div");
     emptyLabel.className = "fret-label";
