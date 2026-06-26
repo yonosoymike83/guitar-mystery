@@ -94,7 +94,7 @@ function buildFretboard() {
     fretboard.innerHTML = "";
     fretLabels.innerHTML = "";
 
-    const strings = ["E", "A", "D", "G", "B", "e"];
+    const strings = ["E", "A", "D", "G", "B", "E"];
 
     // Espai en blanc al labels per alinear amb la fila de capçaleres
     const emptyLabel = document.createElement("div");
