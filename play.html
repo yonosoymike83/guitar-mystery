@@ -10,11 +10,9 @@
 #progress { margin-bottom: 20px; }
 
 #fretboard-wrap {
-  display: flex;
+  display: inline-flex;
   align-items: stretch;
-  justify-content: center;
   gap: 0;
-  margin: 0 auto;
 }
 
 #fret-labels {
@@ -22,7 +20,6 @@
   flex-direction: column;
   padding: 6px 8px 6px 0;
   min-width: 36px;
-  width: 100%;
 }
 
 .fret-label {
@@ -114,7 +111,6 @@
   z-index: 0;
 }
 
-/* Talla la corda a l'esquerra de la primera nota de cada fila */
 .note.first-in-row::before {
   left: 0;
 }
@@ -158,14 +154,15 @@
 #copyButton {
   padding: 8px 14px;
   font-size: 0.9rem;
-  border: 1px solid #8b5e2a;
+  border: 1px solid #8b5e2a !important;
   border-radius: 8px;
   cursor: pointer;
-  background: #5a3510;
-  color: #e8c97a;
+  background: #5a3510 !important;
+  color: #e8c97a !important;
+  font-weight: normal !important;
   transition: background 0.2s;
 }
-#copyButton:hover { background: #7a4a1a; }
+#copyButton:hover { background: #7a4a1a !important; }
 
 #soundControls {
   display: flex;
@@ -175,23 +172,24 @@
   flex-wrap: wrap;
 }
 #soundControls button {
-  padding: 6px 12px;
-  border: 1px solid #6b4320;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.8rem;
-  background: #3d2208;
-  color: #e8c97a;
+  padding: 6px 12px !important;
+  border: 1px solid #6b4320 !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  font-size: 0.8rem !important;
+  font-weight: normal !important;
+  background: #3d2208 !important;
+  color: #e8c97a !important;
   transition: background 0.2s, transform 0.1s;
 }
 #soundControls button:hover {
-  background: #5a3510;
+  background: #5a3510 !important;
   transform: translateY(-1px);
 }
 #soundControls button.active {
-  background: #28a745;
-  color: white;
-  border-color: #1e7e34;
+  background: #28a745 !important;
+  color: white !important;
+  border-color: #1e7e34 !important;
 }
 
 @media (max-width: 700px) {
