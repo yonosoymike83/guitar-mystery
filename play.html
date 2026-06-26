@@ -205,10 +205,73 @@ div#soundControls button.sound-btn.active {
   border-color: #1e7e34 !important;
 }
 
-@media (max-width: 700px) {
-  #fretboard { width: 100%; max-width: 320px; }
-  .note { width: 24px; height: 24px; }
-  .note::after { top: -4px; bottom: -4px; }
+@media (max-width:700px){
+    .container{
+        padding:15px 8px;
+    }
+
+    h1{
+        font-size:2rem;
+    }
+
+    #fretboard-wrap{
+        display:flex;
+        justify-content:center;
+        align-items:flex-start;
+
+        transform:scale(0.82);
+        transform-origin:top center;
+
+        width:100%;
+    }
+
+    #fret-labels{
+        min-width:18px;
+        padding-right:4px;
+    }
+
+    .fret-label{
+        height:36px;
+        font-size:.60rem;
+    }
+
+    .fret-label:first-child{
+        height:28px;
+    }
+
+    #fretboard{
+        grid-template-columns:repeat(6,38px);
+        padding:5px 3px;
+    }
+
+    .string-header{
+        font-size:.75rem;
+    }
+
+    .note{
+        width:26px;
+        height:26px;
+        margin:3px auto;
+    }
+
+    .note::before{
+        left:-45%;
+        right:-45%;
+    }
+
+    .note::after{
+        top:-5px;
+        bottom:-5px;
+    }
+
+    #soundControls{
+        gap:4px;
+    }
+
+    button.sound-btn{
+        font-size:.75rem !important;
+        padding:6px 10px !important;
+    }
 }
 </style>
 </head>
