@@ -96,12 +96,10 @@ function buildFretboard() {
 
     const strings = ["E", "A", "D", "G", "B", "e"];
 
-    // Espai buit per alinear amb la fila de capçaleres
     const emptyLabel = document.createElement("div");
     emptyLabel.className = "fret-label";
     fretLabels.appendChild(emptyLabel);
 
-    // Capçaleres de cordes
     strings.forEach(string => {
         const header = document.createElement("div");
         header.className = "string-header";
@@ -109,9 +107,7 @@ function buildFretboard() {
         fretboard.appendChild(header);
     });
 
-    // Files de trastos
     for (let fret = 0; fret <= 12; fret++) {
-
         const fretLabel = document.createElement("div");
         fretLabel.className = "fret-label";
         fretLabel.textContent = fret;
