@@ -94,14 +94,14 @@ function buildFretboard() {
     fretboard.innerHTML = "";
     fretLabels.innerHTML = "";
 
-    const strings = ["E", "A", "D", "G", "B", "E"];
+    const strings = ["E", "A", "D", "G", "B", "e"];
 
-    // Espai en blanc al labels per alinear amb la fila de capçaleres
+    // Espai buit per alinear amb la fila de capçaleres
     const emptyLabel = document.createElement("div");
     emptyLabel.className = "fret-label";
     fretLabels.appendChild(emptyLabel);
 
-    // Capçaleres de cordes (només al mástil, sense columna de números)
+    // Capçaleres de cordes
     strings.forEach(string => {
         const header = document.createElement("div");
         header.className = "string-header";
@@ -112,13 +112,11 @@ function buildFretboard() {
     // Files de trastos
     for (let fret = 0; fret <= 12; fret++) {
 
-        // Etiqueta del trasto fora del mástil
         const fretLabel = document.createElement("div");
         fretLabel.className = "fret-label";
         fretLabel.textContent = fret;
         fretLabels.appendChild(fretLabel);
 
-        // Notes dins el mástil
         for (let string = 1; string <= 6; string++) {
             const note = document.createElement("div");
             note.className = "note" + (string === 1 ? " first-in-row" : "");
@@ -150,17 +148,6 @@ function buildFretboard() {
             fretboard.appendChild(note);
         }
     }
-
-    // Alinear l'alçada de les etiquetes amb les files del grid
-    requestAnimationFrame(() => {
-        const firstNotes = fretboard.querySelectorAll(".note.first-in-row");
-        const allLabels = fretLabels.querySelectorAll(".fret-label:not(:first-child)");
-        firstNotes.forEach((note, i) => {
-            if (allLabels[i]) {
-                allLabels[i].style.height = (note.offsetHeight + 8) + "px";
-            }
-        });
-    });
 }
 
 function playNote(string, fret) {
