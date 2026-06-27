@@ -1,5 +1,5 @@
 {
-  "id": "challenge03",
+  "mode": "sequence",
 
   "title": {
     "ca": "Smoke on the Water",
@@ -8,20 +8,28 @@
   },
 
   "instructions": {
-    "ca": "Troba les 4 notes del riff principal de Smoke on the Water.",
-    "es": "Encuentra las 4 notas del riff principal de Smoke on the Water.",
-    "en": "Find the 4 notes of the main Smoke on the Water riff."
+    "ca": "Toca el riff en l'ordre correcte.",
+    "es": "Toca el riff en el orden correcto.",
+    "en": "Play the riff in the correct order."
+  },
+
+  "coordinates": {
+    "north": "41°40'37.9\"N",
+    "east": "2°48'22.0\"E"
   },
 
   "solution": [
-    "4-0",
     "4-3",
     "4-5",
-    "4-6"
-  ],
-
-  "coordinates": {
-    "north": "N 41° 40.631",
-    "east": "E 002° 48.367"
-  }
+    "4-6",
+    "4-3",
+    "4-5",
+    "4-8",
+    "4-6",
+    "4-3",
+    "4-5",
+    "4-6",
+    "4-5",
+    "4-3"
+  ]
 }
