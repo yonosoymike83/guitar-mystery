@@ -303,7 +303,7 @@ function buildFretboard(){
             }
 
             const position =
-                `${string}-${fret}`;
+                `${7 - string}-${fret}`;
 
             note.dataset.position =
                 position;
