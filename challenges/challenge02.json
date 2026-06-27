@@ -1,28 +1,31 @@
 {
-  "id": "challenge02",
+  "mode": "sequence",
 
   "title": {
-    "ca": "Escala Blues de La",
-    "es": "Escala Blues de La",
-    "en": "A Blues Scale"
+    "ca": "Seven Nation Army",
+    "es": "Seven Nation Army",
+    "en": "Seven Nation Army"
   },
 
   "instructions": {
-    "ca": "Troba les 5 notes de l'escala blues de La.",
-    "es": "Encuentra las 5 notas de la escala blues de La.",
-    "en": "Find the 5 notes of the A blues scale."
+    "ca": "Toca el riff en l'ordre correcte.",
+    "es": "Toca el riff en el orden correcto.",
+    "en": "Play the riff in the correct order."
+  },
+
+  "coordinates": {
+    "north": "41°40'37.9\"N",
+    "east": "2°48'22.0\"E"
   },
 
   "solution": [
-    "6-5",
-    "5-6",
-    "4-5",
-    "3-5",
-    "2-5"
-  ],
-
-  "coordinates": {
-    "north": "N 41° 42.357",
-    "east": "E 002° 47.812"
-  }
+    "5-7",
+    "5-7",
+    "5-10",
+    "5-7",
+    "5-5",
+    "5-3",
+    "5-2",
+    "5-0"
+  ]
 }
