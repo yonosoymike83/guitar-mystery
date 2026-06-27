@@ -159,19 +159,23 @@
 .result-title { font-size: 1.4rem; font-weight: bold; margin-bottom: 12px; }
 .coords { font-size: 1rem; margin-bottom: 15px; }
 
-#copyButton {
-  padding: 8px 14px;
-  font-size: 0.9rem;
-  border: 1px solid #8b5e2a !important;
-  border-radius: 8px;
-  cursor: pointer;
-  background: #5a3510 !important;
-  color: #e8c97a !important;
-  font-weight: normal !important;
-  transition: background 0.2s;
+#copyButton{
+    padding:8px 16px;
+    margin-top:10px;
+    background:#f2f2f2;
+    color:#000;
+    border:none;
+    border-radius:8px;
+    font-weight:bold;
+    font-size:1rem;
+    cursor:pointer;
+    transition:.2s;
 }
-#copyButton:hover { background: #7a4a1a !important; }
 
+#copyButton:hover{
+    transform:scale(1.05);
+
+}
 #soundControls {
   display: flex;
   justify-content: center;
@@ -185,27 +189,20 @@ div#soundControls button.sound-btn{
 
     margin:0 4px !important;
     padding:8px 16px !important;
-
     font-weight:bold !important;
     font-size:1rem !important;
-
     border:none !important;
     border-radius:8px !important;
-
     background:#f2f2f2 !important;
     color:#000 !important;
-
     cursor:pointer !important;
-
     transition:.2s !important;
-
 }
 
 button.sound-btn:hover,
 div#soundControls button.sound-btn:hover{
 
     transform:scale(1.05);
-
 }
 
 button.sound-btn.active,
@@ -213,9 +210,7 @@ div#soundControls button.sound-btn.active{
 
     background:#28a745 !important;
     color:white !important;
-
     box-shadow:0 0 10px rgba(40,167,69,.45);
-
 }
 
 @media (max-width:700px){
