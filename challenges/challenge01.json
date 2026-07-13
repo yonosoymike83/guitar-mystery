@@ -1,28 +1,33 @@
 {
-  "id": "challenge01",
+  "mode": "sequence",
 
   "title": {
-    "ca": "Pentatònica menor de La",
-    "es": "Pentatónica menor de La",
-    "en": "A Minor Pentatonic"
+    "ca": "Sunshine of Your Love",
+    "es": "Sunshine of Your Love",
+    "en": "Sunshine of Your Love"
   },
 
   "instructions": {
-    "ca": "Troba les 5 notes de la posició bàsica de la pentatònica menor de La.",
-    "es": "Encuentra las 5 notas de la posición básica de la pentatónica menor de La.",
-    "en": "Find the 5 notes of the basic A minor pentatonic position."
+    "ca": "Toca el riff en l'ordre correcte.",
+    "es": "Toca el riff en el orden correcto.",
+    "en": "Play the riff in the correct order."
+  },
+
+  "coordinates": {
+    "north": "41°40'37.9\"N",
+    "east": "2°48'22.0\"E"
   },
 
   "solution": [
+    "6-0",
+    "6-3",
     "6-5",
-    "5-3",
-    "4-5",
-    "3-2",
-    "2-5"
-  ],
-
-  "coordinates": {
-    "north": "N 41° 42.357",
-    "east": "E 002° 47.812"
-  }
+    "6-6",
+    "6-5",
+    "6-3",
+    "6-0",
+    "6-3",
+    "6-5",
+    "6-3"
+  ]
 }
