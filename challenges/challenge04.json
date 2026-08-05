@@ -1,0 +1,35 @@
+{
+  "mode": "sequence",
+
+  "title": {
+    "ca": "Come as You are",
+    "es": "Come as You are",
+    "en": "Come as You are"
+  },
+
+  "instructions": {
+    "ca": "Toca el riff en l'ordre correcte.",
+    "es": "Toca el riff en el orden correcto.",
+    "en": "Play the riff in the correct order."
+  },
+
+  "coordinates": {
+    "north": "41°40'37.8\"N",
+    "east": "2°48'22.1\"E"
+  },
+
+  "solution": [
+    "4-0",
+    "4-3",
+    "4-5",
+    "4-0",
+    "4-3",
+    "4-6",
+    "4-5",
+    "4-0",
+    "4-3",
+    "4-5",
+    "4-3",
+    "4-0"
+  ]
+}
