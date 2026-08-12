@@ -30,5 +30,13 @@
       "es": "Come as You are",
       "en": "Come as You are"
     }
+  },
+  {
+    "id": "challenge05",
+    "title": {
+      "ca": "Man on the Silver Mountain",
+      "es": "Man on the Silver Mountain",
+      "en": "Man on the Silver Mountain"
+    }
   }
 ]
