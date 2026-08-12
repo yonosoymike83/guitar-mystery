@@ -1,0 +1,45 @@
+{
+  "mode": "sequence",
+
+  "title": {
+    "ca": "Man on the Silver Mountain",
+    "es": "Man on the Silver Mountain",
+    "en": "Man on the Silver Mountain"
+  },
+
+  "instructions": {
+    "ca": "Toca el riff en l'ordre correcte.",
+    "es": "Toca el riff en el orden correcto.",
+    "en": "Play the riff in the correct order."
+  },
+
+  "coordinates": {
+    "north": "41°42'25.5\"N",
+    "east": "2°43'34.1\"E"
+  },
+
+  "solution": [
+    "6-3",
+    "5-5",
+    "5-3",
+    "5-5",
+    "4-3",
+    "5-3",
+    "5-5",
+    "5-5",
+    "5-3",
+    "5-5",
+    "4-5",
+    "4-3",
+    "6-3",
+    "5-5",
+    "5-3",
+    "5-5",
+    "4-3",
+    "5-5",
+    "5-3",
+    "5-5",
+    "5-3",
+    "5-1"
+  ]
+}
