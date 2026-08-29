@@ -4,11 +4,18 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Guitar Mystery Cache</title>
 
-<link rel="stylesheet" href="styles.css">
+<link
+    rel="stylesheet"
+    href="styles.css"
+>
 
 </head>
 
@@ -22,7 +29,14 @@
         class="logo"
     >
 
-    <h1>Guitar Mystery Cache</h1>
+    <h1>
+        Guitar Mystery Cache
+    </h1>
+
+
+    <!-- ==================================================
+         SELECTOR DE IDIOMA
+         ================================================== -->
 
     <div id="language-selector">
 
@@ -40,21 +54,65 @@
 
     </div>
 
+
+    <!-- ==================================================
+         LISTA DE MYSTERIES
+         ================================================== -->
+
     <div id="list">
         Cargando...
     </div>
 
 </div>
 
+
 <script>
+
+
+// ======================================================
+// DARK CACHE
+// ======================================================
+
+const darkCache =
+    new URLSearchParams(
+        window.location.search
+    ).get("darkcache") === "true";
+
+
+// ======================================================
+// OCULTAR SELECTOR DE IDIOMA EN DARK CACHE
+// ======================================================
+
+if(darkCache){
+
+    const languageSelector =
+        document.getElementById(
+            "language-selector"
+        );
+
+    if(languageSelector){
+
+        languageSelector.style.display =
+            "none";
+
+    }
+
+}
+
+
+// ======================================================
+// IDIOMA
+// ======================================================
 
 let language =
     localStorage.getItem("language");
+
 
 if(!language){
 
     const browserLang =
         navigator.language.toLowerCase();
+
 
     if(browserLang.startsWith("ca")){
 
@@ -67,8 +125,15 @@ if(!language){
     }else{
 
         language = "es";
+
     }
+
 }
+
+
+// ======================================================
+// CAMBIAR IDIOMA
+// ======================================================
 
 function setLanguage(lang){
 
@@ -78,7 +143,13 @@ function setLanguage(lang){
     );
 
     location.reload();
+
 }
+
+
+// ======================================================
+// CARGAR LISTA
+// ======================================================
 
 async function loadList(){
 
@@ -89,36 +160,51 @@ async function loadList(){
             )
         ).json();
 
+
     const container =
         document.getElementById(
             "list"
         );
 
+
     container.innerHTML = "";
 
-    challenges.forEach(challenge => {
 
-        const link =
-            document.createElement("a");
+    challenges.forEach(
+        challenge => {
 
-        link.className =
-            "challenge";
+            const link =
+                document.createElement(
+                    "a"
+                );
 
-        link.href =
-            `play.html?id=${challenge.id}`;
 
-        link.textContent =
-            challenge.title[language];
+            link.className =
+                "challenge";
 
-        container.appendChild(
-            link
-        );
 
-    });
+            link.href =
+                `play.html?id=${challenge.id}`;
+
+
+            link.textContent =
+                challenge.title[
+                    language
+                ];
+
+
+            container.appendChild(
+                link
+            );
+
+        }
+    );
 
 }
 
+
 loadList();
+
 
 </script>
 
