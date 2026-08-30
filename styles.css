@@ -365,11 +365,6 @@ body.dark-cache #list {
 
 body.dark-cache #list .challenge {
 
-    /*
-       No usamos flex: 1.
-       Cada canción conserva su altura natural.
-    */
-
     flex: 0 0 auto;
 
     width: 100%;
@@ -398,11 +393,6 @@ body.dark-cache #list .challenge {
 
     text-align: center;
 
-    /*
-       Intentar mantener cada canción
-       en una sola línea.
-    */
-
     white-space: nowrap;
 
 }
@@ -422,7 +412,677 @@ body.dark-cache #list .challenge:hover {
 
 
 /* ======================================================
-   MÓVIL
+   ======================================================
+   GUITAR MYSTERY — JUEGO
+   ======================================================
+   ====================================================== */
+
+
+/* ======================================================
+   PANTALLA COMPLETA
+   ====================================================== */
+
+body.guitar-game {
+
+    margin: 0;
+
+    padding: 0;
+
+    background: #111;
+
+    color: #fff;
+
+    overflow: hidden;
+
+}
+
+
+body.guitar-game .container {
+
+    width: 100%;
+
+    max-width: 100%;
+
+    height: 100vh;
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+}
+
+
+/* ======================================================
+   OCULTAR ELEMENTOS QUE SOBRAN EN EL JUEGO
+   ====================================================== */
+
+body.guitar-game .logo,
+body.guitar-game #language-selector {
+
+    display: none !important;
+
+}
+
+
+/* ======================================================
+   TÍTULO DE LA CANCIÓN
+   ====================================================== */
+
+body.guitar-game #challengeTitle {
+
+    margin: 18px 0 12px 0;
+
+    padding: 8px 20px;
+
+    font-family: "Audiowide", sans-serif;
+
+    font-size: clamp(20px, 3vw, 30px);
+
+    line-height: 1;
+
+    letter-spacing: 3px;
+
+    color: #e0c276;
+
+}
+
+
+/* ======================================================
+   INSTRUCCIONES
+   ====================================================== */
+
+body.guitar-game #instructions {
+
+    max-width: 700px;
+
+    margin: 0 auto 8px auto;
+
+    font-family: "VT323", monospace;
+
+    font-size: 18px;
+
+    line-height: 1.1;
+
+    color: #d0d0d0;
+
+}
+
+
+/* ======================================================
+   OCULTAR CONTROLES DURANTE EL JUEGO
+   ====================================================== */
+
+body.guitar-game .controls {
+
+    display: none !important;
+
+}
+
+
+body.guitar-game #soundControls {
+
+    display: none !important;
+
+}
+
+
+/* ======================================================
+   ZONA DEL MÁSTIL
+   ====================================================== */
+
+body.guitar-game #fretboard-container {
+
+    width: min(430px, 88vw);
+
+    height: min(72vh, 650px);
+
+    margin: 5px auto 0 auto;
+
+    padding: 12px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: stretch;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background: #151515;
+
+    border: 3px solid #6b4320;
+
+    border-radius: 8px;
+
+    box-shadow:
+        inset 0 0 0 2px #3a2414,
+        inset 0 0 20px rgba(0,0,0,0.7),
+        0 5px 15px rgba(0,0,0,0.5);
+
+}
+
+
+/* ======================================================
+   ETIQUETAS DE TRASTES
+   ====================================================== */
+
+body.guitar-game #fret-labels {
+
+    width: 30px;
+
+    flex: 0 0 30px;
+
+    display: grid;
+
+    grid-template-rows:
+        28px
+        repeat(13, 1fr);
+
+    align-items: stretch;
+
+    box-sizing: border-box;
+
+    margin-right: 4px;
+
+    color: #c9a85c;
+
+    font-family: "VT323", monospace;
+
+    font-size: 16px;
+
+}
+
+
+body.guitar-game .fret-label {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    border-bottom: 1px solid #393939;
+
+}
+
+
+/* ======================================================
+   MÁSTIL
+   ====================================================== */
+
+body.guitar-game #fretboard {
+
+    flex: 1;
+
+    min-width: 0;
+
+    height: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, 1fr);
+
+    grid-template-rows:
+        28px
+        repeat(13, 1fr);
+
+    box-sizing: border-box;
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            90deg,
+            #17100b 0%,
+            #28180d 50%,
+            #17100b 100%
+        );
+
+    border: 3px solid #4a2b16;
+
+    border-radius: 4px;
+
+    overflow: hidden;
+
+    box-shadow:
+        inset 0 0 18px rgba(0,0,0,0.8);
+
+}
+
+
+/* ======================================================
+   CABECERA DE LAS CUERDAS
+   ====================================================== */
+
+body.guitar-game .string-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #111;
+
+    color: #e0c276;
+
+    font-family: "VT323", monospace;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    border-right: 1px solid #333;
+
+    border-bottom: 2px solid #8c6930;
+
+    box-sizing: border-box;
+
+}
+
+
+body.guitar-game .string-header:last-child {
+
+    border-right: none;
+
+}
+
+
+/* ======================================================
+   NOTAS / POSICIONES
+   ====================================================== */
+
+body.guitar-game .note {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    cursor: pointer;
+
+    border-right: 1px solid #51351f;
+
+    border-bottom: 1px solid #51351f;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.025),
+            rgba(0,0,0,0.05)
+        );
+
+    transition:
+        background 0.12s ease,
+        box-shadow 0.12s ease,
+        transform 0.08s ease;
+
+}
+
+
+/* ======================================================
+   CUERDAS
+   ====================================================== */
+
+body.guitar-game .note::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 0;
+
+    width: 2px;
+
+    height: 100%;
+
+    transform: translateX(-50%);
+
+    background: #b9b0a0;
+
+    opacity: 0.75;
+
+    pointer-events: none;
+
+    box-shadow:
+        0 0 2px rgba(255,255,255,0.25);
+
+}
+
+
+/* Diferentes grosores de cuerda */
+
+body.guitar-game .note:nth-child(6n + 1)::after,
+body.guitar-game .note:nth-child(6n + 6)::after {
+
+    width: 3px;
+
+}
+
+
+body.guitar-game .note:nth-child(6n + 2)::after,
+body.guitar-game .note:nth-child(6n + 5)::after {
+
+    width: 2px;
+
+}
+
+
+body.guitar-game .note:nth-child(6n + 3)::after,
+body.guitar-game .note:nth-child(6n + 4)::after {
+
+    width: 1px;
+
+}
+
+
+/* ======================================================
+   TRASTES
+   ====================================================== */
+
+body.guitar-game .note:nth-child(n + 7)::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    height: 2px;
+
+    background: #8b8b8b;
+
+    opacity: 0.7;
+
+    pointer-events: none;
+
+}
+
+
+/* ======================================================
+   MARCAS DEL MÁSTIL
+   ====================================================== */
+
+/* Puntos decorativos */
+
+body.guitar-game .note[data-position$="-3"]::before,
+body.guitar-game .note[data-position$="-5"]::before,
+body.guitar-game .note[data-position$="-7"]::before,
+body.guitar-game .note[data-position$="-9"]::before {
+
+    width: 8px;
+
+    height: 8px;
+
+    left: 50%;
+
+    bottom: 50%;
+
+    transform: translate(-50%, 50%);
+
+    border-radius: 50%;
+
+    background: #8d7042;
+
+    opacity: 0.45;
+
+}
+
+
+/* ======================================================
+   HOVER
+   ====================================================== */
+
+body.guitar-game .note:hover {
+
+    background: #3a2413;
+
+    box-shadow:
+        inset 0 0 10px rgba(224,194,118,0.18);
+
+    transform: scale(0.96);
+
+}
+
+
+body.guitar-game .note:hover::after {
+
+    opacity: 1;
+
+}
+
+
+/* ======================================================
+   NOTA CORRECTA
+   ====================================================== */
+
+body.guitar-game .note.correct {
+
+    background: #c49b4b;
+
+    box-shadow:
+        inset 0 0 12px rgba(255,220,130,0.7),
+        0 0 8px rgba(224,194,118,0.45);
+
+}
+
+
+body.guitar-game .note.correct::after {
+
+    background: #fff;
+
+    opacity: 1;
+
+}
+
+
+/* ======================================================
+   NOTA INCORRECTA
+   ====================================================== */
+
+body.guitar-game .note.wrong {
+
+    background: #6b1f1f;
+
+    box-shadow:
+        inset 0 0 12px rgba(255,70,70,0.5);
+
+}
+
+
+/* ======================================================
+   PROGRESO
+   ====================================================== */
+
+body.guitar-game #progress {
+
+    margin-top: 8px;
+
+    font-family: "VT323", monospace;
+
+    font-size: 19px;
+
+    color: #e0c276;
+
+}
+
+
+/* ======================================================
+   COORDENADAS
+   ====================================================== */
+
+body.guitar-game #coordinates {
+
+    margin-top: 10px;
+
+    padding: 10px 15px;
+
+    box-sizing: border-box;
+
+    font-family: "VT323", monospace;
+
+    font-size: 18px;
+
+    color: #e0c276;
+
+    background: #181818;
+
+    border: 1px solid #6b4320;
+
+    border-radius: 6px;
+
+}
+
+
+/* ======================================================
+   BOTÓN COPIAR
+   ====================================================== */
+
+body.guitar-game #copyButton {
+
+    margin-top: 6px;
+
+    padding: 6px 12px;
+
+    font-family: "VT323", monospace;
+
+    font-size: 17px;
+
+    color: #e0c276;
+
+    background: #2a1a0d;
+
+    border: 1px solid #6b4320;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+}
+
+
+/* ======================================================
+   RESPONSIVE
+   ====================================================== */
+
+@media (max-width: 600px) {
+
+    body.guitar-game #challengeTitle {
+
+        margin-top: 10px;
+
+        margin-bottom: 6px;
+
+        font-size: 22px;
+
+        letter-spacing: 2px;
+
+    }
+
+
+    body.guitar-game #instructions {
+
+        font-size: 16px;
+
+        margin-bottom: 5px;
+
+    }
+
+
+    body.guitar-game #fretboard-container {
+
+        width: 94vw;
+
+        height: 67vh;
+
+        padding: 7px;
+
+        margin-top: 3px;
+
+    }
+
+
+    body.guitar-game #fret-labels {
+
+        width: 23px;
+
+        flex-basis: 23px;
+
+        grid-template-rows:
+            24px
+            repeat(13, 1fr);
+
+        font-size: 13px;
+
+    }
+
+
+    body.guitar-game #fretboard {
+
+        grid-template-rows:
+            24px
+            repeat(13, 1fr);
+
+    }
+
+
+    body.guitar-game .string-header {
+
+        font-size: 14px;
+
+    }
+
+
+    body.guitar-game #progress {
+
+        font-size: 17px;
+
+        margin-top: 5px;
+
+    }
+
+
+    body.guitar-game #coordinates {
+
+        margin-top: 5px;
+
+        font-size: 16px;
+
+    }
+
+}
+
+
+/* ======================================================
+   DARK CACHE — MÓVIL
    ====================================================== */
 
 @media (max-width: 600px) {
