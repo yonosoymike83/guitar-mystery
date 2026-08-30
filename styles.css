@@ -350,7 +350,7 @@ body.dark-cache #list {
 
     justify-content: center;
 
-    gap: 10px;
+    gap: 8px;
 
     overflow-y: auto;
 
@@ -366,8 +366,7 @@ body.dark-cache #list {
 body.dark-cache #list .challenge {
 
     /*
-       IMPORTANTE:
-       No usamos flex: 1 aquí.
+       No usamos flex: 1.
        Cada canción conserva su altura natural.
     */
 
@@ -375,7 +374,9 @@ body.dark-cache #list .challenge {
 
     width: 100%;
 
-    min-height: 54px;
+    min-height: 48px;
+
+    padding: 5px 14px;
 
     margin: 0;
 
@@ -387,6 +388,23 @@ body.dark-cache #list .challenge {
 
     justify-content: center;
 
+    font-family: "VT323", monospace;
+
+    font-size: 22px;
+
+    line-height: 1;
+
+    letter-spacing: 1px;
+
+    text-align: center;
+
+    /*
+       Intentar mantener cada canción
+       en una sola línea.
+    */
+
+    white-space: nowrap;
+
 }
 
 
@@ -395,6 +413,8 @@ body.dark-cache #list .challenge {
    ====================================================== */
 
 body.dark-cache #list .challenge:hover {
+
+    background: #303030;
 
     transform: scale(1.015);
 
@@ -411,18 +431,18 @@ body.dark-cache #list .challenge:hover {
 
         padding: 16px;
 
-        gap: 8px;
+        gap: 7px;
 
     }
 
 
     body.dark-cache #list .challenge {
 
-        min-height: 50px;
+        min-height: 44px;
 
-        padding: 7px 14px;
+        padding: 4px 10px;
 
-        font-size: 25px;
+        font-size: 21px;
 
     }
 
