@@ -192,7 +192,9 @@ async function loadList(){
 
 
                 link.href =
-                    `play.html?id=${challenge.id}`;
+                    darkCache
+                        ? `play.html?id=${challenge.id}&darkcache=true`
+                        : `play.html?id=${challenge.id}`;
 
 
                 link.textContent =
