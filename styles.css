@@ -78,3 +78,58 @@ h1 {
   color: white !important;
   border-color: #1e7e34 !important;
 }
+
+/* ======================================================
+   DARK CACHE
+   OCULTAR CABECERA DEL MENÚ
+   ====================================================== */
+
+body.dark-cache .logo {
+
+    display: none;
+
+}
+
+
+body.dark-cache h1 {
+
+    display: none;
+
+}
+
+
+body.dark-cache #language-selector {
+
+    display: none;
+
+}
+
+/* ======================================================
+   DARK CACHE
+   LA LISTA OCUPA TODO EL ESPACIO
+   ====================================================== */
+
+body.dark-cache .container {
+
+    width: 100%;
+
+    max-width: none;
+
+    margin: 0;
+
+    padding: 0;
+
+}
+
+
+body.dark-cache #list {
+
+    width: 100%;
+
+    margin: 0;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+}
