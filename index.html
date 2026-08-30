@@ -19,15 +19,26 @@
 
 </head>
 
+
 <body>
 
 <div class="container">
+
+
+    <!-- ==================================================
+         LOGO
+         ================================================== -->
 
     <img
         src="guitar-mystery-logo.png"
         alt="Guitar Mystery Cache"
         class="logo"
     >
+
+
+    <!-- ==================================================
+         TÍTULO
+         ================================================== -->
 
     <h1>
         Guitar Mystery Cache
@@ -56,12 +67,13 @@
 
 
     <!-- ==================================================
-         LISTA DE MYSTERIES
+         LISTA
          ================================================== -->
 
     <div id="list">
         Cargando...
     </div>
+
 
 </div>
 
@@ -80,22 +92,14 @@ const darkCache =
 
 
 // ======================================================
-// OCULTAR SELECTOR DE IDIOMA EN DARK CACHE
+// MARCAR EL BODY COMO DARK CACHE
 // ======================================================
 
 if(darkCache){
 
-    const languageSelector =
-        document.getElementById(
-            "language-selector"
-        );
-
-    if(languageSelector){
-
-        languageSelector.style.display =
-            "none";
-
-    }
+    document.body.classList.add(
+        "dark-cache"
+    );
 
 }
 
@@ -153,52 +157,72 @@ function setLanguage(lang){
 
 async function loadList(){
 
-    const challenges =
-        await (
+    try{
+
+        const response =
             await fetch(
                 "challenges/index.json"
-            )
-        ).json();
+            );
 
 
-    const container =
-        document.getElementById(
-            "list"
+        const challenges =
+            await response.json();
+
+
+        const container =
+            document.getElementById(
+                "list"
+            );
+
+
+        container.innerHTML = "";
+
+
+        challenges.forEach(
+            challenge => {
+
+                const link =
+                    document.createElement(
+                        "a"
+                    );
+
+
+                link.className =
+                    "challenge";
+
+
+                link.href =
+                    `play.html?id=${challenge.id}`;
+
+
+                link.textContent =
+                    challenge.title[
+                        language
+                    ];
+
+
+                container.appendChild(
+                    link
+                );
+
+            }
         );
 
 
-    container.innerHTML = "";
+    }catch(error){
+
+        console.error(
+            "Error cargando challenges:",
+            error
+        );
 
 
-    challenges.forEach(
-        challenge => {
+        document.getElementById(
+            "list"
+        ).textContent =
+            "Error cargando las canciones.";
 
-            const link =
-                document.createElement(
-                    "a"
-                );
-
-
-            link.className =
-                "challenge";
-
-
-            link.href =
-                `play.html?id=${challenge.id}`;
-
-
-            link.textContent =
-                challenge.title[
-                    language
-                ];
-
-
-            container.appendChild(
-                link
-            );
-
-        }
-    );
+    }
 
 }
 
@@ -209,4 +233,5 @@ loadList();
 </script>
 
 </body>
+
 </html>
