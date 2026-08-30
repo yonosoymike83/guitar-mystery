@@ -441,3 +441,175 @@ body.dark-cache #soundControls button {
     }
 
 }
+
+/* ======================================================
+   DARK CACHE — MÁSTIL DE GUITARRA
+   Solo afecta al juego Dark Cache
+   ====================================================== */
+
+body.dark-cache #fretboard-wrap {
+
+    position: relative;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    width: 100%;
+
+    z-index: 1;
+
+}
+
+
+/* MÁSTIL */
+
+body.dark-cache #fretboard {
+
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: repeat(6, 44px);
+
+    gap: 0;
+
+    row-gap: 0;
+
+    /*
+       Madera del mástil
+    */
+
+    background:
+        linear-gradient(
+            to right,
+            #211004 0%,
+            #4a2409 8%,
+            #6b3812 20%,
+            #4d2509 35%,
+            #713d15 50%,
+            #4d2509 65%,
+            #6b3812 80%,
+            #4a2409 92%,
+            #211004 100%
+        );
+
+    border-radius: 6px;
+
+    padding: 6px 4px;
+
+    box-sizing: border-box;
+
+    /*
+       Borde exterior del mástil
+    */
+
+    border: 3px solid #8b5e2a;
+
+    box-shadow:
+        0 0 0 2px #3b220b,
+        0 0 12px rgba(0,0,0,0.8),
+        inset 0 0 20px rgba(0,0,0,0.45);
+
+    /*
+       Muy importante:
+       el mástil queda detrás de las notas
+    */
+
+    z-index: 1;
+
+}
+
+
+/* Las líneas y notas quedan encima del mástil */
+
+body.dark-cache #fretboard .note,
+body.dark-cache #fretboard .string-header {
+
+    position: relative;
+
+    z-index: 3;
+
+}
+
+
+/* ======================================================
+   LÍNEAS DE LOS TRASTES
+   ====================================================== */
+
+body.dark-cache #fretboard .note::after {
+
+    z-index: 1;
+
+}
+
+
+/* ======================================================
+   CUERDAS
+   ====================================================== */
+
+body.dark-cache #fretboard .note::before {
+
+    z-index: 2;
+
+}
+
+
+/* ======================================================
+   CABECERA DE CUERDAS
+   ====================================================== */
+
+body.dark-cache #fretboard .string-header {
+
+    color: #e8c97a;
+
+    text-shadow:
+        0 1px 3px #000,
+        0 0 6px rgba(232,201,122,0.3);
+
+}
+
+
+/* ======================================================
+   NÚMEROS DE TRASTE
+   ====================================================== */
+
+body.dark-cache #fret-labels {
+
+    position: relative;
+
+    z-index: 4;
+
+}
+
+
+body.dark-cache .fret-label {
+
+    color: #c8a46e;
+
+    text-shadow:
+        0 1px 3px #000,
+        0 0 4px #000;
+
+}
+
+
+/* ======================================================
+   MÓVIL
+   ====================================================== */
+
+@media (max-width: 700px) {
+
+    body.dark-cache #fretboard {
+
+        grid-template-columns: repeat(6, 36px);
+
+        padding: 5px 3px;
+
+        border-width: 2px;
+
+    }
+
+}
