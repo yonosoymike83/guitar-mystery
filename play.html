@@ -263,7 +263,25 @@ div#soundControls button.sound-btn.active{
 }
 </style>
 </head>
-<body id="gameBody">
+<body>
+
+<script>
+
+const darkCache =
+    new URLSearchParams(
+        window.location.search
+    ).get("darkcache") === "true";
+
+if(darkCache){
+
+    document.body.classList.add(
+        "dark-cache"
+    );
+
+}
+
+</script>
+
 <div class="container">
 <h1 id="challengeTitle">Carregant...</h1>
 <div class="controls">
