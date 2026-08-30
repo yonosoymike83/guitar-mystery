@@ -165,7 +165,14 @@ const challengeId =
     params.get("id");
 
 async function loadChallenge(){
+    
+    // ==================================================
+    // MODO GUITAR GAME
+    // ==================================================
 
+    document.body.classList.add(
+        "guitar-game"
+    );
     if(!challengeId){
 
         alert(
