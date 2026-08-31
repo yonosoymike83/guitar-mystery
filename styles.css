@@ -860,3 +860,72 @@ body.dark-cache .string-header {
     }
 
    }
+/* ======================================================
+   DARK CACHE
+   TAMAÑO DEL MÁSTIL
+   ====================================================== */
+
+body.dark-cache #fretboard-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow: visible;
+}
+
+body.dark-cache #fretboard {
+    grid-template-columns: repeat(6, 38px);
+    padding: 5px 3px;
+
+    transform: scale(0.75);
+    transform-origin: top center;
+}
+
+body.dark-cache .note {
+    width: 30px;
+    height: 30px;
+    margin: 3px auto;
+}
+
+body.dark-cache .fret-label {
+    height: 37px;
+    font-size: 0.65rem;
+}
+
+body.dark-cache .fret-label:first-child {
+    height: 26px;
+}
+
+body.dark-cache .string-header {
+    font-size: 0.75rem;
+    padding-bottom: 4px;
+}
+
+
+/* ======================================================
+   DARK CACHE - MÓVIL
+   ====================================================== */
+
+@media (max-width: 600px) {
+
+    body.dark-cache #fretboard {
+        grid-template-columns: repeat(6, 34px);
+        transform: scale(0.70);
+    }
+
+    body.dark-cache .note {
+        width: 27px;
+        height: 27px;
+        margin: 3px auto;
+    }
+
+    body.dark-cache .fret-label {
+        height: 33px;
+        font-size: 0.55rem;
+    }
+
+    body.dark-cache .fret-label:first-child {
+        height: 23px;
+    }
+
+}
