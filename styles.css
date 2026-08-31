@@ -6,7 +6,9 @@
 
 
 /* ======================================================
-   GENERAL — MYSTERY NORMAL
+   ======================================================
+   MYSTERY NORMAL
+   ======================================================
    ====================================================== */
 
 body {
@@ -25,7 +27,7 @@ body {
 
 
 /* ======================================================
-   LOGO — MYSTERY NORMAL
+   LOGO
    ====================================================== */
 
 .logo {
@@ -36,7 +38,7 @@ body {
 
 
 /* ======================================================
-   TÍTULO — MYSTERY NORMAL
+   TÍTULO
    ====================================================== */
 
 h1 {
@@ -64,7 +66,7 @@ h1 {
 
 
 /* ======================================================
-   CONTROLES — MYSTERY NORMAL
+   CONTROLES
    ====================================================== */
 
 .controls {
@@ -82,18 +84,24 @@ h1 {
 
 
 /* ======================================================
-   CANCIONES — MYSTERY NORMAL
+   CANCIONES
    ====================================================== */
 
 .challenge {
     display: block;
+
     background: #222;
     color: white;
+
     text-decoration: none;
+
     padding: 15px;
     margin: 12px 0;
+
     border-radius: 10px;
+
     font-size: 1.1rem;
+
     transition: 0.2s;
 }
 
@@ -117,13 +125,19 @@ h1 {
 
 #soundControls button {
     padding: 6px 12px;
+
     border: 1px solid #6b4320 !important;
     border-radius: 8px;
+
     cursor: pointer;
+
     font-size: 0.8rem;
+
     background: #3d2208 !important;
     color: #e8c97a !important;
+
     font-weight: normal !important;
+
     transition:
         background 0.2s,
         transform 0.1s;
@@ -144,16 +158,14 @@ h1 {
 /* ======================================================
    ======================================================
    DARK CACHE
-   LISTA + JUEGO
-   Todo lo siguiente queda aislado dentro
-   de body.dark-cache
+   LISTA
    ======================================================
    ====================================================== */
 
 
-/* ======================================================
-   CABECERA
-   ====================================================== */
+/* ------------------------------------------------------
+   Ocultar cabecera normal
+   ------------------------------------------------------ */
 
 body.dark-cache .logo,
 body.dark-cache h1,
@@ -162,39 +174,45 @@ body.dark-cache #language-selector {
 }
 
 
-/* ======================================================
-   CUERPO
-   ====================================================== */
+/* ------------------------------------------------------
+   Cuerpo
+   ------------------------------------------------------ */
 
 body.dark-cache {
     margin: 0;
     padding: 0;
-    overflow: hidden;
+
     background: #000;
+
+    overflow: hidden;
 }
 
 
-/* ======================================================
-   CONTENEDOR
-   ====================================================== */
+/* ------------------------------------------------------
+   Contenedor
+   ------------------------------------------------------ */
 
 body.dark-cache .container {
     width: 100%;
     max-width: none;
+
     height: 100vh;
+
     margin: 0;
     padding: 10px;
+
     box-sizing: border-box;
 }
 
 
-/* ======================================================
-   LISTA DE DARK CACHE
-   ====================================================== */
+/* ------------------------------------------------------
+   Lista
+   ------------------------------------------------------ */
 
 body.dark-cache #list {
     width: 100%;
     height: 100%;
+
     box-sizing: border-box;
 
     margin: 0;
@@ -202,7 +220,9 @@ body.dark-cache #list {
 
     display: flex;
     flex-direction: column;
+
     justify-content: center;
+
     gap: 8px;
 
     overflow-y: auto;
@@ -210,9 +230,9 @@ body.dark-cache #list {
 }
 
 
-/* ======================================================
-   CANCIONES DARK CACHE
-   ====================================================== */
+/* ------------------------------------------------------
+   Canciones
+   ------------------------------------------------------ */
 
 body.dark-cache #list .challenge {
     flex: 0 0 auto;
@@ -230,16 +250,20 @@ body.dark-cache #list .challenge {
     justify-content: center;
 
     font-family: "VT323", monospace;
+
     font-size: 22px;
     line-height: 1;
+
     letter-spacing: 1px;
 
     text-align: center;
 
     color: #e0c276;
+
     background: #242424;
 
     text-decoration: none;
+
     border-radius: 15px;
 
     white-space: nowrap;
@@ -256,9 +280,16 @@ body.dark-cache #list .challenge:hover {
 
 
 /* ======================================================
-   DARK CACHE — JUEGO
-   OCULTAR ELEMENTOS QUE NO NECESITAMOS
+   ======================================================
+   DARK CACHE
+   JUEGO
+   ======================================================
    ====================================================== */
+
+
+/* ------------------------------------------------------
+   Ocultar elementos del juego
+   ------------------------------------------------------ */
 
 body.dark-cache #challengeTitle,
 body.dark-cache .controls,
@@ -270,33 +301,37 @@ body.dark-cache #progress {
 
 
 /* ======================================================
-   DARK CACHE — ÁREA DEL MÁSTIL
+   ÁREA DEL MÁSTIL
    ====================================================== */
 
 body.dark-cache #fretboard-wrap {
     width: 100%;
     height: 100%;
 
+    box-sizing: border-box;
+
     display: flex;
+
     justify-content: center;
     align-items: center;
 
-    gap: 6px;
-
-    box-sizing: border-box;
+    gap: 5px;
 
     overflow: hidden;
 }
 
 
 /* ======================================================
-   DARK CACHE — ETIQUETAS DE TRASTES
+   ETIQUETAS DE TRASTES
    ====================================================== */
 
 body.dark-cache #fret-labels {
     flex: 0 0 22px;
+
     width: 22px;
     min-width: 22px;
+
+    height: auto;
 
     padding: 0;
     margin: 0;
@@ -306,11 +341,11 @@ body.dark-cache #fret-labels {
 
     box-sizing: border-box;
 
-    z-index: 4;
+    z-index: 5;
 }
 
 body.dark-cache .fret-label {
-    height: 38px;
+    height: 34px;
 
     display: flex;
     align-items: center;
@@ -320,7 +355,7 @@ body.dark-cache .fret-label {
 
     color: #c8a46e;
 
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     font-weight: bold;
 
     text-shadow:
@@ -329,39 +364,61 @@ body.dark-cache .fret-label {
 }
 
 body.dark-cache .fret-label:first-child {
-    height: 27px;
+    height: 26px;
 }
 
 
 /* ======================================================
-   DARK CACHE — MÁSTIL
+   ======================================================
+   MÁSTIL HORIZONTAL
+   ======================================================
    ====================================================== */
 
 body.dark-cache #fretboard {
-    /*
-       El mástil ocupa el máximo espacio disponible
-       sin salirse de la pantalla.
-    */
-
-    width: min(86vw, 420px);
 
     /*
-       6 cuerdas distribuidas proporcionalmente.
+       IMPORTANTE:
+
+       El ancho y alto están pensados para que,
+       después de girar 90 grados, el mástil
+       ocupe principalmente el ancho de la ventana.
     */
 
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    width: min(72vh, 360px);
 
-    gap: 0;
-
-    padding: 5px 3px;
+    height: min(88vw, 680px);
 
     box-sizing: border-box;
 
+    display: grid;
+
+    /*
+       6 columnas = 6 cuerdas
+    */
+
+    grid-template-columns:
+        repeat(6, minmax(0, 1fr));
+
+    /*
+       Las filas se reparten el mástil.
+    */
+
+    grid-auto-rows: minmax(0, 1fr);
+
+    gap: 0;
+
+    padding: 4px 3px;
+
     position: relative;
+
+    /*
+       Madera
+    */
 
     background:
         linear-gradient(
             to right,
+
             #211004 0%,
             #4a2409 8%,
             #6b3812 20%,
@@ -373,7 +430,9 @@ body.dark-cache #fretboard {
             #211004 100%
         );
 
-    border: 2px solid #8b5e2a;
+    border:
+        2px solid #8b5e2a;
+
     border-radius: 6px;
 
     box-shadow:
@@ -381,60 +440,96 @@ body.dark-cache #fretboard {
         0 0 12px rgba(0,0,0,0.8),
         inset 0 0 20px rgba(0,0,0,0.45);
 
+    /*
+       AQUÍ ESTÁ EL CAMBIO PRINCIPAL:
+
+       El mástil gira 90 grados.
+    */
+
+    transform:
+        rotate(90deg);
+
+    transform-origin:
+        center center;
+
     z-index: 1;
 }
 
 
 /* ======================================================
-   DARK CACHE — CABECERA DE CUERDAS
+   CABECERA DE CUERDAS
    ====================================================== */
 
 body.dark-cache #fretboard .string-header {
+
     position: relative;
+
     z-index: 3;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
 
     color: #e8c97a;
 
-    font-size: clamp(0.65rem, 2.5vw, 0.9rem);
+    font-size: 0.75rem;
+
+    font-weight: bold;
 
     text-shadow:
         0 1px 3px #000,
         0 0 6px rgba(232,201,122,0.3);
 
-    padding-bottom: 4px;
+    padding-bottom: 3px;
 
     border-bottom:
         2px solid rgba(200,160,80,0.2);
+
+    /*
+       Deshacer el giro para que
+       E A D G B E se vea correctamente.
+    */
+
+    transform:
+        rotate(-90deg);
 }
 
 
 /* ======================================================
-   DARK CACHE — NOTAS
+   NOTAS
    ====================================================== */
 
 body.dark-cache #fretboard .note {
+
     /*
-       El tamaño de la nota depende del ancho
-       disponible de cada cuerda.
+       Círculos deliberadamente más pequeños
+       respecto a las cuerdas.
     */
 
-    width: min(7vw, 30px);
-    height: min(7vw, 30px);
+    width: 24px;
+    height: 24px;
 
-    margin: 3px auto;
+    margin: auto;
 
     position: relative;
 
     border-radius: 50%;
 
+    cursor: pointer;
+
     background: transparent;
+
     border: none;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    cursor: pointer;
+    box-sizing: border-box;
 
     transition:
         transform 0.15s,
@@ -446,15 +541,17 @@ body.dark-cache #fretboard .note {
 
 
 /* ======================================================
-   DARK CACHE — CUERDAS
+   CUERDAS
    ====================================================== */
 
 body.dark-cache #fretboard .note::before {
+
     content: '';
 
     position: absolute;
 
     top: 50%;
+
     left: -55%;
     right: -55%;
 
@@ -463,6 +560,7 @@ body.dark-cache #fretboard .note::before {
     background:
         linear-gradient(
             to right,
+
             transparent,
             #909090 15%,
             #d8d8d8 50%,
@@ -470,7 +568,8 @@ body.dark-cache #fretboard .note::before {
             transparent
         );
 
-    transform: translateY(-50%);
+    transform:
+        translateY(-50%);
 
     pointer-events: none;
 
@@ -479,10 +578,11 @@ body.dark-cache #fretboard .note::before {
 
 
 /* ======================================================
-   DARK CACHE — TRASTES
+   TRASTES
    ====================================================== */
 
 body.dark-cache #fretboard .note::after {
+
     content: '';
 
     position: absolute;
@@ -497,6 +597,7 @@ body.dark-cache #fretboard .note::after {
     background:
         linear-gradient(
             to bottom,
+
             transparent,
             #b0a060 20%,
             #ddd090 50%,
@@ -504,7 +605,8 @@ body.dark-cache #fretboard .note::after {
             transparent
         );
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
     pointer-events: none;
 
@@ -513,7 +615,7 @@ body.dark-cache #fretboard .note::after {
 
 
 /* ======================================================
-   DARK CACHE — PRIMERA CUERDA
+   PRIMERA NOTA DE CADA FILA
    ====================================================== */
 
 body.dark-cache #fretboard .note.first-in-row::before {
@@ -522,11 +624,14 @@ body.dark-cache #fretboard .note.first-in-row::before {
 
 
 /* ======================================================
-   DARK CACHE — HOVER
+   HOVER
    ====================================================== */
 
 body.dark-cache #fretboard .note:hover {
-    transform: scale(1.12);
+
+    transform:
+        rotate(-90deg)
+        scale(1.12);
 
     background:
         radial-gradient(
@@ -545,10 +650,11 @@ body.dark-cache #fretboard .note:hover {
 
 
 /* ======================================================
-   DARK CACHE — CORRECTO
+   NOTA CORRECTA
    ====================================================== */
 
 body.dark-cache #fretboard .correct {
+
     background:
         radial-gradient(
             circle at 35% 30%,
@@ -566,10 +672,11 @@ body.dark-cache #fretboard .correct {
 
 
 /* ======================================================
-   DARK CACHE — INCORRECTO
+   NOTA INCORRECTA
    ====================================================== */
 
 body.dark-cache #fretboard .wrong {
+
     background:
         radial-gradient(
             circle at 35% 30%,
@@ -587,119 +694,185 @@ body.dark-cache #fretboard .wrong {
 
 
 /* ======================================================
-   DARK CACHE — COORDENADAS
+   COORDENADAS
    ====================================================== */
 
 body.dark-cache #coordinates {
+
     position: fixed;
 
     left: 50%;
     bottom: 20px;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
     z-index: 10;
 }
 
 
 /* ======================================================
+   ======================================================
    DARK CACHE — MÓVIL
+   ======================================================
    ====================================================== */
 
 @media (max-width: 600px) {
 
     body.dark-cache .container {
-        padding: 6px;
+        padding: 5px;
     }
+
 
     body.dark-cache #fretboard-wrap {
-        gap: 4px;
+        gap: 3px;
     }
+
+
+    /* -----------------------------------------------
+       Etiquetas
+       ----------------------------------------------- */
 
     body.dark-cache #fret-labels {
-        flex-basis: 18px;
-        width: 18px;
-        min-width: 18px;
+
+        flex-basis: 17px;
+
+        width: 17px;
+        min-width: 17px;
     }
+
 
     body.dark-cache .fret-label {
-        height: 34px;
-        font-size: 0.55rem;
+
+        height: 32px;
+
+        font-size: 0.52rem;
     }
 
+
     body.dark-cache .fret-label:first-child {
+
         height: 24px;
     }
 
+
+    /* -----------------------------------------------
+       Mástil horizontal
+       ----------------------------------------------- */
+
     body.dark-cache #fretboard {
+
         /*
-           Ocupa casi todo el ancho disponible,
-           pero nunca se corta.
+           El alto original se convierte
+           en el ancho visual después del giro.
         */
 
-        width: min(
-            calc(100vw - 34px),
-            380px
-        );
+        width: min(68vh, 330px);
 
-        padding: 4px 2px;
+        height: calc(100vw - 30px);
+
+        max-height: 620px;
+
+        padding: 3px 2px;
+
+        border-width: 2px;
     }
+
+
+    /* -----------------------------------------------
+       Círculos
+       ----------------------------------------------- */
 
     body.dark-cache #fretboard .note {
-        width: min(7vw, 27px);
-        height: min(7vw, 27px);
 
-        margin: 3px auto;
+        width: 20px;
+        height: 20px;
+
+        margin: auto;
     }
+
+
+    /* -----------------------------------------------
+       Letras
+       ----------------------------------------------- */
 
     body.dark-cache #fretboard .string-header {
-        font-size: 0.7rem;
-        padding-bottom: 3px;
+
+        font-size: 0.65rem;
+
+        padding-bottom: 2px;
     }
+
+
+    /* -----------------------------------------------
+       Cuerdas
+       ----------------------------------------------- */
 
     body.dark-cache #fretboard .note::before {
+
         left: -45%;
         right: -45%;
+
+        height: 2px;
     }
 
+
     body.dark-cache #fretboard .note::after {
-        top: -5px;
-        bottom: -5px;
+
+        top: -4px;
+        bottom: -4px;
+
+        width: 2px;
     }
 }
 
 
 /* ======================================================
-   DARK CACHE — MÓVIL MUY ESTRECHO
+   DARK CACHE — PANTALLAS MUY ESTRECHAS
    ====================================================== */
 
 @media (max-width: 380px) {
 
     body.dark-cache #fretboard {
-        width: calc(100vw - 30px);
+
+        width: min(65vh, 300px);
+
+        height: calc(100vw - 26px);
     }
+
 
     body.dark-cache #fret-labels {
-        flex-basis: 16px;
-        width: 16px;
-        min-width: 16px;
+
+        flex-basis: 15px;
+
+        width: 15px;
+        min-width: 15px;
     }
+
 
     body.dark-cache .fret-label {
-        font-size: 0.5rem;
-        height: 32px;
+
+        font-size: 0.48rem;
+
+        height: 30px;
     }
+
 
     body.dark-cache .fret-label:first-child {
-        height: 23px;
+
+        height: 22px;
     }
+
 
     body.dark-cache #fretboard .note {
-        width: 24px;
-        height: 24px;
+
+        width: 18px;
+        height: 18px;
     }
 
+
     body.dark-cache #fretboard .string-header {
-        font-size: 0.65rem;
+
+        font-size: 0.58rem;
     }
 }
