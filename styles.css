@@ -750,3 +750,113 @@ body.dark-cache #coordinates {
     z-index: 10;
 
 }
+
+/* ======================================================
+   DARK CACHE
+   MÁSTIL COMPACTO
+   ====================================================== */
+
+body.dark-cache #fretboard-wrap {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+}
+
+
+/* Mástil más pequeño */
+
+body.dark-cache #fretboard {
+
+    grid-template-columns: repeat(6, 38px);
+
+    padding: 5px 3px;
+
+    transform: scale(0.82);
+
+    transform-origin: top center;
+
+}
+
+
+/* Cuerdas / notas */
+
+body.dark-cache .note {
+
+    width: 30px;
+
+    height: 30px;
+
+    margin: 3px auto;
+
+}
+
+
+/* Números de traste */
+
+body.dark-cache .fret-label {
+
+    height: 37px;
+
+    font-size: 0.65rem;
+
+}
+
+
+body.dark-cache .fret-label:first-child {
+
+    height: 26px;
+
+}
+
+
+/* Letras E A D G B E */
+
+body.dark-cache .string-header {
+
+    font-size: 0.75rem;
+
+    padding-bottom: 4px;
+
+}
+
+@media (max-width: 600px) {
+
+    body.dark-cache #fretboard {
+
+        grid-template-columns: repeat(6, 34px);
+
+        transform: scale(0.78);
+
+    }
+
+    body.dark-cache .note {
+
+        width: 27px;
+
+        height: 27px;
+
+        margin: 3px auto;
+
+    }
+
+    body.dark-cache .fret-label {
+
+        height: 33px;
+
+        font-size: 0.55rem;
+
+    }
+
+    body.dark-cache .fret-label:first-child {
+
+        height: 23px;
+
+    }
+
+   }
