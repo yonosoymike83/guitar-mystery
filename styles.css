@@ -34,7 +34,6 @@ body {
 
 }
 
-
 /* ======================================================
    LOGO — MYSTERY NORMAL
    ====================================================== */
@@ -49,7 +48,6 @@ body {
 
 }
 
-
 /* ======================================================
    TÍTULO — MYSTERY NORMAL
    ====================================================== */
@@ -61,7 +59,6 @@ h1 {
     margin-bottom: 20px;
 
 }
-
 
 /* ======================================================
    SELECTOR DE IDIOMA — MYSTERY NORMAL
@@ -90,7 +87,6 @@ h1 {
 
 }
 
-
 /* ======================================================
    CONTROLES — MYSTERY NORMAL
    ====================================================== */
@@ -117,7 +113,6 @@ h1 {
     cursor: pointer;
 
 }
-
 
 /* ======================================================
    CANCIONES — MYSTERY NORMAL
@@ -152,7 +147,6 @@ h1 {
 
 }
 
-
 /* ======================================================
    ELEMENTOS OCULTOS
    ====================================================== */
@@ -162,7 +156,6 @@ h1 {
     display: none;
 
 }
-
 
 /* ======================================================
    CONTROLES DE SONIDO
@@ -220,7 +213,6 @@ h1 {
    ======================================================
    ====================================================== */
 
-
 /* ------------------------------------------------------
    OCULTAR CABECERA NORMAL
    ------------------------------------------------------ */
@@ -245,7 +237,6 @@ body.dark-cache #language-selector {
 
 }
 
-
 /* ------------------------------------------------------
    CUERPO DARK CACHE
    ------------------------------------------------------ */
@@ -261,7 +252,6 @@ body.dark-cache {
     background: #000;
 
 }
-
 
 /* ------------------------------------------------------
    CONTENEDOR DARK CACHE
@@ -282,7 +272,6 @@ body.dark-cache .container {
     box-sizing: border-box;
 
 }
-
 
 /* ------------------------------------------------------
    LISTA DARK CACHE
@@ -313,7 +302,6 @@ body.dark-cache #list {
     overflow-x: hidden;
 
 }
-
 
 /* ------------------------------------------------------
    CANCIONES DARK CACHE
@@ -369,7 +357,6 @@ body.dark-cache #list .challenge {
         transform 0.15s ease;
 
 }
-
 
 /* ------------------------------------------------------
    HOVER DARK CACHE
@@ -611,5 +598,155 @@ body.dark-cache .fret-label {
         border-width: 2px;
 
     }
+
+}
+
+/* ======================================================
+   DARK CACHE - JUEGO
+   MÁSTIL A PANTALLA COMPLETA
+   ====================================================== */
+
+body.dark-cache .container {
+
+    width: 100%;
+    max-width: none;
+
+    height: 100vh;
+
+    margin: 0;
+    padding: 10px;
+
+    box-sizing: border-box;
+
+}
+
+
+body.dark-cache #challengeTitle {
+
+    display: none;
+
+}
+
+
+body.dark-cache .controls {
+
+    display: none;
+
+}
+
+
+body.dark-cache #soundControls {
+
+    display: none;
+
+}
+
+
+body.dark-cache #instructions {
+
+    display: none;
+
+}
+
+
+body.dark-cache #progress {
+
+    display: none;
+
+}
+
+
+/* MÁSTIL */
+
+body.dark-cache #fretboard-wrap {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 8px;
+
+    overflow: auto;
+
+}
+
+
+/* Hacer el mástil más grande */
+
+body.dark-cache #fretboard {
+
+    grid-template-columns: repeat(6, 55px);
+
+    padding: 8px 5px;
+
+}
+
+
+/* Notas más grandes */
+
+body.dark-cache #fretboard .note {
+
+    width: 46px;
+
+    height: 46px;
+
+    margin: 4px auto;
+
+}
+
+
+/* Etiquetas de trastes */
+
+body.dark-cache #fret-labels {
+
+    min-width: 25px;
+
+}
+
+
+body.dark-cache .fret-label {
+
+    height: 54px;
+
+    font-size: 0.8rem;
+
+}
+
+
+body.dark-cache .fret-label:first-child {
+
+    height: 35px;
+
+}
+
+
+/* Nombres de las cuerdas */
+
+body.dark-cache .string-header {
+
+    font-size: 1rem;
+
+}
+
+
+/* Ocultar coordenadas hasta resolver */
+
+body.dark-cache #coordinates {
+
+    position: fixed;
+
+    left: 50%;
+
+    bottom: 20px;
+
+    transform: translateX(-50%);
+
+    z-index: 10;
 
 }
