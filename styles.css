@@ -40,7 +40,7 @@ body {
 
 
 /* ==========================================================
-   ELEMENTOS GENERALES
+   ELEMENTOS GENERALES — MYSTERY NORMAL
    ========================================================== */
 
 .logo {
@@ -89,7 +89,7 @@ h1 {
 
 
 /* ==========================================================
-   SONIDO
+   SONIDO — MYSTERY NORMAL
    ========================================================== */
 
 #soundControls {
@@ -140,7 +140,7 @@ body.dark-cache {
 
 
 /* ==========================================================
-   CONTENEDOR PRINCIPAL
+   CONTENEDOR PRINCIPAL — DARK CACHE
    ========================================================== */
 
 body.dark-cache .container {
@@ -156,9 +156,20 @@ body.dark-cache .container {
 
 
 /* ==========================================================
-   OCULTAR INTERFAZ NORMAL
+   OCULTAR INTERFAZ NORMAL — DARK CACHE
    ========================================================== */
 
+/*
+   IMPORTANTE:
+   El index.html de Guitar Mystery sigue cargando
+   el logo y el título normalmente.
+
+   En modo Dark Cache NO queremos mostrarlos.
+*/
+
+body.dark-cache .logo,
+body.dark-cache h1,
+body.dark-cache #language-selector,
 body.dark-cache #challengeTitle,
 body.dark-cache .controls,
 body.dark-cache #soundControls,
@@ -169,7 +180,7 @@ body.dark-cache #progress {
 
 
 /* ==========================================================
-   LISTA
+   LISTA DE CANCIONES — DARK CACHE
    ========================================================== */
 
 body.dark-cache #list {
@@ -223,10 +234,7 @@ body.dark-cache #list .challenge:hover {
 
 
 /* ==========================================================
-   ==========================================================
-   GUITAR MYSTERY
-   MÁSTIL HORIZONTAL
-   ==========================================================
+   GUITAR MYSTERY — MÁSTIL
    ========================================================== */
 
 
@@ -257,12 +265,8 @@ body.dark-cache #fretboard-wrap {
    ========================================================== */
 
 body.dark-cache #fret-labels {
-
     position: absolute;
 
-    /*
-       Se coloca por encima del mástil.
-    */
     left: 50%;
     top: 0;
 
@@ -283,14 +287,7 @@ body.dark-cache #fret-labels {
     pointer-events: none;
 }
 
-
-/*
-   Los elementos originales son verticales.
-   Los convertimos visualmente en una fila horizontal.
-*/
-
 body.dark-cache .fret-label {
-
     width: 38px;
     min-width: 38px;
 
@@ -311,11 +308,6 @@ body.dark-cache .fret-label {
         0 0 4px #000;
 }
 
-
-/*
-   El primer elemento ya no necesita una altura especial.
-*/
-
 body.dark-cache .fret-label:first-child {
     height: 22px !important;
 }
@@ -326,27 +318,21 @@ body.dark-cache .fret-label:first-child {
    ========================================================== */
 
 body.dark-cache #fretboard {
-
     position: relative;
 
     display: grid;
 
     /*
-       El HTML original está construido como:
+       La estructura original del juego está organizada
+       en 6 columnas.
 
-       6 columnas = 6 cuerdas
-       varias filas = trastes
-
-       Al rotarlo 90 grados conseguimos:
-
-       6 filas = 6 cuerdas
-       varias columnas = trastes
+       La rotación convierte visualmente esas columnas
+       en las 6 cuerdas horizontales.
     */
 
     grid-template-columns: repeat(6, 38px);
 
     gap: 0;
-
     row-gap: 0;
 
     flex-shrink: 0;
@@ -376,12 +362,7 @@ body.dark-cache #fretboard {
         0 0 12px rgba(0,0,0,.8),
         inset 0 0 20px rgba(0,0,0,.45);
 
-    /*
-       ESTA ES LA ROTACIÓN IMPORTANTE.
-    */
-
     transform: rotate(90deg);
-
     transform-origin: center center;
 
     z-index: 2;
@@ -392,14 +373,7 @@ body.dark-cache #fretboard {
    CABECERAS DE CUERDA
    ========================================================== */
 
-/*
-   Al rotar el mástil, las letras también rotarían.
-
-   Las devolvemos a posición horizontal.
-*/
-
 body.dark-cache #fretboard .string-header {
-
     position: relative;
 
     z-index: 5;
@@ -417,7 +391,8 @@ body.dark-cache #fretboard .string-header {
         0 0 6px rgba(232,201,122,.3);
 
     /*
-       Contrarotación.
+       Las letras quedan horizontales después
+       de la rotación del mástil.
     */
 
     transform: rotate(-90deg);
@@ -425,11 +400,10 @@ body.dark-cache #fretboard .string-header {
 
 
 /* ==========================================================
-   CELDAS / NOTAS
+   NOTAS
    ========================================================== */
 
 body.dark-cache #fretboard .note {
-
     position: relative;
 
     width: 28px;
@@ -464,7 +438,6 @@ body.dark-cache #fretboard .note {
    ========================================================== */
 
 body.dark-cache #fretboard .note::before {
-
     content: "";
 
     position: absolute;
@@ -499,7 +472,6 @@ body.dark-cache #fretboard .note::before {
    ========================================================== */
 
 body.dark-cache #fretboard .note::after {
-
     content: "";
 
     position: absolute;
@@ -528,7 +500,6 @@ body.dark-cache #fretboard .note::after {
     z-index: 1;
 }
 
-
 body.dark-cache #fretboard .note.first-in-row::before {
     left: 0;
 }
@@ -539,7 +510,6 @@ body.dark-cache #fretboard .note.first-in-row::before {
    ========================================================== */
 
 body.dark-cache #fretboard .note:hover {
-
     transform: rotate(-90deg) scale(1.15);
 
     background:
@@ -563,7 +533,6 @@ body.dark-cache #fretboard .note:hover {
    ========================================================== */
 
 body.dark-cache #fretboard .note.correct {
-
     background:
         radial-gradient(
             circle at 35% 30%,
@@ -585,7 +554,6 @@ body.dark-cache #fretboard .note.correct {
    ========================================================== */
 
 body.dark-cache #fretboard .note.wrong {
-
     background:
         radial-gradient(
             circle at 35% 30%,
@@ -607,7 +575,6 @@ body.dark-cache #fretboard .note.wrong {
    ========================================================== */
 
 body.dark-cache #coordinates {
-
     position: fixed;
 
     left: 50%;
@@ -632,7 +599,6 @@ body.dark-cache .coords {
 }
 
 body.dark-cache #copyButton {
-
     padding: 8px 16px;
 
     margin-top: 10px;
@@ -657,18 +623,14 @@ body.dark-cache #copyButton:hover {
 
 
 /* ==========================================================
-   ==========================================================
    MÓVIL
-   ==========================================================
    ========================================================== */
 
 @media (max-width: 700px) {
 
     body.dark-cache .container {
-
         width: 100%;
         max-width: none;
-
         padding: 4px;
     }
 
@@ -678,7 +640,6 @@ body.dark-cache #copyButton:hover {
        ------------------------------------------------------ */
 
     body.dark-cache #fretboard-wrap {
-
         width: 100%;
 
         padding-top: 22px;
@@ -694,15 +655,11 @@ body.dark-cache #copyButton:hover {
        ------------------------------------------------------ */
 
     body.dark-cache #fret-labels {
-
         top: 0;
-
         height: 18px;
     }
 
-
     body.dark-cache .fret-label {
-
         width: 34px;
         min-width: 34px;
 
@@ -711,9 +668,7 @@ body.dark-cache #copyButton:hover {
         font-size: .55rem;
     }
 
-
     body.dark-cache .fret-label:first-child {
-
         height: 18px !important;
     }
 
@@ -723,9 +678,7 @@ body.dark-cache #copyButton:hover {
        ------------------------------------------------------ */
 
     body.dark-cache #fretboard {
-
-        grid-template-columns:
-            repeat(6, 34px);
+        grid-template-columns: repeat(6, 34px);
 
         padding: 5px 3px;
 
@@ -740,9 +693,7 @@ body.dark-cache #copyButton:hover {
        ------------------------------------------------------ */
 
     body.dark-cache #fretboard .string-header {
-
         font-size: .68rem;
-
         padding-bottom: 3px;
     }
 
@@ -752,7 +703,6 @@ body.dark-cache #copyButton:hover {
        ------------------------------------------------------ */
 
     body.dark-cache #fretboard .note {
-
         width: 25px;
         height: 25px;
 
@@ -765,7 +715,6 @@ body.dark-cache #copyButton:hover {
        ------------------------------------------------------ */
 
     body.dark-cache #fretboard .note::before {
-
         left: -45%;
         right: -45%;
     }
@@ -776,7 +725,6 @@ body.dark-cache #copyButton:hover {
        ------------------------------------------------------ */
 
     body.dark-cache #fretboard .note::after {
-
         top: -5px;
         bottom: -5px;
     }
@@ -790,55 +738,35 @@ body.dark-cache #copyButton:hover {
 @media (max-width: 430px) {
 
     body.dark-cache #fretboard {
-
-        grid-template-columns:
-            repeat(6, 30px);
+        grid-template-columns: repeat(6, 30px);
     }
 
-
     body.dark-cache #fretboard .note {
-
         width: 22px;
         height: 22px;
     }
 
-
     body.dark-cache .fret-label {
-
         width: 30px;
         min-width: 30px;
 
         font-size: .48rem;
     }
 
-
     body.dark-cache #fretboard .string-header {
-
         font-size: .60rem;
     }
 }
 
 
 /* ==========================================================
-   TELÉFONO MUY ESTRECHO — AJUSTE EXTRA
+   FIN
    ========================================================== */
 
-@media (max-width: 360px) {
+/*
+   IMPORTANTE:
+   No añadimos otra transformación aquí.
 
-    body.dark-cache #fretboard {
-
-        transform:
-            rotate(90deg)
-            scale(.92);
-    }
-
-    body.dark-cache #fretboard .string-header {
-
-        font-size: .56rem;
-    }
-
-    body.dark-cache .fret-label {
-
-        font-size: .44rem;
-    }
-}
+   El mástil ya se rota una sola vez en
+   body.dark-cache #fretboard.
+*/
