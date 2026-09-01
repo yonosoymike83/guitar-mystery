@@ -1,13 +1,19 @@
-/* ======================================================
+/* ==========================================================
+   DARK CACHE — GUITAR MYSTERY
+   AMPLIFICADOR RETRO + MÁSTIL HORIZONTAL
+   ========================================================== */
+
+
+/* ==========================================================
    FUENTES
-   ====================================================== */
+   ========================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&family=VT323&display=swap');
 
 
-/* ======================================================
+/* ==========================================================
    GENERAL
-   ====================================================== */
+   ========================================================== */
 
 * {
     box-sizing: border-box;
@@ -21,22 +27,21 @@ body {
 
 body {
     background: #111;
-    color: white;
+    color: #fff;
     font-family: Arial, sans-serif;
     text-align: center;
 }
 
 .container {
-    width: 100%;
     max-width: 800px;
     margin: auto;
     padding: 20px;
 }
 
 
-/* ======================================================
-   MYSTERY CACHE NORMAL
-   ====================================================== */
+/* ==========================================================
+   ELEMENTOS GENERALES
+   ========================================================== */
 
 .logo {
     width: 250px;
@@ -62,26 +67,16 @@ h1 {
     cursor: pointer;
 }
 
-.controls {
-    margin-bottom: 20px;
-}
-
 .challenge {
     display: block;
-    padding: 15px;
-    margin: 12px 0;
-
     background: #222;
     color: white;
-
     text-decoration: none;
-    font-size: 1.1rem;
-
+    padding: 15px;
+    margin: 12px 0;
     border-radius: 10px;
-
-    transition:
-        background 0.2s,
-        transform 0.2s;
+    font-size: 1.1rem;
+    transition: .2s;
 }
 
 .challenge:hover {
@@ -93,99 +88,89 @@ h1 {
 }
 
 
-/* ======================================================
-   CONTROLES DE SONIDO
-   ====================================================== */
+/* ==========================================================
+   SONIDO
+   ========================================================== */
 
 #soundControls {
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
     gap: 6px;
     margin-bottom: 15px;
+    flex-wrap: wrap;
 }
 
-#soundControls button {
-    margin: 0 4px;
-    padding: 6px 12px;
-
-    border: 1px solid #6b4320 !important;
-    border-radius: 8px;
-
-    background: #3d2208 !important;
-    color: #e8c97a !important;
-
-    cursor: pointer;
-    font-size: 0.8rem;
-    font-weight: normal !important;
-
-    transition:
-        background 0.2s,
-        transform 0.1s;
+button.sound-btn,
+div#soundControls button.sound-btn {
+    margin: 0 4px !important;
+    padding: 8px 16px !important;
+    font-weight: bold !important;
+    font-size: 1rem !important;
+    border: none !important;
+    border-radius: 8px !important;
+    background: #f2f2f2 !important;
+    color: #000 !important;
+    cursor: pointer !important;
+    transition: .2s !important;
 }
 
-#soundControls button:hover {
-    background: #5a3510 !important;
-    transform: translateY(-1px);
+button.sound-btn:hover,
+div#soundControls button.sound-btn:hover {
+    transform: scale(1.05);
 }
 
-#soundControls button.active {
+button.sound-btn.active,
+div#soundControls button.sound-btn.active {
     background: #28a745 !important;
-    color: white !important;
-    border-color: #1e7e34 !important;
+    color: #fff !important;
+    box-shadow: 0 0 10px rgba(40,167,69,.45);
 }
 
 
-/* ======================================================
-   ======================================================
+/* ==========================================================
    DARK CACHE
-   ======================================================
-   ====================================================== */
+   ========================================================== */
 
 body.dark-cache {
-    background: #000;
-    overflow: hidden;
-}
-
-
-/* ======================================================
-   DARK CACHE — CONTENEDOR
-   ====================================================== */
-
-body.dark-cache .container {
-    width: 100%;
-    max-width: none;
-
-    height: 100vh;
-
     margin: 0;
     padding: 0;
-
-    position: relative;
+    overflow: hidden;
+    background: #000;
 }
 
 
-/* ======================================================
-   DARK CACHE — OCULTAR ELEMENTOS
-   ====================================================== */
+/* ==========================================================
+   CONTENEDOR PRINCIPAL
+   ========================================================== */
 
-body.dark-cache .logo,
-body.dark-cache h1,
-body.dark-cache #language-selector,
+body.dark-cache .container {
+    width: 1100px;
+    max-width: calc(100vw - 20px);
+    height: 100vh;
+
+    margin: 0 auto;
+    padding: 10px;
+
+    box-sizing: border-box;
+}
+
+
+/* ==========================================================
+   OCULTAR INTERFAZ NORMAL
+   ========================================================== */
 
 body.dark-cache #challengeTitle,
 body.dark-cache .controls,
 body.dark-cache #soundControls,
 body.dark-cache #instructions,
 body.dark-cache #progress {
-    display: none;
+    display: none !important;
 }
 
 
-/* ======================================================
-   DARK CACHE — LISTA
-   ====================================================== */
+/* ==========================================================
+   LISTA
+   ========================================================== */
 
 body.dark-cache #list {
     width: 100%;
@@ -196,10 +181,11 @@ body.dark-cache #list {
     display: flex;
     flex-direction: column;
     justify-content: center;
+
     gap: 8px;
 
-    overflow-x: hidden;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 body.dark-cache #list .challenge {
@@ -213,21 +199,21 @@ body.dark-cache #list .challenge {
     align-items: center;
     justify-content: center;
 
-    background: #242424;
-    color: #e0c276;
-
-    border-radius: 15px;
-
     font-family: "VT323", monospace;
     font-size: 22px;
     line-height: 1;
     letter-spacing: 1px;
 
+    color: #e0c276;
+    background: #242424;
+
+    border-radius: 15px;
+
     white-space: nowrap;
 
     transition:
-        background 0.15s,
-        transform 0.15s;
+        background .15s ease,
+        transform .15s ease;
 }
 
 body.dark-cache #list .challenge:hover {
@@ -236,53 +222,132 @@ body.dark-cache #list .challenge:hover {
 }
 
 
-/* ======================================================
-   DARK CACHE — ZONA DEL MÁSTIL
-   ====================================================== */
+/* ==========================================================
+   ==========================================================
+   GUITAR MYSTERY
+   MÁSTIL HORIZONTAL
+   ==========================================================
+   ========================================================== */
+
+
+/* ----------------------------------------------------------
+   CONTENEDOR DEL MÁSTIL
+   ---------------------------------------------------------- */
 
 body.dark-cache #fretboard-wrap {
-    position: absolute;
-
-    /*
-       Ocupa prácticamente toda la ventana interior.
-       El mástil queda centrado.
-    */
-
-    left: 0;
-    right: 0;
-
-    top: 7vh;
-    bottom: 5vh;
+    position: relative;
 
     width: 100%;
+    height: 100%;
 
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 
-    padding: 10px;
+    padding-top: 25px;
 
-    overflow: hidden;
+    overflow: visible;
 
-    z-index: 2;
+    z-index: 1;
 }
 
 
-/* ======================================================
-   DARK CACHE — MÁSTIL HORIZONTAL
-   ====================================================== */
+/* ==========================================================
+   NÚMEROS DE TRASTE
+   ========================================================== */
 
-body.dark-cache #fretboard {
-    position: relative;
+body.dark-cache #fret-labels {
+
+    position: absolute;
 
     /*
-       13 posiciones = trastes 0–12
+       Se coloca por encima del mástil.
     */
+    left: 50%;
+    top: 0;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: row;
+
+    width: auto;
+    height: 22px;
+
+    padding: 0;
+
+    min-width: 0;
+
+    z-index: 10;
+
+    pointer-events: none;
+}
+
+
+/*
+   Los elementos originales son verticales.
+   Los convertimos visualmente en una fila horizontal.
+*/
+
+body.dark-cache .fret-label {
+
+    width: 38px;
+    min-width: 38px;
+
+    height: 22px !important;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #c8a46e;
+
+    font-size: .65rem;
+    font-weight: bold;
+
+    text-shadow:
+        0 1px 3px #000,
+        0 0 4px #000;
+}
+
+
+/*
+   El primer elemento ya no necesita una altura especial.
+*/
+
+body.dark-cache .fret-label:first-child {
+    height: 22px !important;
+}
+
+
+/* ==========================================================
+   MÁSTIL
+   ========================================================== */
+
+body.dark-cache #fretboard {
+
+    position: relative;
 
     display: grid;
-    grid-template-columns: repeat(13, 32px);
+
+    /*
+       El HTML original está construido como:
+
+       6 columnas = 6 cuerdas
+       varias filas = trastes
+
+       Al rotarlo 90 grados conseguimos:
+
+       6 filas = 6 cuerdas
+       varias columnas = trastes
+    */
+
+    grid-template-columns: repeat(6, 38px);
 
     gap: 0;
+
+    row-gap: 0;
 
     flex-shrink: 0;
 
@@ -303,38 +368,109 @@ body.dark-cache #fretboard {
         );
 
     border: 3px solid #8b5e2a;
+
     border-radius: 12px;
 
     box-shadow:
         0 0 0 2px #3b220b,
-        0 0 12px rgba(0, 0, 0, 0.8),
-        inset 0 0 20px rgba(0, 0, 0, 0.45);
+        0 0 12px rgba(0,0,0,.8),
+        inset 0 0 20px rgba(0,0,0,.45);
+
+    /*
+       ESTA ES LA ROTACIÓN IMPORTANTE.
+    */
+
+    transform: rotate(90deg);
+
+    transform-origin: center center;
 
     z-index: 2;
 }
 
 
-/* ======================================================
-   ELEMENTOS DEL MÁSTIL
-   ====================================================== */
+/* ==========================================================
+   CABECERAS DE CUERDA
+   ========================================================== */
 
-body.dark-cache #fretboard .note,
+/*
+   Al rotar el mástil, las letras también rotarían.
+
+   Las devolvemos a posición horizontal.
+*/
+
 body.dark-cache #fretboard .string-header {
+
     position: relative;
+
+    z-index: 5;
+
+    color: #e8c97a;
+
+    font-weight: bold;
+
+    font-size: .75rem;
+
+    padding-bottom: 4px;
+
+    text-shadow:
+        0 1px 3px #000,
+        0 0 6px rgba(232,201,122,.3);
+
+    /*
+       Contrarotación.
+    */
+
+    transform: rotate(-90deg);
+}
+
+
+/* ==========================================================
+   CELDAS / NOTAS
+   ========================================================== */
+
+body.dark-cache #fretboard .note {
+
+    position: relative;
+
+    width: 28px;
+    height: 28px;
+
+    margin: 3px auto;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    transition:
+        transform .15s,
+        background .15s,
+        box-shadow .15s;
+
     z-index: 3;
 }
 
 
-/* ======================================================
+/* ==========================================================
    CUERDAS
-   ====================================================== */
+   ========================================================== */
 
 body.dark-cache #fretboard .note::before {
+
     content: "";
 
     position: absolute;
 
     top: 50%;
+
     left: -55%;
     right: -55%;
 
@@ -354,24 +490,22 @@ body.dark-cache #fretboard .note::before {
 
     pointer-events: none;
 
-    z-index: 2;
-}
-
-body.dark-cache #fretboard .note.first-in-row::before {
-    left: 0;
+    z-index: 1;
 }
 
 
-/* ======================================================
+/* ==========================================================
    TRASTES
-   ====================================================== */
+   ========================================================== */
 
 body.dark-cache #fretboard .note::after {
+
     content: "";
 
     position: absolute;
 
     left: 50%;
+
     top: -6px;
     bottom: -6px;
 
@@ -395,37 +529,18 @@ body.dark-cache #fretboard .note::after {
 }
 
 
-/* ======================================================
-   CÍRCULOS / NOTAS
-   ====================================================== */
-
-body.dark-cache #fretboard .note {
-    width: 23px;
-    height: 23px;
-
-    margin: 3px auto;
-
-    padding: 0;
-
-    border: none;
-    border-radius: 50%;
-
-    background: transparent;
-
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    transition:
-        transform 0.15s,
-        background 0.15s,
-        box-shadow 0.15s;
+body.dark-cache #fretboard .note.first-in-row::before {
+    left: 0;
 }
 
+
+/* ==========================================================
+   HOVER
+   ========================================================== */
+
 body.dark-cache #fretboard .note:hover {
-    transform: scale(1.18);
+
+    transform: rotate(-90deg) scale(1.15);
 
     background:
         radial-gradient(
@@ -435,19 +550,20 @@ body.dark-cache #fretboard .note:hover {
         );
 
     box-shadow:
-        inset 0 1px 3px rgba(255,255,255,0.3),
-        0 0 12px rgba(255,200,80,0.4),
-        0 2px 6px rgba(0,0,0,0.6);
+        inset 0 1px 3px rgba(255,255,255,.3),
+        0 0 12px rgba(255,200,80,.4),
+        0 2px 6px rgba(0,0,0,.6);
 
-    z-index: 5;
+    z-index: 8;
 }
 
 
-/* ======================================================
+/* ==========================================================
    CORRECTA
-   ====================================================== */
+   ========================================================== */
 
 body.dark-cache #fretboard .note.correct {
+
     background:
         radial-gradient(
             circle at 35% 30%,
@@ -456,19 +572,20 @@ body.dark-cache #fretboard .note.correct {
         ) !important;
 
     box-shadow:
-        inset 0 1px 3px rgba(255,255,255,0.3),
-        0 0 14px rgba(40,167,69,0.7),
-        0 2px 6px rgba(0,0,0,0.5) !important;
+        inset 0 1px 3px rgba(255,255,255,.3),
+        0 0 14px rgba(40,167,69,.7),
+        0 2px 6px rgba(0,0,0,.5) !important;
 
-    z-index: 5;
+    z-index: 8;
 }
 
 
-/* ======================================================
+/* ==========================================================
    INCORRECTA
-   ====================================================== */
+   ========================================================== */
 
 body.dark-cache #fretboard .note.wrong {
+
     background:
         radial-gradient(
             circle at 35% 30%,
@@ -477,73 +594,20 @@ body.dark-cache #fretboard .note.wrong {
         ) !important;
 
     box-shadow:
-        inset 0 1px 3px rgba(255,255,255,0.2),
-        0 0 14px rgba(192,57,43,0.7),
-        0 2px 6px rgba(0,0,0,0.5) !important;
+        inset 0 1px 3px rgba(255,255,255,.2),
+        0 0 14px rgba(192,57,43,.7),
+        0 2px 6px rgba(0,0,0,.5) !important;
 
-    z-index: 5;
+    z-index: 8;
 }
 
 
-/* ======================================================
-   NOMBRES DE LAS CUERDAS
-   ====================================================== */
-
-body.dark-cache #fretboard .string-header {
-    color: #e8c97a;
-
-    font-size: 0.72rem;
-    font-weight: bold;
-
-    padding-bottom: 4px;
-
-    text-shadow:
-        0 1px 3px #000,
-        0 0 6px rgba(232,201,122,0.3);
-}
-
-
-/* ======================================================
-   NÚMEROS DE TRASTE
-   ====================================================== */
-
-body.dark-cache #fret-labels {
-    position: relative;
-
-    min-width: 22px;
-
-    flex-shrink: 0;
-
-    z-index: 4;
-}
-
-body.dark-cache .fret-label {
-    height: 31px;
-
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-
-    color: #c8a46e;
-
-    font-size: 0.6rem;
-    font-weight: bold;
-
-    text-shadow:
-        0 1px 3px #000,
-        0 0 4px #000;
-}
-
-body.dark-cache .fret-label:first-child {
-    height: 23px;
-}
-
-
-/* ======================================================
+/* ==========================================================
    COORDENADAS
-   ====================================================== */
+   ========================================================== */
 
 body.dark-cache #coordinates {
+
     position: fixed;
 
     left: 50%;
@@ -551,27 +615,27 @@ body.dark-cache #coordinates {
 
     transform: translateX(-50%);
 
-    z-index: 20;
+    z-index: 100;
 
     text-align: center;
 }
 
 body.dark-cache .result-title {
-    margin-bottom: 12px;
-
     font-size: 1.4rem;
     font-weight: bold;
+    margin-bottom: 12px;
 }
 
 body.dark-cache .coords {
-    margin-bottom: 15px;
-
     font-size: 1rem;
+    margin-bottom: 15px;
 }
 
 body.dark-cache #copyButton {
-    margin-top: 10px;
+
     padding: 8px 16px;
+
+    margin-top: 10px;
 
     background: #f2f2f2;
     color: #000;
@@ -579,12 +643,12 @@ body.dark-cache #copyButton {
     border: none;
     border-radius: 8px;
 
-    font-size: 1rem;
     font-weight: bold;
+    font-size: 1rem;
 
     cursor: pointer;
 
-    transition: transform 0.2s;
+    transition: .2s;
 }
 
 body.dark-cache #copyButton:hover {
@@ -592,126 +656,189 @@ body.dark-cache #copyButton:hover {
 }
 
 
-/* ======================================================
-   DARK CACHE — MÓVIL
-   ====================================================== */
+/* ==========================================================
+   ==========================================================
+   MÓVIL
+   ==========================================================
+   ========================================================== */
 
 @media (max-width: 700px) {
 
-    body.dark-cache #list {
-        padding: 16px;
-        gap: 7px;
-    }
+    body.dark-cache .container {
 
-    body.dark-cache #list .challenge {
-        min-height: 44px;
-        padding: 4px 10px;
-        font-size: 18px;
+        width: 100%;
+        max-width: none;
+
+        padding: 4px;
     }
 
 
-    /*
-       Zona del amplificador / mástil
-    */
+    /* ------------------------------------------------------
+       ZONA DEL MÁSTIL
+       ------------------------------------------------------ */
 
     body.dark-cache #fretboard-wrap {
-        top: 4vh;
-        bottom: 3vh;
 
-        padding: 5px;
+        width: 100%;
+
+        padding-top: 22px;
+
+        justify-content: center;
+
+        overflow: visible;
     }
 
 
-    /*
-       Mástil horizontal.
-       13 trastes × 27 px ≈ 351 px
-    */
+    /* ------------------------------------------------------
+       NÚMEROS
+       ------------------------------------------------------ */
+
+    body.dark-cache #fret-labels {
+
+        top: 0;
+
+        height: 18px;
+    }
+
+
+    body.dark-cache .fret-label {
+
+        width: 34px;
+        min-width: 34px;
+
+        height: 18px !important;
+
+        font-size: .55rem;
+    }
+
+
+    body.dark-cache .fret-label:first-child {
+
+        height: 18px !important;
+    }
+
+
+    /* ------------------------------------------------------
+       MÁSTIL
+       ------------------------------------------------------ */
 
     body.dark-cache #fretboard {
-        grid-template-columns: repeat(13, 27px);
 
-        padding: 4px 3px;
+        grid-template-columns:
+            repeat(6, 34px);
+
+        padding: 5px 3px;
 
         border-width: 2px;
+
         border-radius: 10px;
     }
 
 
-    /*
-       Círculos proporcionados
-    */
+    /* ------------------------------------------------------
+       CABECERAS
+       ------------------------------------------------------ */
+
+    body.dark-cache #fretboard .string-header {
+
+        font-size: .68rem;
+
+        padding-bottom: 3px;
+    }
+
+
+    /* ------------------------------------------------------
+       NOTAS
+       ------------------------------------------------------ */
 
     body.dark-cache #fretboard .note {
-        width: 20px;
-        height: 20px;
 
-        margin: 2px auto;
+        width: 25px;
+        height: 25px;
+
+        margin: 3px auto;
     }
 
 
-    /*
-       Números
-    */
+    /* ------------------------------------------------------
+       CUERDAS
+       ------------------------------------------------------ */
 
-    body.dark-cache #fret-labels {
-        min-width: 20px;
-    }
+    body.dark-cache #fretboard .note::before {
 
-    body.dark-cache .fret-label {
-        height: 27px;
-        font-size: 0.52rem;
-    }
-
-    body.dark-cache .fret-label:first-child {
-        height: 20px;
+        left: -45%;
+        right: -45%;
     }
 
 
-    /*
-       Nombres E A D G B E
-    */
+    /* ------------------------------------------------------
+       TRASTES
+       ------------------------------------------------------ */
 
-    body.dark-cache .string-header {
-        font-size: 0.65rem;
-        padding-bottom: 3px;
+    body.dark-cache #fretboard .note::after {
+
+        top: -5px;
+        bottom: -5px;
     }
 }
 
 
-/* ======================================================
-   DARK CACHE — MÓVILES MUY ESTRECHOS
-   ====================================================== */
+/* ==========================================================
+   TELÉFONOS MUY ESTRECHOS
+   ========================================================== */
 
 @media (max-width: 430px) {
 
-    body.dark-cache #fretboard-wrap {
-        top: 3vh;
-        bottom: 2vh;
-    }
-
     body.dark-cache #fretboard {
-        grid-template-columns: repeat(13, 24px);
 
-        padding: 4px 2px;
+        grid-template-columns:
+            repeat(6, 30px);
     }
+
 
     body.dark-cache #fretboard .note {
-        width: 18px;
-        height: 18px;
 
-        margin: 2px auto;
+        width: 22px;
+        height: 22px;
+    }
+
+
+    body.dark-cache .fret-label {
+
+        width: 30px;
+        min-width: 30px;
+
+        font-size: .48rem;
+    }
+
+
+    body.dark-cache #fretboard .string-header {
+
+        font-size: .60rem;
+    }
+}
+
+
+/* ==========================================================
+   TELÉFONO MUY ESTRECHO — AJUSTE EXTRA
+   ========================================================== */
+
+@media (max-width: 360px) {
+
+    body.dark-cache #fretboard {
+
+        transform:
+            rotate(90deg)
+            scale(.92);
+    }
+
+    body.dark-cache #fretboard .string-header {
+
+        font-size: .56rem;
     }
 
     body.dark-cache .fret-label {
-        height: 24px;
-        font-size: 0.48rem;
-    }
 
-    body.dark-cache .fret-label:first-child {
-        height: 19px;
-    }
-
-    body.dark-cache .string-header {
-        font-size: 0.6rem;
+        font-size: .44rem;
     }
 }
