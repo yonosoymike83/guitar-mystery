@@ -430,9 +430,7 @@ div#soundControls button.sound-btn.active {
 
 #coordinates {
     display: none;
-
     text-align: center;
-
     margin-top: 30px;
 }
 
@@ -562,16 +560,8 @@ body.dark-cache .container {
 
 
 /* ==========================================================
-   OCULTAR TODO EL HEADER NORMAL EN DARK CACHE
+   OCULTAR INTERFAZ NORMAL EN DARK CACHE
    ========================================================== */
-
-/*
-   MUY IMPORTANTE:
-   El logo, título y selector de idioma pertenecen
-   al Guitar Mystery normal.
-
-   En Dark Cache NO deben aparecer.
-*/
 
 body.dark-cache .logo,
 body.dark-cache h1,
@@ -644,7 +634,7 @@ body.dark-cache #list .challenge:hover {
 
 
 /* ==========================================================
-   DARK CACHE — MÁSTIL
+   DARK CACHE — CONTENEDOR DEL MÁSTIL
    ========================================================== */
 
 body.dark-cache #fretboard-wrap {
@@ -658,7 +648,7 @@ body.dark-cache #fretboard-wrap {
     justify-content: center;
     align-items: flex-start;
 
-    padding-top: 25px;
+    padding-top: 0;
 
     overflow: visible;
 
@@ -674,7 +664,8 @@ body.dark-cache #fret-labels {
     position: absolute;
 
     left: 50%;
-    top: 0;
+
+    top: 8px;
 
     transform: translateX(-50%);
 
@@ -760,16 +751,31 @@ body.dark-cache #fretboard {
         0 0 12px rgba(0,0,0,.8),
         inset 0 0 20px rgba(0,0,0,.45);
 
-    transform: rotate(90deg);
+    /*
+       ROTACIÓN:
+       Primero ponemos el mástil horizontal.
+       Después hacemos FLIP horizontal.
+
+       Resultado:
+       E A D G B E | 0 ... 12
+       */
+    transform:
+        rotate(90deg)
+        scaleX(-1);
 
     transform-origin: center center;
+
+    /*
+       SUBIR EL MÁSTIL
+       */
+    margin-top: -130px;
 
     z-index: 2;
 }
 
 
 /* ==========================================================
-   DARK CACHE — CABECERAS
+   DARK CACHE — CABECERAS E A D G B E
    ========================================================== */
 
 body.dark-cache #fretboard .string-header {
@@ -789,7 +795,13 @@ body.dark-cache #fretboard .string-header {
         0 1px 3px #000,
         0 0 6px rgba(232,201,122,.3);
 
-    transform: rotate(-90deg);
+    /*
+       Corregimos la orientación de las letras
+       después del flip del mástil.
+       */
+    transform:
+        rotate(-90deg)
+        scaleX(-1);
 }
 
 
@@ -904,7 +916,9 @@ body.dark-cache #fretboard .note.first-in-row::before {
    ========================================================== */
 
 body.dark-cache #fretboard .note:hover {
-    transform: rotate(-90deg) scale(1.15);
+    transform:
+        rotate(-90deg)
+        scale(1.15);
 
     background:
         radial-gradient(
@@ -1032,7 +1046,9 @@ body.dark-cache #copyButton:hover {
     }
 
 
-    /* LISTA */
+    /* ------------------------------------------------------
+       LISTA
+       ------------------------------------------------------ */
 
     body.dark-cache #list {
         padding: 16px;
@@ -1048,12 +1064,14 @@ body.dark-cache #copyButton:hover {
     }
 
 
-    /* MÁSTIL */
+    /* ------------------------------------------------------
+       MÁSTIL
+       ------------------------------------------------------ */
 
     body.dark-cache #fretboard-wrap {
         width: 100%;
 
-        padding-top: 22px;
+        padding-top: 0;
 
         justify-content: center;
 
@@ -1061,10 +1079,13 @@ body.dark-cache #copyButton:hover {
     }
 
 
-    /* NÚMEROS */
+    /* ------------------------------------------------------
+       NÚMEROS
+       ------------------------------------------------------ */
 
     body.dark-cache #fret-labels {
-        top: 0;
+        top: 5px;
+
         height: 18px;
     }
 
@@ -1082,7 +1103,9 @@ body.dark-cache #copyButton:hover {
     }
 
 
-    /* MÁSTIL */
+    /* ------------------------------------------------------
+       MÁSTIL
+       ------------------------------------------------------ */
 
     body.dark-cache #fretboard {
         grid-template-columns: repeat(6, 34px);
@@ -1092,19 +1115,33 @@ body.dark-cache #copyButton:hover {
         border-width: 2px;
 
         border-radius: 10px;
+
+        transform:
+            rotate(90deg)
+            scaleX(-1);
+
+        margin-top: -115px;
     }
 
 
-    /* CABECERAS */
+    /* ------------------------------------------------------
+       CABECERAS
+       ------------------------------------------------------ */
 
     body.dark-cache #fretboard .string-header {
         font-size: .68rem;
 
         padding-bottom: 3px;
+
+        transform:
+            rotate(-90deg)
+            scaleX(-1);
     }
 
 
-    /* NOTAS */
+    /* ------------------------------------------------------
+       NOTAS
+       ------------------------------------------------------ */
 
     body.dark-cache #fretboard .note {
         width: 25px;
@@ -1114,7 +1151,9 @@ body.dark-cache #copyButton:hover {
     }
 
 
-    /* CUERDAS */
+    /* ------------------------------------------------------
+       CUERDAS
+       ------------------------------------------------------ */
 
     body.dark-cache #fretboard .note::before {
         left: -45%;
@@ -1122,7 +1161,9 @@ body.dark-cache #copyButton:hover {
     }
 
 
-    /* TRASTES */
+    /* ------------------------------------------------------
+       TRASTES
+       ------------------------------------------------------ */
 
     body.dark-cache #fretboard .note::after {
         top: -5px;
@@ -1139,6 +1180,12 @@ body.dark-cache #copyButton:hover {
 
     body.dark-cache #fretboard {
         grid-template-columns: repeat(6, 30px);
+
+        transform:
+            rotate(90deg)
+            scaleX(-1);
+
+        margin-top: -100px;
     }
 
     body.dark-cache #fretboard .note {
