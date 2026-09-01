@@ -1,278 +1,45 @@
 <!DOCTYPE html>
 <html lang="ca">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Guitar Mystery Cache</title>
-<link rel="stylesheet" href="styles.css">
-<style>
-.instructions { margin-bottom: 20px; }
-#progress { margin-bottom: 20px; }
 
-#fretboard-wrap {
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
-  gap: 8px;
-  width:100%;
-}
+    <meta charset="UTF-8">
 
-#fret-labels {
-  display: flex;
-  flex-direction: column;
-  padding: 6px 8px 6px 0;
-  min-width: 22px;
-  flex-shrink: 0;
-}
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-.fret-label {
-  color: #c8a46e;
-  font-size: 0.7rem;
-  font-weight: bold;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.9);
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  height: 44px;
-}
+    <title>Guitar Mystery Cache</title>
 
-.fret-label:first-child {
-  height: 30px;
-}
+    <link
+        rel="stylesheet"
+        href="styles.css"
+    >
 
-#fretboard {
-  display: grid;
-  grid-template-columns: repeat(6, 44px);
-  gap: 0;
-  row-gap: 0;
-  background: linear-gradient(
-    to right,
-    #2c1505 0%, #5a2e0e 8%, #3d1a06 20%,
-    #6b3a12 35%, #3a1804 50%,
-    #6b3a12 65%, #3d1a06 80%,
-    #5a2e0e 92%, #2c1505 100%
-  );
-  border-radius: 6px;
-  padding: 6px 4px;
-  box-shadow:
-    0 0 0 4px #8b5e2a,
-    0 0 0 7px #4a2e0d,
-    0 10px 30px rgba(0,0,0,0.8);
-}
-
-.string-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #e8c97a;
-  font-weight: bold;
-  font-size: 0.85rem;
-  text-shadow: 0 0 8px rgba(232,201,122,0.4);
-  padding-bottom: 5px;
-  border-bottom: 2px solid rgba(200,160,80,0.2);
-}
-
-.note {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: transform 0.15s, background 0.15s, box-shadow 0.15s;
-  margin: 4px auto;
-  position: relative;
-  background: transparent;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.note::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: -55%;
-  right: -55%;
-  height: 2px;
-  background: linear-gradient(
-    to right,
-    transparent, #909090 15%, #d8d8d8 50%, #909090 85%, transparent
-  );
-  transform: translateY(-50%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.note::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: -6px;
-  bottom: -6px;
-  width: 2px;
-  background: linear-gradient(
-    to bottom,
-    transparent, #b0a060 20%, #ddd090 50%, #b0a060 80%, transparent
-  );
-  transform: translateX(-50%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.note.first-in-row::before {
-  left: 0;
-}
-
-.note:hover {
-  transform: scale(1.18);
-  background: radial-gradient(circle at 35% 30%, #c8a46e, #7a4a20);
-  box-shadow:
-    inset 0 1px 3px rgba(255,255,255,0.3),
-    0 0 12px rgba(255,200,80,0.4),
-    0 2px 6px rgba(0,0,0,0.6);
-  z-index: 2;
-}
-
-.correct {
-  background: radial-gradient(circle at 35% 30%, #5de87a, #1a7a35) !important;
-  box-shadow:
-    inset 0 1px 3px rgba(255,255,255,0.3),
-    0 0 14px rgba(40,167,69,0.7),
-    0 2px 6px rgba(0,0,0,0.5) !important;
-  z-index: 2;
-}
-
-.wrong {
-  background: radial-gradient(circle at 35% 30%, #e06060, #8b1a1a) !important;
-  box-shadow:
-    inset 0 1px 3px rgba(255,255,255,0.2),
-    0 0 14px rgba(192,57,43,0.7),
-    0 2px 6px rgba(0,0,0,0.5) !important;
-  z-index: 2;
-}
-
-#coordinates {
-  display: none;
-  text-align: center;
-  margin-top: 30px;
-}
-.result-title { font-size: 1.4rem; font-weight: bold; margin-bottom: 12px; }
-.coords { font-size: 1rem; margin-bottom: 15px; }
-
-#copyButton{
-    padding:8px 16px;
-    margin-top:10px;
-    background:#f2f2f2;
-    color:#000;
-    border:none;
-    border-radius:8px;
-    font-weight:bold;
-    font-size:1rem;
-    cursor:pointer;
-    transition:.2s;
-}
-
-#copyButton:hover{
-    transform:scale(1.05);
-
-}
-#soundControls {
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  margin-bottom: 15px;
-  flex-wrap: wrap;
-}
-
-button.sound-btn,
-div#soundControls button.sound-btn{
-
-    margin:0 4px !important;
-    padding:8px 16px !important;
-    font-weight:bold !important;
-    font-size:1rem !important;
-    border:none !important;
-    border-radius:8px !important;
-    background:#f2f2f2 !important;
-    color:#000 !important;
-    cursor:pointer !important;
-    transition:.2s !important;
-}
-
-button.sound-btn:hover,
-div#soundControls button.sound-btn:hover{
-
-    transform:scale(1.05);
-}
-
-button.sound-btn.active,
-div#soundControls button.sound-btn.active{
-
-    background:#28a745 !important;
-    color:white !important;
-    box-shadow:0 0 10px rgba(40,167,69,.45);
-}
-
-@media (max-width:700px){
-
-    #fretboard-wrap{
-        display:flex;
-        justify-content:center;
-        align-items:flex-start;
-        width:100%;
-    }
-
-    #fret-labels{
-        min-width:18px;
-        padding-right:-2px;
-    }
-
-    .fret-label{
-        height:30px;
-        font-size:.60rem;
-    }
-
-    .fret-label:first-child{
-        height:24px;
-    }
-
-    #fretboard{
-        grid-template-columns:repeat(6,36px);
-        padding:5px 3px;
-    }
-
-    .string-header{
-        font-size:.75rem;
-    }
-
-    .note{
-        width:24px;
-        height:24px;
-        margin:3px auto;
-    }
-
-    .note::before{
-        left:-45%;
-        right:-45%;
-    }
-
-    .note::after{
-        top:-5px;
-        bottom:-5px;
-    }
-}
-</style>
 </head>
+
+
 <body>
 
+
 <script>
+
+/* ======================================================
+   DARK CACHE
+   ====================================================== */
 
 const darkCache =
     new URLSearchParams(
         window.location.search
     ).get("darkcache") === "true";
 
-if(darkCache){
+
+/* ======================================================
+   MARCAR EL BODY
+   ====================================================== */
+
+if (darkCache) {
 
     document.body.classList.add("dark-cache");
 
@@ -280,37 +47,189 @@ if(darkCache){
 
 </script>
 
+
 <div class="container">
-<h1 id="challengeTitle">Carregant...</h1>
-<div class="controls">
-  <button onclick="window.location='index.html'">←</button>
-  <button onclick="setLanguage('ca')">CAT</button>
-  <button onclick="setLanguage('es')">ESP</button>
-  <button onclick="setLanguage('en')">ENG</button>
+
+
+    <!-- ==================================================
+         TÍTULO
+         ================================================== -->
+
+    <h1 id="challengeTitle">
+        Carregant...
+    </h1>
+
+
+    <!-- ==================================================
+         CONTROLES
+         ================================================== -->
+
+    <div class="controls">
+
+        <button
+            onclick="window.location='index.html'"
+        >
+            ←
+        </button>
+
+        <button
+            onclick="setLanguage('ca')"
+        >
+            CAT
+        </button>
+
+        <button
+            onclick="setLanguage('es')"
+        >
+            ESP
+        </button>
+
+        <button
+            onclick="setLanguage('en')"
+        >
+            ENG
+        </button>
+
+    </div>
+
+
+    <!-- ==================================================
+         CONTROLES DE SONIDO
+         ================================================== -->
+
+    <div id="soundControls">
+
+        <button
+            class="sound-btn"
+            onclick="setSound('triangle')"
+        >
+            🎵 Soft
+        </button>
+
+        <button
+            class="sound-btn"
+            onclick="setSound('sawtooth')"
+        >
+            🎸 Guitar
+        </button>
+
+        <button
+            class="sound-btn"
+            onclick="setSound('square')"
+        >
+            ⚡ Retro
+        </button>
+
+    </div>
+
+
+    <!-- ==================================================
+         INSTRUCCIONES
+         ================================================== -->
+
+    <div
+        id="instructions"
+        class="instructions"
+    >
+        Carregant...
+    </div>
+
+
+    <!-- ==================================================
+         PROGRESO
+         ================================================== -->
+
+    <div id="progress">
+
+        <span id="progressLabel">
+            Trobades
+        </span>
+
+        :
+
+        <span id="found">
+            0
+        </span>
+
+        /
+
+        <span id="total">
+            0
+        </span>
+
+    </div>
+
+
+    <!-- ==================================================
+         MÁSTIL
+         ================================================== -->
+
+    <div
+        id="fretboard-wrap-container"
+        style="text-align:center;"
+    >
+
+        <div id="fretboard-wrap">
+
+            <!-- Números de traste -->
+
+            <div id="fret-labels"></div>
+
+
+            <!-- Mástil -->
+
+            <div id="fretboard"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         RESULTADO / COORDENADAS
+         ================================================== -->
+
+    <div id="coordinates">
+
+        <div class="result-title">
+
+            ✅
+
+            <span id="resultText">
+                Repte resolt
+            </span>
+
+        </div>
+
+
+        <div
+            class="coords"
+            id="coordsText"
+        >
+            --
+        </div>
+
+
+        <button
+            id="copyButton"
+            onclick="copyCoords()"
+        >
+            📋 Copiar coordenades
+        </button>
+
+    </div>
+
+
 </div>
-<div id="soundControls">
-  <button class="sound-btn" onclick="setSound('triangle')">🎵 Soft</button>
-  <button class="sound-btn" onclick="setSound('sawtooth')">🎸 Guitar</button>
-  <button class="sound-btn" onclick="setSound('square')">⚡ Retro</button>
-</div>
-<div id="instructions" class="instructions">Carregant...</div>
-<div id="progress">
-  <span id="progressLabel">Trobades</span> :
-  <span id="found">0</span> /
-  <span id="total">0</span>
-</div>
-<div style="text-align: center;">
-  <div id="fretboard-wrap">
-    <div id="fret-labels"></div>
-    <div id="fretboard"></div>
-  </div>
-</div>
-<div id="coordinates">
-  <div class="result-title">✅ <span id="resultText">Repte resolt</span></div>
-  <div class="coords" id="coordsText">--</div>
-  <button id="copyButton" onclick="copyCoords()">📋 Copiar coordenades</button>
-</div>
-</div>
+
+
+<!-- ======================================================
+     JAVASCRIPT DEL JUEGO
+     ====================================================== -->
+
 <script src="app.js"></script>
+
+
 </body>
+
 </html>
