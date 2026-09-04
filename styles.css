@@ -931,11 +931,11 @@ body.dark-cache #copyButton:hover {
         left: auto;
         margin-top: 0;
 
-        transform:
-            translateY(-160px)
-            rotate(180deg)
-            rotate(90deg)
-            scaleX(-1);
+       transform:
+           rotate(180deg)
+           rotate(90deg)
+           scaleX(-1)
+           translateY(-160px);
 
         transform-origin: center center;
     }
