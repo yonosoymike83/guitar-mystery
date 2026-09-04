@@ -559,10 +559,13 @@ body.dark-cache #fretboard {
         inset 0 0 20px rgba(0,0,0,.45);
 
     /*
-       La rotación mantiene los números de traste
-       correctamente orientados.
+       IMPORTANTE:
+       Rotación original:
+       90° + inversión horizontal.
+
+       Ahora se gira TODO el mástil 180° adicional.
     */
-    transform: rotate(90deg) scaleX(-1);
+    transform: rotate(180deg) rotate(90deg) scaleX(-1);
     transform-origin: center center;
 
     margin-top: -130px;
@@ -586,11 +589,10 @@ body.dark-cache #fretboard .string-header {
         0 0 6px rgba(232,201,122,.3);
 
     /*
-       IMPORTANTE:
-       El orden de las transformaciones se ha cambiado
-       para corregir la orientación de E A D G B E.
+       El mástil completo gira 180°.
+       Esta contrarrotación mantiene las letras legibles.
     */
-    transform: scaleX(-1) rotate(-90deg);
+    transform: rotate(90deg);
 }
 
 /* ==========================================================
@@ -825,7 +827,12 @@ body.dark-cache #copyButton:hover {
         padding: 5px 3px;
         border-width: 2px;
         border-radius: 10px;
-        transform: rotate(90deg) scaleX(-1);
+
+        /*
+           MISMA ROTACIÓN DE 180° EN MÓVIL
+        */
+        transform: rotate(180deg) rotate(90deg) scaleX(-1);
+
         margin-top: -115px;
     }
 
@@ -833,7 +840,12 @@ body.dark-cache #copyButton:hover {
     body.dark-cache #fretboard .string-header {
         font-size: .68rem;
         padding-bottom: 3px;
-        transform: scaleX(-1) rotate(-90deg);
+
+        /*
+           Mantener las letras legibles
+           después de la rotación de 180°.
+        */
+        transform: rotate(90deg);
     }
 
     body.dark-cache #fretboard .note {
@@ -861,7 +873,13 @@ body.dark-cache #copyButton:hover {
 
     body.dark-cache #fretboard {
         grid-template-columns: repeat(6, 30px);
-        transform: rotate(90deg) scaleX(-1);
+
+        /*
+           NO añadimos otra rotación.
+           Conservamos exactamente la misma.
+        */
+        transform: rotate(180deg) rotate(90deg) scaleX(-1);
+
         margin-top: -100px;
     }
 
@@ -878,6 +896,7 @@ body.dark-cache #copyButton:hover {
 
     body.dark-cache #fretboard .string-header {
         font-size: .60rem;
+        transform: rotate(90deg);
     }
 }
 
