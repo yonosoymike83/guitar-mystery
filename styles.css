@@ -902,6 +902,10 @@ body.dark-cache #copyButton:hover {
    ========================================================== */
 
 @media (orientation: landscape) and (max-height: 700px) {
+   
+    body.dark-cache #fret-labels {
+        top: 8%;
+    }
 
     body.dark-cache #fretboard-wrap {
         position: fixed;
