@@ -493,7 +493,7 @@ body.dark-cache #fretboard-wrap {
 body.dark-cache #fret-labels {
     position: absolute;
     left: 50%;
-    top: 8px;
+    top: 35px;
     transform: translateX(-50%);
     display: flex;
     flex-direction: row;
