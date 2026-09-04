@@ -842,7 +842,8 @@ body.dark-cache #copyButton:hover {
         padding: 5px 3px;
         border-width: 2px;
         border-radius: 10px;
-
+       
+        top: 50%;
         transform: rotate(180deg) rotate(90deg) scaleX(-1);
        
     }
@@ -880,7 +881,8 @@ body.dark-cache #copyButton:hover {
     body.dark-cache #fretboard {
         grid-template-columns: repeat(6, 26px);
         grid-auto-rows: 33px;
-
+       
+        top: 50%;
         transform: rotate(180deg) rotate(90deg) scaleX(-1);
 
     }
