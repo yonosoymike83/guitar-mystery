@@ -919,20 +919,20 @@ body.dark-cache #copyButton:hover {
         position: relative;
         width: 100%;
         height: 100%;
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
         overflow: visible;
     }
 
     body.dark-cache #fretboard {
-        position: absolute;
-
-        left: 50%;
-        top: 50%;
-
+        position: relative;
+        top: auto;
+        left: auto;
         margin-top: 0;
 
         transform:
-            translate(-50%, -50%)
+            translateY(-80px)
             rotate(180deg)
             rotate(90deg)
             scaleX(-1);
