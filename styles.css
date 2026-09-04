@@ -910,5 +910,31 @@ body.dark-cache #copyButton:hover {
 }
 
 /* ==========================================================
+   DARK CACHE — MÓVIL HORIZONTAL
+   ========================================================== */
+
+@media (orientation: landscape) and (max-height: 700px) {
+
+    body.dark-cache #fretboard-wrap {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    body.dark-cache #fretboard {
+        position: relative;
+        top: auto;
+        left: auto;
+
+        transform:
+            rotate(180deg)
+            rotate(90deg)
+            scaleX(-1);
+
+        margin-top: -100px;
+    }
+}
+/* ==========================================================
    FIN
    ========================================================== */
