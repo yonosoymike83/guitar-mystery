@@ -932,7 +932,7 @@ body.dark-cache #copyButton:hover {
         margin-top: 0;
 
         transform:
-            translateY(-80px)
+            translateY(-160px)
             rotate(180deg)
             rotate(90deg)
             scaleX(-1);
