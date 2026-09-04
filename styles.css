@@ -480,7 +480,7 @@ body.dark-cache #fretboard-wrap {
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     padding-top: 0;
     overflow: visible;
     z-index: 1;
@@ -579,8 +579,6 @@ body.dark-cache #fretboard {
     */
     transform: rotate(180deg) rotate(90deg) scaleX(-1);
     transform-origin: center center;
-
-    margin-top: -260px;
 
     z-index: 2;
 }
@@ -846,8 +844,7 @@ body.dark-cache #copyButton:hover {
         border-radius: 10px;
 
         transform: rotate(180deg) rotate(90deg) scaleX(-1);
-
-        margin-top: -245px;
+       
     }
 
     body.dark-cache #fretboard .string-header {
@@ -886,7 +883,6 @@ body.dark-cache #copyButton:hover {
 
         transform: rotate(180deg) rotate(90deg) scaleX(-1);
 
-        margin-top: -100px;
     }
 
     body.dark-cache #fretboard .note {
