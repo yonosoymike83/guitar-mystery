@@ -506,8 +506,8 @@ body.dark-cache #fret-labels {
 }
 
 body.dark-cache .fret-label {
-    width: 38px;
-    min-width: 38px;
+    width: 42px;
+    min-width: 42px;
     height: 22px !important;
     display: flex;
     align-items: center;
@@ -531,9 +531,24 @@ body.dark-cache .fret-label:first-child {
 body.dark-cache #fretboard {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(6, 38px);
+
+    /*
+       6 columnas = 6 cuerdas.
+       Las hacemos más estrechas para reducir
+       la altura visual del mástil.
+    */
+    grid-template-columns: repeat(6, 32px);
+
+    /*
+       Cada fila corresponde a un traste.
+       Al estar el mástil girado 90°, esto
+       determina su longitud horizontal.
+    */
+    grid-auto-rows: 42px;
+
     gap: 0;
     row-gap: 0;
+
     flex-shrink: 0;
     padding: 5px 3px;
 
@@ -559,11 +574,8 @@ body.dark-cache #fretboard {
         inset 0 0 20px rgba(0,0,0,.45);
 
     /*
-       IMPORTANTE:
-       Rotación original:
-       90° + inversión horizontal.
-
-       Ahora se gira TODO el mástil 180° adicional.
+       Rotación actual que ya funciona.
+       Se mantiene la orientación del mástil.
     */
     transform: rotate(180deg) rotate(90deg) scaleX(-1);
     transform-origin: center center;
@@ -580,19 +592,22 @@ body.dark-cache #fretboard {
 body.dark-cache #fretboard .string-header {
     position: relative;
     z-index: 5;
+
     color: #e8c97a;
     font-weight: bold;
     font-size: .75rem;
     padding-bottom: 4px;
+
     text-shadow:
         0 1px 3px #000,
         0 0 6px rgba(232,201,122,.3);
 
     /*
-       El mástil completo gira 180°.
-       Esta contrarrotación mantiene las letras legibles.
+       Corrección definitiva de orientación.
+       Las letras quedan del derecho después
+       de la transformación del mástil.
     */
-    transform: rotate(90deg);
+    transform: scaleX(-1) rotate(90deg);
 }
 
 /* ==========================================================
@@ -812,8 +827,8 @@ body.dark-cache #copyButton:hover {
     }
 
     body.dark-cache .fret-label {
-        width: 34px;
-        min-width: 34px;
+        width: 36px;
+        min-width: 36px;
         height: 18px !important;
         font-size: .55rem;
     }
@@ -823,29 +838,23 @@ body.dark-cache #copyButton:hover {
     }
 
     body.dark-cache #fretboard {
-        grid-template-columns: repeat(6, 34px);
+        grid-template-columns: repeat(6, 29px);
+        grid-auto-rows: 36px;
+
         padding: 5px 3px;
         border-width: 2px;
         border-radius: 10px;
 
-        /*
-           MISMA ROTACIÓN DE 180° EN MÓVIL
-        */
         transform: rotate(180deg) rotate(90deg) scaleX(-1);
 
         margin-top: -115px;
     }
 
-    /* CORRECCIÓN DE ORIENTACIÓN E-A-D-G-B-E */
     body.dark-cache #fretboard .string-header {
         font-size: .68rem;
         padding-bottom: 3px;
 
-        /*
-           Mantener las letras legibles
-           después de la rotación de 180°.
-        */
-        transform: rotate(90deg);
+        transform: scaleX(-1) rotate(90deg);
     }
 
     body.dark-cache #fretboard .note {
@@ -872,12 +881,9 @@ body.dark-cache #copyButton:hover {
 @media (max-width: 430px) {
 
     body.dark-cache #fretboard {
-        grid-template-columns: repeat(6, 30px);
+        grid-template-columns: repeat(6, 26px);
+        grid-auto-rows: 33px;
 
-        /*
-           NO añadimos otra rotación.
-           Conservamos exactamente la misma.
-        */
         transform: rotate(180deg) rotate(90deg) scaleX(-1);
 
         margin-top: -100px;
@@ -889,14 +895,14 @@ body.dark-cache #copyButton:hover {
     }
 
     body.dark-cache .fret-label {
-        width: 30px;
-        min-width: 30px;
+        width: 33px;
+        min-width: 33px;
         font-size: .48rem;
     }
 
     body.dark-cache #fretboard .string-header {
         font-size: .60rem;
-        transform: rotate(90deg);
+        transform: scaleX(-1) rotate(90deg);
     }
 }
 
