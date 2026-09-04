@@ -843,8 +843,9 @@ body.dark-cache #copyButton:hover {
         border-width: 2px;
         border-radius: 10px;
        
-        top: 25%;
+        top: auto;
         transform: rotate(180deg) rotate(90deg) scaleX(-1);
+        margin-top: -100px
        
     }
 
