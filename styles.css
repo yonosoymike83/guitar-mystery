@@ -917,24 +917,30 @@ body.dark-cache #copyButton:hover {
 
     body.dark-cache #fretboard-wrap {
         position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
+        width: 100%;
+        height: 100%;
+        display: block;
+        overflow: visible;
     }
 
     body.dark-cache #fretboard {
-        position: relative;
-        top: auto;
-        left: auto;
+        position: absolute;
+
+        left: 50%;
+        top: 50%;
+
+        margin-top: 0;
 
         transform:
+            translate(-50%, -50%)
             rotate(180deg)
             rotate(90deg)
             scaleX(-1);
 
-        margin-top: -300px;
+        transform-origin: center center;
     }
 }
+
 /* ==========================================================
    FIN
    ========================================================== */
