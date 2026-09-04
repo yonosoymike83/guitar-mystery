@@ -532,18 +532,7 @@ body.dark-cache #fretboard {
     position: relative;
     display: grid;
 
-    /*
-       6 columnas = 6 cuerdas.
-       Las hacemos más estrechas para reducir
-       la altura visual del mástil.
-    */
     grid-template-columns: repeat(6, 32px);
-
-    /*
-       Cada fila corresponde a un traste.
-       Al estar el mástil girado 90°, esto
-       determina su longitud horizontal.
-    */
     grid-auto-rows: 42px;
 
     gap: 0;
@@ -573,11 +562,11 @@ body.dark-cache #fretboard {
         0 0 12px rgba(0,0,0,.8),
         inset 0 0 20px rgba(0,0,0,.45);
 
-    /*
-       Rotación actual que ya funciona.
-       Se mantiene la orientación del mástil.
-    */
-    transform: rotate(180deg) rotate(90deg) scaleX(-1);
+    transform:
+        rotate(180deg)
+        rotate(90deg)
+        scaleX(-1);
+
     transform-origin: center center;
 
     z-index: 2;
@@ -600,11 +589,6 @@ body.dark-cache #fretboard .string-header {
         0 1px 3px #000,
         0 0 6px rgba(232,201,122,.3);
 
-    /*
-       Corrección definitiva de orientación.
-       Las letras quedan del derecho después
-       de la transformación del mástil.
-    */
     transform: scaleX(-1) rotate(90deg);
 }
 
@@ -617,9 +601,11 @@ body.dark-cache #fretboard .note {
     width: 28px;
     height: 28px;
     margin: 3px auto;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     border: none;
     border-radius: 50%;
     background: transparent;
@@ -790,7 +776,7 @@ body.dark-cache #copyButton:hover {
 }
 
 /* ==========================================================
-   DARK CACHE — MÓVIL
+   DARK CACHE — MÓVIL VERTICAL
    ========================================================== */
 
 @media (max-width: 700px) {
@@ -814,9 +800,12 @@ body.dark-cache #copyButton:hover {
 
     body.dark-cache #fretboard-wrap {
         position: relative;
+        width: 100%;
+        height: 100%;
         display: flex;
         justify-content: center;
         align-items: flex-start;
+        overflow: visible;
     }
 
     body.dark-cache #fret-labels {
@@ -842,20 +831,22 @@ body.dark-cache #copyButton:hover {
         padding: 5px 3px;
         border-width: 2px;
         border-radius: 10px;
-       
-        position: relative; 
+
+        position: relative;
         top: auto;
         left: auto;
-       
-        transform: rotate(180deg) rotate(90deg) scaleX(-1);
-        margin-top: -100px
-       
+
+        transform:
+            rotate(180deg)
+            rotate(90deg)
+            scaleX(-1);
+
+        margin-top: -100px;
     }
 
     body.dark-cache #fretboard .string-header {
         font-size: .68rem;
         padding-bottom: 3px;
-
         transform: scaleX(-1) rotate(90deg);
     }
 
@@ -880,16 +871,13 @@ body.dark-cache #copyButton:hover {
    DARK CACHE — TELÉFONOS ESTRECHOS
    ========================================================== */
 
-@media (max-width: 430px) {
+@media (max-width: 430px) and (orientation: portrait) {
 
     body.dark-cache #fretboard {
         grid-template-columns: repeat(6, 26px);
         grid-auto-rows: 33px;
-       
-        top: auto;
-        transform: rotate(180deg) rotate(90deg) scaleX(-1);
-        margin-top: -100px
 
+        margin-top: -100px;
     }
 
     body.dark-cache #fretboard .note {
@@ -921,7 +909,7 @@ body.dark-cache #copyButton:hover {
         height: 100%;
         display: flex;
         justify-content: center;
-        align-items: flex-start;
+        align-items: center;
         overflow: visible;
     }
 
@@ -931,13 +919,16 @@ body.dark-cache #copyButton:hover {
         left: auto;
         margin-top: 0;
 
-       transform:
-           rotate(180deg)
-           rotate(90deg)
-           scaleX(-1)
-           translateY(-160px);
+        transform:
+            rotate(180deg)
+            rotate(90deg)
+            scaleX(-1);
 
         transform-origin: center center;
+    }
+
+    body.dark-cache #fretboard .string-header {
+        transform: scaleX(-1) rotate(90deg);
     }
 }
 
