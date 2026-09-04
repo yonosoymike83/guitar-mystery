@@ -580,7 +580,7 @@ body.dark-cache #fretboard {
     transform: rotate(180deg) rotate(90deg) scaleX(-1);
     transform-origin: center center;
 
-    margin-top: -130px;
+    margin-top: -260px;
 
     z-index: 2;
 }
@@ -847,7 +847,7 @@ body.dark-cache #copyButton:hover {
 
         transform: rotate(180deg) rotate(90deg) scaleX(-1);
 
-        margin-top: -115px;
+        margin-top: -245px;
     }
 
     body.dark-cache #fretboard .string-header {
