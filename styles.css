@@ -904,20 +904,29 @@ body.dark-cache #copyButton:hover {
 @media (orientation: landscape) and (max-height: 700px) {
 
     body.dark-cache #fretboard-wrap {
-        position: relative;
-        width: 100%;
-        height: 100%;
+        position: fixed;
+        inset: 0;
+
+        width: 100vw;
+        height: 100vh;
+
         display: flex;
         justify-content: center;
         align-items: center;
+
+        padding: 0;
+        margin: 0;
+
         overflow: visible;
+        z-index: 1;
     }
 
     body.dark-cache #fretboard {
         position: relative;
+
         top: auto;
         left: auto;
-        margin-top: 0;
+        margin: 0;
 
         transform:
             rotate(180deg)
@@ -925,10 +934,6 @@ body.dark-cache #copyButton:hover {
             scaleX(-1);
 
         transform-origin: center center;
-    }
-
-    body.dark-cache #fretboard .string-header {
-        transform: scaleX(-1) rotate(90deg);
     }
 }
 
