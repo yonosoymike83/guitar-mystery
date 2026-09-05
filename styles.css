@@ -58,6 +58,10 @@ h1 {
     cursor: pointer;
 }
 
+.controls {
+   margin-bottom: 15px;
+}
+
 .challenge {
     display: block;
     background: #222;
