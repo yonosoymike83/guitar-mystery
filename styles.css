@@ -438,7 +438,7 @@ body.dark-cache #list {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 8px;
     overflow-y: auto;
     overflow-x: hidden;
